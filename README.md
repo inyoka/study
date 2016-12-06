@@ -1,4 +1,5 @@
-# study - STUdent Database Y.... is..for...erm.. fun???
+# STUDY 
+- STUdent Database Y.... is..for...erm.. fun???
 
 Student database for a language school.  Essentially a local application accessing an online database to keep track of students details and progress.
 
