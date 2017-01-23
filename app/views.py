@@ -3,6 +3,7 @@ from flask import url_for, request
 import random
 
 @app.route('/')
+@app.route('/index')
 def hello_person():
     return """
         <h1>CaSE Online Database Development</h1>
