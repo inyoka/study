@@ -23,3 +23,16 @@ def greet():
         <p>%s, %s!</p>
         <p><a href="%s">Back to start</a></p>
         """ % (greeting, request.form["person"], url_for('hello_person'))
+@app.route('/test')
+def test():
+    user = {'nickname': 'Miguel'}  # fake user
+    return '''
+        <html>
+        <head>
+        <title>Home Page</title>
+        </head>
+        <body>
+        <h1>Hello, ''' + user['nickname'] + '''</h1>
+        </body>
+        </html>
+        '''
