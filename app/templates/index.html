@@ -1,8 +1,15 @@
-<html>
-    <head>
-        <title>{{ title }} - microblog</title>
-    </head>
-    <body>
-        <h1>Hello, {{ user.nickname }}!</h1>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+    <h1>Hello, {{ user.nickname }}! </h1>
+    <h2>... welcome to CaSE Online Database Development </h2>
+    <p>Please check back here periodically for developments.  Much </p>
+    <p>of the work will be in the background, but I will let you know when things </p>
+    <p>start to change on here.</p>
+    <hr>
+    <p>Test sending, processing and recieving data...</p>
+    <p>Who do you want me to say "Hi" to with a random greating?</p>
+    <form method="POST" action="{{url_for('greet')}}"><input name="person" /><input type="submit" value="Go!" /></form>
+    {% for post in posts %}
+    <div><p>{{ post.author.nickname }} says: <b>{{ post.body }}</b></p></div>
+    {% endfor %}
+{% endblock %}
