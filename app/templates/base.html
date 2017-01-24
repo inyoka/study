@@ -1,0 +1,14 @@
+<html>
+  <head>
+    {% if title %}
+    <title>{{ title }} - CaSE Database</title>
+    {% else %}
+    <title>Welcome to CaSE Online Database BETA Version</title>
+    {% endif %}
+  </head>
+  <body>
+    <div>CaSE: <a href="/index">Home</a></div>
+    <hr>
+    {% block content %}{% endblock %}
+  </body>
+</html>
