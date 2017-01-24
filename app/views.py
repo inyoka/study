@@ -1,6 +1,7 @@
 from app import app
-from flask import url_for, request, render_template
+from flask import url_for, request, render_template, flash, redirect
 import random
+from app.forms import LoginForm
 
 
 @app.route('/')
@@ -19,6 +20,11 @@ def hello_person():
     ]
     return render_template('index.html', title='Home', user=user)
 
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    return render_template('login.html', title='Sign In', form=form)
 
 @app.route('/greet', methods=['POST'])
 def greet():
