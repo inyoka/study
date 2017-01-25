@@ -1,7 +1,6 @@
 from app import app, db, lm, oid
 from flask import url_for, request, render_template, flash, redirect, session, g
 from flask_login import login_user, logout_user, current_user, login_required
-import random
 from app.forms import LoginForm
 from app.models import User
 
@@ -51,6 +50,7 @@ def login():
                            form=form,
                            providers=app.config['OPENID_PROVIDERS'])
 
+
 @oid.after_login
 def after_login(resp):
     if resp.email is None or resp.email == "":
@@ -76,13 +76,3 @@ def after_login(resp):
 def logout():
     logout_user()
     return redirect(url_for('index'))
-
-
-@app.route('/greet', methods=['POST'])
-def greet():
-    greeting = random.choice(["Hiya", "Hallo", "Hola", "Ola", "Salut", "Privet",
-                              "Konnichiwa", "Ni hao"])
-    return """
-<p>%s, %s!</p>
-<p><a href="%s">Back to start</a></p>
-""" % (greeting, request.form["person"], url_for('hello_person'))
