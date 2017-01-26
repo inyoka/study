@@ -1,8 +1,11 @@
+<!-- extend base layout -->
 {% extends "base.html" %}
+
 {% block content %}
     <h1>Hello, {{ user.nickname }}! </h1>
-    <h2>... welcome to CaSE Online Database Development </h2>
-    <p>Please check back here periodically for developments.  Much </p>
-    <p>of the work will be in the background, but I will let you know when things </p>
-    <p>start to change on here.</p>
+    {% for post in posts %}
+    <p>
+      {{ post.author.nickname }} says: <b>{{ post.body }}</b>
+    </p>
+    {% endfor %}
 {% endblock %}

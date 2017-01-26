@@ -1,14 +1,9 @@
-# Entry point for Student Database
-
-from flask import Flask #, url_for
-from flask_sqlalchemy import SQLAlchemy
-
-# OpenID Implementation
 import os
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_openid import OpenID
 from config import basedir
-# END OpenID Implementation
 
 app = Flask(__name__)
 app.config.from_object('config')

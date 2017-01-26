@@ -3,11 +3,16 @@
     {% if title %}
     <title>{{ title }} - CaSE Database</title>
     {% else %}
-    <title>Welcome to CaSE Online Database BETA Version</title>
+    <title>CaSE Database BETA</title>
     {% endif %}
   </head>
   <body>
-    <div>CaSE: <a href="/index">Home</a> : <a href="/login">Login</a></div>
+    <div>CaSE: 
+        <a href="{{ url_for('index') }}">Home</a>
+        {% if g.user.is_authenticated %}
+        | <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
+    </div>
     <hr>
     {% with message = get_flashed_messages()  %}
         {% if messages %}
