@@ -1,3 +1,16 @@
+# Files specified by me
+app.db
+.DS_Store
+.gitignore.swp
+.object.py.swo
+app/.DS_Store
+app/tmp/
+case/
+db_repository/
+tmp/
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
