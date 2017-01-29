@@ -42,6 +42,18 @@ def index():
                            posts=posts)
 
 
+@app.route('/add-student')
+@login_required
+def createStudent():
+    return render_template('create-student.html', title='Add Student', user=user)
+
+
+@app.route('/add-student')
+@login_required
+def viewStudents():
+    return render_template('view-students.html', title='Add Student', user=user)
+
+
 @app.route('/user/<nickname>')
 @login_required
 def user(nickname):

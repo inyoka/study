@@ -18,13 +18,30 @@
 
   </head>
   <body>
-    <div class="container">CaSE:
-        <a href="{{ url_for('index') }}">Home</a>
-        {% if g.user.is_authenticated %}
-        | <a href="{{ url_for('user', nickname=g.user.nickname) }}">Your Profile</a>
-        | <a href="{{ url_for('logout') }}">Logout</a>
-        | <button class="btn btn-success" onclick="$(this).hide();">Click me!</button>
+    <div class="container row-fluid">
+
+            CaSE :&nbsp;
+            {% if g.user.is_authenticated %}
+            <a href="{{ url_for('index') }}" class="btn btn-default">Main Screen</a>
+
+
+                      <div class="dropdown span6">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Students <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="{{ url_for('createStudent') }}">Add</a></li>
+              <li><a href="{{ url_for('viewStudents') }}">View</a></li>
+              <li><a href="{{ url_for('viewStudents') }}">Browse</a></li>
+            </ul>
+
+
+        <div class="pull-right">
+          <a href="{{ url_for('user', nickname=g.user.nickname) }}" class="btn btn-default">Profile</a>
+          ::
+          <a href="{{ url_for('logout') }}" class="btn btn-info">Logout</a>
+        </div>
+
         {% endif %}
+      </div>
     </div>
     <hr>
     {% with message = get_flashed_messages()  %}

@@ -33,14 +33,14 @@ function set_openid(openid, pr)
             <div class="controls">
                 {{ form.openid(size = 80, class = "span4") }}
                  {% for error in form.errors.openid %}
-                    <span class="help-inline">[{{error}}]</span><br>
+                    <span class="help-inline">[{{error}}]</span>trial<br>
                 {% endfor %}
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
               <label class="checkbox" for="remember_me">
-                &emsp;{{ form.remember_me }} Remember Me</div>
+                &nbsp;&emsp;{{ form.remember_me }} Remember Me</div>
               </label>
             </div>
         </div>
