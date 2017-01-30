@@ -1,63 +1,92 @@
-
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <div class="container">
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="/static/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous">
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+      crossorigin="anonymous">
+    </head>
+    
+<body>
+<nav class="navbar navbar-default text-black">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">CaSE Student Database</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+        <li><a href="{{ url_for('index') }}">Home Page <span class="sr-only">(current)</span></a></li>
+        {% if g.user.is_authenticated %}
+        <li><a href="{{ url_for('user', nickname=g.user.nickname) }}">Profile</a></li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Students <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ url_for('createStudent') }}">Add</a></li>
+            <li><a href="{{ url_for('viewStudents') }}">Search</a></li>
+            <li><a href="{{ url_for('viewStudents') }}">List</a></li>
+            <li><a href="{{ url_for('viewStudents') }}">Edit</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{{ url_for('viewStudents') }}">Delete</a></li>
+          </ul>
+        </li>
+
+
+
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Student Name">
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+      </form>
+      <li><a href="{{ url_for('logout') }}">Logout :: <b>{{ user.nickname }}</b></a></li>
+            </ul>
+      {% endif %}
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
 
     {% if title %}
-    <title>{{ title }} - CaSE Database</title>
+        <title>{{ title }} - CaSE Database</title>
     {% else %}
-    <title>CaSE Database BETA</title>
+        <title>CaSE Database BETA</title>
     {% endif %}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-
-  </head>
-  <body>
-    <div class="container row-fluid">
-
-            CaSE :&nbsp;
-            {% if g.user.is_authenticated %}
-            <a href="{{ url_for('index') }}" class="btn btn-default">Main Screen</a>
-
-
-                      <div class="dropdown span6">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Students <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li><a href="{{ url_for('createStudent') }}">Add</a></li>
-              <li><a href="{{ url_for('viewStudents') }}">View</a></li>
-              <li><a href="{{ url_for('viewStudents') }}">Browse</a></li>
-            </ul>
-
-
-        <div class="pull-right">
-          <a href="{{ url_for('user', nickname=g.user.nickname) }}" class="btn btn-default">Profile</a>
-          ::
-          <a href="{{ url_for('logout') }}" class="btn btn-info">Logout</a>
-        </div>
-
-        {% endif %}
-      </div>
-    </div>
     <hr>
     {% with message = get_flashed_messages()  %}
-        {% if messages %}
-            <ul>
+        {% if messages %}<ul>
             {% for message in messages %}
                 <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
+            {% endfor %}</ul>
         {% endif %}
     {% endwith %}
-    {% block content %}{% endblock %}
+    {% block content %}
+    {% endblock %}
+    </div>
+
     <script src="/static/js/jquery.min.js"></script>
-
     <!-- Latest compiled and minified JavaScript -->
-    <script src="/static/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+    <script src="/static/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
   </body>
 </html>
