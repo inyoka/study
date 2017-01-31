@@ -17,7 +17,7 @@
     </head>
 
 <body>
-<nav class="navbar navbar-default text-black">
+<nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -27,16 +27,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">CaSE Student Database</a>
+      <a class="navbar-brand" href="#">CaSE</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
 
-        <li><a href="{{ url_for('index') }}">Home Page <span class="sr-only">(current)</span></a></li>
+        <li><a href="{{ url_for('index') }}">Home<span class="sr-only">(current)</span></a></li>
         {% if g.user.is_authenticated %}
-        <li><a href="{{ url_for('user', nickname=g.user.nickname) }}">Profile</a></li>
+        <li></li>
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Students <span class="caret"></span></a>
@@ -51,6 +51,15 @@
         </li>
 
 
+        <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.nickname }}<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('user', nickname=g.user.nickname) }}">Profile</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{{ url_for('logout') }}">Logout<b></b></a></li>
+                  </ul>
+                </li>
+
 
       <form class="navbar-form navbar-left">
         <div class="form-group">
@@ -58,7 +67,8 @@
         </div>
         <button type="submit" class="btn btn-default">Search</button>
       </form>
-      <li><a href="{{ url_for('logout') }}">Logout :: <b>{{ user.nickname }}</b></a></li>
+      <li></li>
+
             </ul>
       {% endif %}
     </div><!-- /.navbar-collapse -->
