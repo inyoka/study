@@ -4,8 +4,13 @@
 {% block content %}
 <div class="container">
 
+    {% if title %}
+        <title>{{ title }} - CaSE Database</title>
+    {% else %}
+        <title>CaSE Database BETA</title>
+    {% endif %}
   <form action="add-student">
-
+  <h3>{{ title }}</h3>
   <!-- Your form goes here -->
 
   <input type="submit" value="Sign Up" class="btn btn-default" />

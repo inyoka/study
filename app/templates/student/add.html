@@ -3,17 +3,16 @@
 
 {% block content %}
 <div class="container">
-
+    {% if title %}
+        <title>{{ title }} - CaSE Database</title>
+    {% else %}
+        <title>CaSE Database BETA</title>
+    {% endif %}
   <form action="add-student">
-      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-Test
-  <!-- Your form goes here -->
-  {% if title %}
-      <title>{{ title }} - CaSE Database</title>
-  {% else %}
-      <title>CaSE Database BETA</title>
-  {% endif %}
 
+  <!-- Your form goes here -->
+
+  <h3>{{ title }}</h3>
   <input type="submit" value="Sign Up" class="btn btn-default" />
   </form>
 

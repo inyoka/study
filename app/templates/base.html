@@ -41,19 +41,20 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Students <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ url_for('createStudent') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"> Add</a></li>
-            <li><a href="{{ url_for('viewStudents') }}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"> List</a></li>
-            <li><a href="{{ url_for('viewStudents') }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Edit</a></li>
+            <li><a href="{{ url_for('addStudent') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"> Add</a></li>
+            <li><a href="{{ url_for('editStudent') }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Edit</a></li>
+            <li><a href="{{ url_for('listStudents') }}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"> List</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="{{ url_for('viewStudents') }}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</a></li>
+            <li><a href="{{ url_for('deleteStudent') }}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>  Delete</a></li>
           </ul>
         </li>
 
 
         <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.nickname }}<span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ g.user.nickname }}<span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="{{ url_for('user', nickname=g.user.nickname) }}"><span class="glyphicon glyphicon-user" aria-hidden="true"> Profile</a></li>
+                    <li><a href="{{ url_for('edit') }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> Customise</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"> Logout<b></b></a></li>
                   </ul>
