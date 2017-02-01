@@ -5,8 +5,14 @@
 <div class="container">
 
   <form action="add-student">
-
+      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+Test
   <!-- Your form goes here -->
+  {% if title %}
+      <title>{{ title }} - CaSE Database</title>
+  {% else %}
+      <title>CaSE Database BETA</title>
+  {% endif %}
 
   <input type="submit" value="Sign Up" class="btn btn-default" />
   </form>
