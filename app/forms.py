@@ -1,19 +1,16 @@
 from flask_wtf import Form
 from wtforms.fields import StringField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length
-from app.models import User
+from app.models import User, Student, Contact
 
 class LoginForm(Form):
     openid = StringField('openid', validators=[DataRequired()])
     remember_me = BooleanField('remember_me', default=False)
 
-'''
-class EmailForm(Form):
-    email = StringField('email', validators= [DataRequired()])
-'''
+
 class EditForm(Form):
-    nickname = StringField('nickname', validators = [DataRequired()])
-    about_me = TextAreaField('about_me', validators = [Length(min=0, max=140)])
+    nickname = StringField('User.nickname', validators = [DataRequired()])
+    about_me = TextAreaField('User.about_me', validators = [Length(min=0, max=140)])
 
     def __init__(self, original_nickname, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
@@ -30,6 +27,16 @@ class EditForm(Form):
             self.nickname.errors.append('This nickname is already in use. Please choose another one.')
             return False
         return True
+
+'''
+class AddStudent(Form):
+'''
+
+
+'''
+class EmailForm(Form):
+    email = StringField('email', validators= [DataRequired()])
+'''
 '''
 class PostForm(Form):
     post = StringField('post', validators=[DataRequired()])
