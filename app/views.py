@@ -28,12 +28,8 @@ def index():
     user = g.user
     posts = [
         {
-            'author': {'nickname': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'nickname': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
+            'author': {'nickname': 'Simon'},
+            'body': 'Welcome to the CaSE Database Development Page!'
         }
     ]
     return render_template('index.html',
@@ -42,16 +38,34 @@ def index():
                            posts=posts)
 
 
-@app.route('/add-student')
+@app.route('/student/add')
 @login_required
-def createStudent():
-    return render_template('create-student.html', title='Add Student', user=user)
+def addStudent():
+    return render_template('/student/add.html', title='Add Student', user=user)
 
 
-@app.route('/add-student')
+@app.route('/student/edit')
 @login_required
-def viewStudents():
-    return render_template('view-students.html', title='Add Student', user=user)
+def editStudent():
+    return render_template('/student/edit.html', title='Edit Student', user=user)
+
+
+@app.route('/student/list')
+@login_required
+def listStudents():
+    return render_template('/student/list.html', title='List Students', user=user)
+
+
+@app.route('/student/search')
+@login_required
+def searchStudent():
+    return render_template('/student/search.html', title='Search', user=user)
+
+
+@app.route('/student/delete')
+@login_required
+def deleteStudent():
+    return render_template('/student/delete.html', title='Delete', user=user)
 
 
 @app.route('/user/<nickname>')
@@ -106,12 +120,12 @@ def login():
 
 @app.errorhandler(404)
 def not_found_error(error):
-    return render_template('404.html'), 404
+    return render_template('/error/404.html'), 404
 
 @app.errorhandler(500)
 def internal_error(error):
     db.session.rollback()
-    return render_template('500.html'), 500
+    return render_template('/error/500.html'), 500
 
 
 
