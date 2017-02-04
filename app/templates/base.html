@@ -1,3 +1,10 @@
+{%  block head %}
+{{ super }}
+<link rel="shortcut icon" href="{{ url_for('static', filename = 'favicon.ico')}}" type="image/x-icon">
+<link rel="icon" href="{{ url_for('static', filename = 'favicon.ico')}}" type="image/x-icon">
+{% endblock %}
+
+
 <html>
   <head>
     <meta charset="utf-8">
@@ -14,6 +21,7 @@
       crossorigin="anonymous">
       <!-- Custom CSS overrides -->
       <link rel="stylesheet" type="text/css" href="static/css/custom.css">
+
     </head>
 
 <body>
@@ -33,7 +41,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-
         <li><a href="{{ url_for('index') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"> <span class="sr-only">(current)</span></a></li>
         {% if g.user.is_authenticated %}
         <li></li>
@@ -48,8 +55,6 @@
             <li><a href="{{ url_for('deleteStudent') }}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>  Delete</a></li>
           </ul>
         </li>
-
-
         <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ g.user.nickname }}<span class="caret"></span></a>
                   <ul class="dropdown-menu">
@@ -58,7 +63,12 @@
                     <li role="separator" class="divider"></li>
                     <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"> Logout<b></b></a></li>
                   </ul>
-                </li>
+            </li>
+
+            <ul class="nav navbar-nav navbar-right">
+
+
+
 
 
       <form class="navbar-form navbar-left">
