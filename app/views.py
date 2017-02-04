@@ -1,7 +1,7 @@
 from app import app, db, lm, oid
 from flask import url_for, request, render_template, flash, redirect, session, g
 from flask_login import login_user, logout_user, current_user, login_required
-from app.forms import LoginForm, EditForm#, PostForm, EmailForm
+from app.forms import LoginForm, EditForm  # , PostForm, EmailForm
 from app.models import User
 from datetime import datetime
 
@@ -18,7 +18,6 @@ def before_request():
         g.user.last_seen = datetime.utcnow()
         db.session.add(g.user)
         db.session.commit()
-
 
 
 @app.route('/')
@@ -47,13 +46,15 @@ def addStudent():
 @app.route('/student/edit')
 @login_required
 def editStudent():
-    return render_template('/student/edit.html', title='Edit Student', user=user)
+    return render_template('/student/edit.html',
+                           title='Edit Student', user=user)
 
 
 @app.route('/student/list')
 @login_required
 def listStudents():
-    return render_template('/student/list.html', title='List Students', user=user)
+    return render_template('/student/list.html',
+                           title='List Students', user=user)
 
 
 @app.route('/student/search')
@@ -72,7 +73,7 @@ def deleteStudent():
 @login_required
 def user(nickname):
     user = User.query.filter_by(nickname=nickname).first()
-    if user == None:
+    if user is None:
         flash('User %s not found.' % nickname)
         return redirect(url_for('index'))
     posts = [
@@ -100,7 +101,27 @@ def edit():
         form.about_me.data = g.user.about_me
     return render_template('edit.html', form=form)
 
+'''
+@app.route('/login')
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user is not None and user.verify_password(form.password.data):
+            login_user(user, form.remember_me.data)
+            return redirect(request.args.get('next') or url_for('main.index'))
+        flash('Invalid username or password.')
+    return render_template('auth/login.html', form=form)
 
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    flash('You have been logged out')
+    return redirect(url_for('index'))
+
+
+'''
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -118,17 +139,6 @@ def login():
                            providers=app.config['OPENID_PROVIDERS'])
 
 
-@app.errorhandler(404)
-def not_found_error(error):
-    return render_template('/error/404.html'), 404
-
-@app.errorhandler(500)
-def internal_error(error):
-    db.session.rollback()
-    return render_template('/error/500.html'), 500
-
-
-
 @oid.after_login
 def after_login(resp):
     if resp.email is None or resp.email == "":
@@ -140,7 +150,7 @@ def after_login(resp):
         if nickname is None or nickname == "":
             nickname = resp.email.split('@')[0]
         nickname = User.make_unique_nickname(nickname)
-        user = User(nickname = nickname, email = resp.email)
+        user = User(nickname=nickname, email=resp.email)
         db.session.add(user)
         db.session.commit()
     remember_me = False
@@ -155,3 +165,14 @@ def after_login(resp):
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('/error/404.html'), 404
+
+
+@app.errorhandler(500)
+def internal_error(error):
+    db.session.rollback()
+    return render_template('/error/500.html'), 500
