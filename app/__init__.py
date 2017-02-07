@@ -9,12 +9,10 @@ app = Flask(__name__)
 app.config.from_object('config')
 # app.secret_key = 'This is really unique and secret'
 
-# OpenID Implementation
 lm = LoginManager()
 lm.init_app(app)
 lm.login_view = 'login'
 oid = OpenID(app, os.path.join(basedir, 'mysite/tmp'))
-# END OpenID Implementation
 
 db = SQLAlchemy(app)
 from app import views, models
