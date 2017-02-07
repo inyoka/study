@@ -12,7 +12,6 @@ app.config.from_object('config')
 lm = LoginManager()
 lm.init_app(app)
 lm.login_view = 'login'
-oid = OpenID(app, os.path.join(basedir, 'mysite/tmp'))
 
 db = SQLAlchemy(app)
 from app import views, models
