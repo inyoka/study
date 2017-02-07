@@ -1,10 +1,13 @@
 {% extends "base.html" %}
-{% block body %}
-  <form action="" method=post class="form-horizontal">
-    <h2>Sign up Application </h2>
-    <div class="control-group">
-        <div class="controls">
-          <input type="text" id="username" name="username" class="input-xlarge"
+{% block content %}
+{% include 'flash.html' %}
+<div class="container row extra-bottom-padding">
+  <form action="" method=post class="form-horizontal" name="register">
+    <h4>Create a username and password ...</h4>
+    <div contentents="control-group">
+        <div class="controls ">
+            <label class="control-label">Username &nbsp: </label>
+          <input type="text" id="username" name="username"
             placeholder="Enter Username" value="{{ request.form.username }}"
             required>
         </div>
@@ -12,7 +15,8 @@
 
     <div class="control-group">
         <div class="controls">
-          <input type="password" id="password" name="password" class="input-xlarge"
+            <label class="control-label">Password&nbsp&nbsp  :  </label>
+          <input type="password" id="password" name="password"
             placeholder="Enter Password" value="{{ request.form.password }}"
             required>
         </div>
@@ -20,16 +24,19 @@
 
     <div class="control-group">
         <div class="controls">
-          <input type="email" id="email" name="email" class="input-xlarge"
+            <label class="control-label">Email&nbsp&nbsp  :  </label>
+          <input type="email" id="email" name="email"
             placeholder="Enter Email" value="{{ request.form.username }}"
             required>
         </div>
     </div>
-
+<br>
     <div class="control-group">
         <div class="controls">
           <button type="submit" class="btn btn-success">Signup</button>
         </div>
     </div>
   </form>
+</div>
+  </body>
 {% endblock %}

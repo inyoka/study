@@ -1,13 +1,15 @@
 <!-- extend from base layout -->
 {% extends "base.html" %}
+{% block content %}
+{% include 'flash.html' %}
 
-{% block body %}
-  {% include 'flash.html' %}
- <div class="container">
+
+ <div style="display: inline-block" class="container  centered">
   <form action="" method=post class="form-horizontal">
-     <h3>Please Sign In</h3>
+     <h4>Please login : </h4>
     <div class="control-group">
         <div class="controls">
+          <label class="control-label">Username &nbsp: </label>
           <input type="text" id="username" name="username" class="input-xlarge"
             placeholder="Enter Username" required>
         </div>
@@ -15,6 +17,7 @@
 
     <div class="control-group">
         <div class="controls">
+          <label class="control-label">Password&nbsp&nbsp  :  </label>
           <input type="password" id="password" name="password" class="input-xlarge"
             placeholder="Enter Password" required>
         </div>
@@ -22,14 +25,16 @@
     <div class="control-group">
         <div class="controls">
           <label class="checkbox" for="remember_me">
-            &nbsp;&emsp;{{ form.remember_me }} Remember Me</div>
+            <button type="submit" class="btn btn-success">Signin</button>&nbsp&nbsp&nbsp;&emsp;{{ form.remember_me }} Remember Me</div>
           </label>
         </div>
     </div>
+    <br>
     <div class="control-group">
         <div class="controls">
-          <button type="submit" class="btn btn-success">Signin</button>
+
         </div>
     </div>
   </form>
+      </div>
 {% endblock %}
