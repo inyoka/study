@@ -14,7 +14,7 @@ lm.init_app(app)
 lm.login_view = 'login'
 
 db = SQLAlchemy(app)
-from app import views, models
+from app import models, views
 
 if not app.debug:
     import logging
