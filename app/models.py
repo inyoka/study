@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class User(db.Model):
     __tablename__='users'
     id = db.Column(db.Integer, primary_key=True)
-    nickname = db.Column(db.String(64), index=True, unique=True)
+    username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     about_me = db.Column(db.String(140))
@@ -41,22 +41,22 @@ class User(db.Model):
         return str(self.id)
 
     def __repr__(self):
-        return '<User %r>' % (self.nickname)
+        return '<User %r>' % (self.username)
 
     def avatar(self, size):
-        return '/static/img/avatar/' + (self.nickname) + '.jpg'
+        return '/static/img/avatar/' + (self.username) + '.jpg'
 
     @staticmethod
-    def make_unique_nickname(nickname):
-        if User.query.filter_by(nickname=nickname).first() is None:
-            return nickname
+    def make_unique_username(username):
+        if User.query.filter_by(username=username).first() is None:
+            return username
         version = 2
         while True:
-            new_nickname = nickname + str(version)
-            if User.query.filter_by(nickname=new_nickname).first() is None:
+            new_username = username + str(version)
+            if User.query.filter_by(username=new_username).first() is None:
                 break
             version += 1
-        return new_nickname
+        return new_username
 
 
 class Student(db.Model):

@@ -27,7 +27,7 @@ def index():
     user = g.user
     posts = [
         {
-            'author': {'nickname': 'Simon'},
+            'author': {'username': 'Simon'},
             'body': 'Welcome to the CaSE Database Development Page!'
         }
     ]
@@ -69,12 +69,12 @@ def deleteStudent():
     return render_template('/student/delete.html', title='Delete', user=user)
 
 
-@app.route('/user/<nickname>')
+@app.route('/user/<username>')
 @login_required
-def user(nickname):
-    user = User.query.filter_by(nickname=nickname).first()
+def user(username):
+    user = User.query.filter_by(username=username).first()
     if user is None:
-        flash('User %s not found.' % nickname)
+        flash('User %s not found.' % username)
         return redirect(url_for('index'))
     posts = [
         {'author': user, 'body': 'Test post #1'},
@@ -88,16 +88,16 @@ def user(nickname):
 @app.route('/edit', methods=['GET', 'POST'])
 @login_required
 def edit():
-    form = EditForm(g.user.nickname)
+    form = EditForm(g.user.username)
     if form.validate_on_submit():
-        g.user.nickname = form.nickname.data
+        g.user.username = form.username.data
         g.user.about_me = form.about_me.data
         db.session.add(g.user)
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('edit'))
     else:
-        form.nickname.data = g.user.nickname
+        form.username.data = g.user.username
         form.about_me.data = g.user.about_me
     return render_template('edit.html', form=form)
 
@@ -146,11 +146,11 @@ def after_login(resp):
         return redirect(url_for('login'))
     user = User.query.filter_by(email=resp.email).first()
     if user is None:
-        nickname = resp.nickname
-        if nickname is None or nickname == "":
-            nickname = resp.email.split('@')[0]
-        nickname = User.make_unique_nickname(nickname)
-        user = User(nickname=nickname, email=resp.email)
+        username = resp.nickname
+        if username is None or username == "":
+            username = resp.email.split('@')[0]
+        username = User.make_unique_username(username)
+        user = User(username=username, email=resp.email)
         db.session.add(user)
         db.session.commit()
     remember_me = False

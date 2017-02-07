@@ -9,22 +9,22 @@ class LoginForm(Form):
 
 
 class EditForm(Form):
-    nickname = StringField('User.nickname', validators = [DataRequired()])
+    username = StringField('User.username', validators = [DataRequired()])
     about_me = TextAreaField('User.about_me', validators = [Length(min=0, max=140)])
 
-    def __init__(self, original_nickname, *args, **kwargs):
+    def __init__(self, original_username, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
-        self.original_nickname = original_nickname
+        self.original_username = original_username
 
     def validate(self):
         if not Form.validate(self): #Normal flask's built in check.
             return False
-        if self.nickname.data == self.original_nickname: #If it's just the same, no worries
+        if self.username.data == self.original_username: #If it's just the same, no worries
             return True
-        user = User.query.filter_by(nickname=self.nickname.data).first() #Check database now for
-        #the nickname guy wants
+        user = User.query.filter_by(username=self.username.data).first() #Check database now for
+        #the username guy wants
         if user != None: #If result returns non-none, already in use.
-            self.nickname.errors.append('This nickname is already in use. Please choose another one.')
+            self.username.errors.append('This username is already in use. Please choose another one.')
             return False
         return True
 
