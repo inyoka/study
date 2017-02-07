@@ -21,7 +21,7 @@ class User(db.Model):
         self.password = password
         self.email = email
         self.registered_on = datetime.utcnow()
-
+    '''
     @property
     def password(self):
         raise AttributeError('Password is not a readable attribute')
@@ -29,19 +29,16 @@ class User(db.Model):
     @password.setter
     def password(self, password):
         self.password_hash = generate_password_hash(password)
-
+    '''
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-    @property
     def is_authenticated(self):
         return True
 
-    @property
     def is_active(self):
         return True
 
-    @property
     def is_anonymous(self):
         return False
 
