@@ -1,7 +1,6 @@
 from app import app, db, lm
 from flask import url_for, request, render_template, flash, redirect, session, g
 from flask_login import login_user, logout_user, current_user, login_required
-from flask import Flask, abort
 from app.forms import LoginForm, EditForm  # , PostForm, EmailForm
 from app.models import User
 from datetime import datetime
@@ -24,7 +23,6 @@ def before_request():
 
 @app.route('/')
 @app.route('/index')
-@login_required
 def index():
     user = g.user
     posts = [
@@ -39,26 +37,28 @@ def index():
                            posts=posts)
 
 
-@app.route('/login',methods=['GET','POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    form = LoginForm()
     if request.method == 'GET':
-        return render_template('login.html')
+        return render_template('login.html', title="login", form=form)
     username = request.form['username']
     password = request.form['password']
-    registered_user = User.query.filter_by(username=username,password=password).first()
+    registered_user = User.query.filter_by(username=username,
+                                           password=password).first()
     if registered_user is None:
-        flash('Username or Password is invalid' , 'error')
+        flash('Username or Password is invalid', 'error')
         return redirect(url_for('login'))
-    login_user(registered_user)
+    login_user(registered_user, form.remember_me.data)
     flash('Logged in successfully')
     return redirect(request.args.get('next') or url_for('index'))
 
 
-@app.route('/register' , methods=['GET','POST'])
+@app.route('/register', methods=['GET','POST'])
 def register():
     if request.method == 'GET':
         return render_template('register.html')
-    user = User(request.form['username'] , request.form['password'],request.form['email'])
+    user = User(request.form['username'], request.form['password'], request.form['email'])
     db.session.add(user)
     db.session.commit()
     flash('User successfully registered')
@@ -68,6 +68,8 @@ def register():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+
 '''
 @app.route('/login',methods=['GET','POST'])
 def login():
