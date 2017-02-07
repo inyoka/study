@@ -64,13 +64,17 @@ def register():
     flash('User successfully registered')
     return redirect(url_for('login'))
 
-
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+'''
 @app.route('/login',methods=['GET','POST'])
 def login():
     if request.method == 'GET':
         return render_template('login.html')
     return redirect(url_for('index'))
-
+'''
 
 @app.route('/student/add')
 @login_required
