@@ -3,11 +3,18 @@
 
 {% block content %}
 <div class="container">
-    <h1>Hello, {{ user.username }}! </h1>
-    {% for post in posts %}
-    <p>
-      {{ post.author.username }} says: <b>{{ post.body }}</b>
-    </p>
-    {% endfor %}
-  </div>
+            <div class="panel-body text-center">
+    <div class="center-block"><h3>Welcome to ...</h3>    </div>
+        <img src="static/img/case.png" alt="CaSE Language School" style="width:188px;height:63px;">
+        {% if g.user.is_authenticated %}
+            <h4>... and nice to see you again {{ user.username }}! </h4>
+            {% for post in posts %}
+                <p>{{ post.author.username }} says: <b>{{ post.body }}</b></p>
+            {% endfor %}
+        {% endif %}
+            <p>Come to CaSE or CaSE2 today for your FREE interview and placement test.
+                <br>New term starting soon. Learn to speak English like a native-
+                speaker with CaSE!</p>
+
+</div></div>
 {% endblock %}

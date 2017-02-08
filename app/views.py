@@ -28,7 +28,7 @@ def index():
     posts = [
         {
             'author': {'username': 'Simon'},
-            'body': 'Welcome to the CaSE Database Development Page!'
+            'body': 'This is the CaSE Database Development Page!'
         }
     ]
     return render_template('index.html',

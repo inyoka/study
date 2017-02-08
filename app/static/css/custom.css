@@ -3,7 +3,9 @@
 {
   font-size: larger;
 }
-
+.btn {
+	border-radius: 0px;
+}
 .Absolute-Center {
   margin: auto;
   position: absolute;
