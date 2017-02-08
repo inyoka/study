@@ -6,7 +6,6 @@ from app.models import User
 from datetime import datetime
 
 
-#  From OpenShift Blog ...
 @lm.user_loader
 def load_user(id):
     return User.query.get(int(id))
@@ -69,14 +68,6 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-
-'''
-@app.route('/login',methods=['GET','POST'])
-def login():
-    if request.method == 'GET':
-        return render_template('login.html')
-    return redirect(url_for('index'))
-'''
 
 @app.route('/student/add')
 @login_required
