@@ -32,7 +32,6 @@ class EditForm(Form):
 class AddStudent(Form):
 '''
 
-
 '''
 class EmailForm(Form):
     email = StringField('email', validators= [DataRequired()])
