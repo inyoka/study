@@ -1,3 +1,9 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<div id="fix-for-navbar-fixed-top-spacing" style="height: 20px;">&nbsp;</div><div class="container">
+<div class="container">
 <table>
   <div class="container">
     <tr valign="top">
@@ -5,3 +11,5 @@
     </tr>
   </div>
 </table>
+</div>
+{% endblock %}
