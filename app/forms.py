@@ -1,7 +1,9 @@
 from flask_wtf import Form
-from wtforms.fields import StringField, BooleanField, TextAreaField
+
+from wtforms.fields import StringField, BooleanField, TextAreaField, DateField, SelectField, TextAreaField, RadioField, IntegerField, SubmitField
 from wtforms.validators import DataRequired, Length
 from app.models import User, Student, Contact
+
 
 class LoginForm(Form):
     openid = StringField('openid', validators=[DataRequired()])
@@ -28,10 +30,32 @@ class EditForm(Form):
             return False
         return True
 
-'''
-class AddStudent(Form):
-'''
 
+class AddStudent(Form):
+    name = StringField('Name :', validators=[DataRequired(), Length(min=4, max=80)])
+    address = TextAreaField('Address :', validators=[DataRequired()])
+    dob = DateField('Date of Birth :', validators=[DataRequired()])
+    gender = RadioField('Male?', choices=[('value','Male'),('value_two','Female')])
+    goal = SelectField(' :', validators=[DataRequired()])  # Qualification etc
+    target =  SelectField(' :', validators=[DataRequired()]) # Skill needing improvment
+    occupation =  SelectField(' :', validators=[DataRequired()]) # Current occupation
+    status = SelectField(' :', validators=[DataRequired()]) # Active Inactive
+    days = RadioField(' :', validators=[DataRequired()])  # 7 digit binary?
+    time = IntegerField(' :', validators=[DataRequired()]) # Avail after %%:%% on weekday
+    dateEnroll = DateField(' :', validators=[DataRequired()])
+    dateLastContact = DateField(' :', validators=[DataRequired()])
+    lapsedWhy = SelectField(' :', validators=[DataRequired()])
+    notes = TextAreaField('Notes :', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+
+
+
+
+
+'''
+class AddContact(Form):
+'''
 '''
 class EmailForm(Form):
     email = StringField('email', validators= [DataRequired()])
