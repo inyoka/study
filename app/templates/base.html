@@ -12,21 +12,26 @@
     <link rel="stylesheet" href="/static/css/bootstrap.min.css"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
     <!-- Custom CSS overrides -->
     <link rel="stylesheet" type="text/css" href="static/css/custom.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-fixed-top">
     <!-- Brand and toggle get grouped for better mobile display -->
+
+    <div class="container">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span><span class="glyphicon glyphicon-triangle-bottom"></span></button>
-        <a class="navbar-brand" href="#">CaSE</a>
+        <a class="navbar-brand" href="{{ url_for('index') }}">CaSE</a>
+        <a class="navbar-brand  hidden-lg hidden-md hidden-sm glyphicon glyphicon-user" href="{{ url_for('user', username=g.user.username) }}"></a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-    <li><a href="{{ url_for('index') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"> <span class="sr-only">(current)</span></a></li>
+
     {% if g.user.is_authenticated %}
     <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Students <span class="caret"></span></a>
@@ -58,9 +63,18 @@
         <form class="navbar-search pull-left"><input type="text" class="form-control" placeholder="Student Search"></form>
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>
     </form>
-    </div><!-- /.navbar-collapse -->
+    <div class="navbar-header">
+    <a href="#" class="navbar-brand fa fa-facebook-square fa-2x hidden" style="font-size:24px;color:darkblue;" aria-hidden="true" id="socialMedia"></a>
+    <a href="#" class="navbar-brand fa fa-twitter-square fa-2x hidden" style="font-size:24px;color:blue;" aria-hidden="true" id="socialMedia"></a>
+    <a href="#" class="navbar-brand fa fa-google-plus-square fa-2x hidden" style="font-size:24px;color:red;" aria-hidden="true" id="socialMedia"></a>
+    </div>
+</div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
     </div><!-- /.container-fluid -->
+
 </nav>
+<br><br>
+
 {% with message = get_flashed_messages()  %}
 {% if messages %}
 <ul>{% for message in messages %}
@@ -70,6 +84,10 @@
 {% block content %}
 {% endblock %}
 </div>
+
+<!-- FOOTER -->
+<!-- FOOTER -->
+
 <script src="/static/js/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="/static/js/bootstrap.min.js"
