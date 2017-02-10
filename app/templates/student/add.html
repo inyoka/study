@@ -15,25 +15,22 @@
     <div class="form-group"><div class="input-group input-group-sm">
     {{ form.dob.label(for="dob", class="input-group-addon") }}
     {{ form.dob(type="date", class="form-control", id="dob", placeholder="DoB") }}
-    </div></div><br>
+    </div></div>
     <div class="form-group"><div class="input-group input-group-sm">
     {{ form.address.label(for="address", class="input-group-addon") }}
     {{ form.address(class="form-control", type="textarea",  placeholder="Address", id="address", rows="3", cols="57") }}
+</div></div><br>
+
+
+    <div class="form-group"><div class="input-group input-group-sm">
+        <label class="input-group-addon">Gender : </label>
+        <span class="form-control">
+        {% for item in form.gender %}
+            {{ item(type="radio") }}&nbsp
+            <label for="gender" class="control-label">{{ item.label }}</label>&nbsp
+        {% endfor %}
+        </span>
     </div></div><br>
-
-
-    <div class="form-group">
-        <div class="input-group input-group-sm">
-            <label class="input-group-addon">Gender : </label>
-            <span class="form-control">
-            {% for item in form.gender %}
-                {{ item(type="radio") }}&nbsp
-                <label for="gender" class="control-label">{{ item.label }}</label>&nbsp
-            {% endfor %}
-            </span>
-        </div>
-    </div>
-    <br>
 
 
     <br><br><br><br>
