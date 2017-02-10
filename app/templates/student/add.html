@@ -11,14 +11,11 @@
     <div class="form-group"><div class="input-group input-group-sm">
     {{ form.name.label(for='name', class="input-group-addon") }}
     {{ form.name(type="text",class="form-control", id="name", placeholder="Name") }}
-    </div>
+</div></div><br>
+    <row>
     <div class="input-group input-group-sm">
     {{ form.dob.label(for="dob", class="input-group-addon") }}
     {{ form.dob(type="date", class="form-control", id="dob", placeholder="DoB") }}
-    </div>
-    <div class="input-group input-group-sm">
-    {{ form.address.label(for="address", class="input-group-addon") }}
-    {{ form.address(class="form-control", type="textarea",  placeholder="Address", id="address", rows="3", cols="57") }}
     </div>
     <div class="input-group input-group-sm">
         <label class="input-group-addon">Gender : </label>
@@ -28,26 +25,57 @@
             <label for="gender" class="control-label">{{ item.label }}</label>&nbsp
         {% endfor %}
         </span>
+    </div></row>
+    <div class="input-group input-group-sm">
+    {{ form.address.label(for="address", class="input-group-addon") }}
+    {{ form.address(class="form-control", type="textarea",  placeholder="Address", id="address", rows="3", cols="57") }}
+    </div><br>
+
+    <div class="input-group input-group-sm">
+        {{ form.goal.label(for="goal", class="input-group-addon") }}
+        {{ form.goal(class="form-control", type="select", id="goal") }}
+    </div>
+    <div class="input-group input-group-sm">
+        {{ form.target.label(for="target", class="input-group-addon") }}
+        {{ form.target(class="form-control", type="select", id="target") }}
+    </div><br>
+    <div class="input-group input-group-sm">
+    {{ form.dateEnroll.label(for="dateEnroll", class="input-group-addon") }}
+    {{ form.dateEnroll(type="date", class="form-control", id="dateEnroll") }}
+    </div>
+    <div class="input-group input-group-sm">
+    {{ form.dateLastContact.label(for="dateLastContact", class="input-group-addon") }}
+    {{ form.dateLastContact(type="date", class="form-control", id="dateLastContact") }}
+    </div>
+    <div class="input-group input-group-sm">
+        <label class="input-group-addon">Days Available : </label>
+        <span class="form-control">
+        {% for item in form.days %}
+            {{ item(type="checkbox") }}&nbsp
+            <label for="days" class="control-label">{{ item.label }}</label>&nbsp
+        {% endfor %}
+        </span>
+    </div>
+
+    <div class="input-group input-group-sm">
+    {{ form.time.label(for="time", class="input-group-addon") }}
+    {{ form.time(type="time", class="form-control", id="time") }}
     </div></div>
-    <br><br><br><br>
 
-    <br><br><br><br><br>
+<div class="input-group input-group-sm">
+{{ form.lapsedWhy.label(for="lapsedWhy", class="input-group-addon") }}
+{{ form.notes(class="form-control", type="textarea",  placeholder="Why did they leave?", id="lapsedWhy", rows="3", cols="57") }}
+</div><br>
+<div class="input-group input-group-sm">
+{{ form.notes.label(for="notes", class="input-group-addon") }}
+{{ form.notes(class="form-control", type="textarea",  placeholder="notes", id="notes", rows="3", cols="57") }}
+</div><br>
+    <br>
 
-    {{ form.gender }}
-    {{ form.goal }}
-    {{ form.target }}
-    {{ form.dateLastContact }}
-    {{ form.days }}
-    {{ form.time }}
-    {{ form.dateEnroll }}
     <input type=submit value="Register" class="btn btn-default" />
 
 </form>
 
-
-
-
-{{ form.days(class_='multiselect') }}
 
 <p class="hidden">
 gender = BooleanField('Male?')
@@ -61,7 +89,7 @@ dateEnroll = DateField('Enroll date :', validators=[DataRequired()])
 dateLastContact = DateField('Last contact :', validators=[DataRequired()])
 lapsedWhy = SelectField('Reason for leaving :', validators=[DataRequired()])
 notes = TextAreaField('Notes :', validators=[DataRequired()])
-submit = SubmitField('Submit')</p>
+</p>
 
 
 </div></div></div>
