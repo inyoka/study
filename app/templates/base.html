@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <!-- Brand and toggle get grouped for better mobile display -->
 
@@ -59,9 +60,14 @@
     <li><a href="{{ url_for('register') }}">Register</a></li>
     {% endif %}</li>
     <form class="navbar-form navbar-left">
-        <div class="form-group">
-        <form class="navbar-search pull-left"><input type="text" class="form-control" placeholder="Student Search"></form>
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></div>
+      <div class="input-group">
+        <input style="height: 27px" type="text" class="form-control" placeholder="Search">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit" style="line-height: 27px">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
     </form>
     <div class="navbar-header">
     <a href="#" class="navbar-brand fa fa-facebook-square fa-2x hidden" style="font-size:24px;color:darkblue;" aria-hidden="true" id="socialMedia"></a>
