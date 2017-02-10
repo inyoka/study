@@ -2,19 +2,75 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-    {% if title %}
-        <title>{{ title }} - CaSE Database</title>
-    {% else %}
-        <title>CaSE Database BETA</title>
-    {% endif %}
-  <form action="add-student">
+<div id="fix-navbar-top-spacing" style="height: 20px;">&nbsp;</div><div class="container">
+<div class="panel-body text-center"><div class="center-block">
+<h4>{{ title }}</h4>
 
-  <!-- Your form goes here -->
 
-  <h3>{{ title }}</h3>
-  <input type="submit" value="Sign Up" class="btn btn-default" />
-  </form>
+<form method=post action="AddStudent" class="form-inline">
+    <div class="form-group"><div class="input-group input-group-sm">
+    {{ form.name.label(for='name', class="input-group-addon") }}
+    {{ form.name(type="text",class="form-control", id="name", placeholder="Name") }}
+    </div></div>
+    <div class="form-group"><div class="input-group input-group-sm">
+    {{ form.dob.label(for="dob", class="input-group-addon") }}
+    {{ form.dob(type="date", class="form-control", id="dob", placeholder="DoB") }}
+    </div></div><br>
+    <div class="form-group"><div class="input-group input-group-sm">
+    {{ form.address.label(for="address", class="input-group-addon") }}
+    {{ form.address(class="form-control", type="textarea",  placeholder="Address", id="address", rows="3", cols="57") }}
+    </div></div><br>
 
-</div>
+
+    <div class="form-group">
+        <div class="input-group input-group-sm">
+            <label class="input-group-addon">Gender : </label>
+            <span class="form-control">
+            {% for item in form.gender %}
+                {{ item(type="radio") }}&nbsp
+                <label for="gender" class="control-label">{{ item.label }}</label>&nbsp
+            {% endfor %}
+            </span>
+        </div>
+    </div>
+    <br>
+
+
+    <br><br><br><br>
+
+    <br><br><br><br><br>
+
+    {{ form.gender }}
+    {{ form.goal }}
+    {{ form.target }}
+    {{ form.dateLastContact }}
+    {{ form.days }}
+    {{ form.time }}
+    {{ form.dateEnroll }}
+    <input type=submit value="Register" class="btn btn-default" />
+
+</form>
+
+
+
+
+{{ form.days(class_='multiselect') }}
+
+<p class="hidden">
+gender = BooleanField('Male?')
+goal = SelectField(' :', validators=[DataRequired()])  # Qualification etc
+target =  SelectField(' :', validators=[DataRequired()]) # Skill needing improvment
+occupation =  SelectField(' :', validators=[DataRequired()]) # Current occupation
+status = SelectField(' :', validators=[DataRequired()]) # Active Inactive
+days = SelectMultipleField('Days available :', validators=[DataRequired()])  # 7 digit binary?
+time = IntegerField(' :', validators=[DataRequired()]) # Avail after %%:%% on weekday
+dateEnroll = DateField('Enroll date :', validators=[DataRequired()])
+dateLastContact = DateField('Last contact :', validators=[DataRequired()])
+lapsedWhy = SelectField('Reason for leaving :', validators=[DataRequired()])
+notes = TextAreaField('Notes :', validators=[DataRequired()])
+submit = SubmitField('Submit')</p>
+
+
+</div></div></div>
 {% endblock %}
+</body>
