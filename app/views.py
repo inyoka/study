@@ -1,7 +1,7 @@
 from app import app, db, lm
 from flask import url_for, request, render_template, flash, redirect, session, g
 from flask_login import login_user, logout_user, current_user, login_required
-from app.forms import LoginForm, EditForm  # , PostForm, EmailForm
+from app.forms import LoginForm, EditForm, AddStudent # , PostForm, EmailForm
 from app.models import User
 from datetime import datetime
 
@@ -72,6 +72,24 @@ def logout():
 @app.route('/student/add')
 @login_required
 def addStudent():
+    form = AddStudent()
+    if request.method == 'GET':
+        return render_template('/student/add.html', title="Add Student", form=form)
+    name = request.form['name']
+    address = request.form['address']
+    dob = request.form['dob']
+    gender = request.form['gender']
+    goal = request.form['goal']
+    target = request.form['target']
+    occupation = request.form['occupation']
+    status = request.form['status']
+    days = request.form['days']
+    time = request.form['time']
+    dateEnroll = request.form['dateEnroll']
+    dateLastContact = request.form['dateLastContact']
+    lapsedWhy = request.form['lapsedWhy']
+    notes = request.form['notes']
+    submit = SubmitField('Submit')
     return render_template('/student/add.html', title='Add Student', user=user)
 
 
