@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms.fields import StringField, BooleanField, FormField, FieldList, TextAreaField, DateField, SelectField, TextAreaField, RadioField, IntegerField, SubmitField
+from wtforms.fields import StringField, BooleanField, SelectMultipleField, FormField, FieldList, TextAreaField, DateField, SelectField, TextAreaField, RadioField, IntegerField, SubmitField
 from wtforms.validators import DataRequired, Length
 from app.models import User, Student, Contact
 from app import lookup
@@ -46,7 +46,7 @@ class AddStudent(Form):
     target =  SelectField('Target  :', choices=lookup.TARGET, validators=[DataRequired()]) # Skill needing improvment
     occupation =  SelectField('Occupation :', validators=[DataRequired()]) # Current occupation
     status = SelectField('Student status :', validators=[DataRequired()]) # Active Inactive
-    days = RadioField('Days available :', choices=lookup.DAYS, validators=[DataRequired()])  # 7 digit binary?
+    days = SelectMultipleField('Days available :', choices=lookup.DAYS, validators=[DataRequired()])  # 7 digit binary?
     time = IntegerField('Available from :', validators=[DataRequired()]) # Avail after %%:%% on weekday
     dateEnroll = DateField('Date enrolled :', format='%Y-%m-%d', validators=[DataRequired()])
     dateLastContact = DateField('Last contact :', format='%Y-%m-%d', validators=[DataRequired()])
