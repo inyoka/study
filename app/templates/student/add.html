@@ -9,12 +9,12 @@
 
 <form method=post action="AddStudent" class="form-inline">
 <div class="form-group">
-
+<div class="panel panel-primary">
     <div class="input-group input-group-sm">
     {{ form.name.label(for='name', class="input-group-addon") }}
     {{ form.name(type="text",class="form-control", id="name", placeholder="Name") }}
     </div>
-    <row>
+
     <div class="input-group input-group-sm">
     {{ form.dob.label(for="dob", class="input-group-addon") }}
     {{ form.dob(type="date", class="form-control", id="dob", placeholder="DoB") }}
@@ -27,12 +27,19 @@
             <label for="gender" class="control-label">{{ item.label }}</label>&nbsp
         {% endfor %}
         </span>
-    </div></row>
+    </div>
+</div>
+<div class="panel panel-primary">
     <div class="input-group input-group-sm">
     {{ form.address.label(for="address", class="input-group-addon", style="height: 60px;") }}
     {{ form.address(class="form-control", type="textarea",  placeholder="Address", id="address", style="height: 60px;") }}
     </div>
-
+</div>
+<div class="panel panel-primary">
+    <div class="input-group input-group-sm">
+    {{ form.dateEnroll.label(for="dateEnroll", class="input-group-addon") }}
+    {{ form.dateEnroll(type="date", class="form-control", id="dateEnroll") }}
+    </div>
     <div class="input-group input-group-sm">
         {{ form.goal.label(for="goal", class="input-group-addon") }}
         {{ form.goal(class="form-control", type="select", id="goal") }}
@@ -41,11 +48,8 @@
         {{ form.target.label(for="target", class="input-group-addon") }}
         {{ form.target(class="form-control", type="select", id="target") }}
     </div>
-    <div class="input-group input-group-sm">
-    {{ form.dateEnroll.label(for="dateEnroll", class="input-group-addon") }}
-    {{ form.dateEnroll(type="date", class="form-control", id="dateEnroll") }}
-    </div>
-
+</div>
+<div class="panel panel-primary">
     <div class="input-group input-group-sm dropdown-toggle" style="height: 60px;">
         {{ form.days.label(for="days", class="input-group-addon") }}
         {{ form.days(class="form-control", type="select", id="days", style="height: 60px;") }}
@@ -54,6 +58,14 @@
     {{ form.time.label(for="time", class="input-group-addon") }}
     {{ form.time(type="time", class="form-control", id="time") }}
     </div>
+</div>
+<div class="panel panel-primary">
+    <div class="input-group input-group-sm">
+    {{ form.notes.label(for="notes", class="input-group-addon", style="height: 60px;") }}
+    {{ form.notes(class="form-control", type="textarea",  placeholder="notes", id="notes", style="height: 60px;") }}
+    </div>
+</div>
+<div class="panel panel-primary">
     <div class="input-group input-group-sm">
     {{ form.dateLastContact.label(for="dateLastContact", class="input-group-addon") }}
     {{ form.dateLastContact(type="date", class="form-control", id="dateLastContact") }}
@@ -62,10 +74,8 @@
     {{ form.lapsedWhy.label(for="lapsedWhy", class="input-group-addon") }}
     {{ form.notes(class="form-control", type="textarea",  placeholder="Why did they leave?", id="lapsedWhy", rows="3", cols="57") }}
     </div>
-    <div class="input-group input-group-sm">
-    {{ form.notes.label(for="notes", class="input-group-addon", style="height: 60px;") }}
-    {{ form.notes(class="form-control", type="textarea",  placeholder="notes", id="notes", style="height: 60px;") }}
-    </div>
+</div>
+
     <input type=submit value="Register" class="btn btn-default" />
 </form>
 </div>
