@@ -28,8 +28,10 @@
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span><span class="glyphicon glyphicon-triangle-bottom"></span></button>
         <a class="navbar-brand" href="{{ url_for('index') }}">CaSE</a>
+        {% if g.user.is_authenticated %}
         <a class="navbar-brand  hidden-lg hidden-md hidden-sm glyphicon glyphicon-user" href="{{ url_for('user', username=g.user.username) }}"></a>
         <a class="navbar-brand  hidden-lg hidden-md hidden-sm glyphicon glyphicon-plus" href="{{ url_for('addStudent') }}"></a>
+        {% endif %}
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
