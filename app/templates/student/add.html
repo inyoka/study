@@ -1,85 +1,98 @@
 <!-- extend base layout -->
 {% extends "base.html" %}
-
 {% block content %}
-<div id="fix-navbar-top-spacing" style="height: 20px;">&nbsp;</div>
-<div class="container"><div class="panel-body text-center"><div class="center-block">
-<h4>{{ title }}</h4>
+{% include 'flash.html' %}
+    <form method=post action="AddStudent">
+<div class="container-fluid" style="max-width: 1400px; padding:60px;">
+    <div class="panel panel-primary">
+        <div class="panel-heading">{{ title }}</div>
 
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="input-group input-group-sm">
+                    {{ form.name.label(for='name', class="input-group-addon") }}
+                    {{ form.name(type="text",class="form-control", id="name", placeholder="Name") }}
+                    </div>
 
-<form method=post action="AddStudent" class="form-inline">
-<div class="form-group">
-<div class="panel panel-primary">
-    <div class="input-group input-group-sm">
-    {{ form.name.label(for='name', class="input-group-addon") }}
-    {{ form.name(type="text",class="form-control", id="name", placeholder="Name") }}
-    </div>
+                    <div class="input-group input-group-sm">
+                    {{ form.dob.label(for="dob", class="input-group-addon") }}
+                    {{ form.dob(type="date", class="form-control", id="dob", placeholder="DoB") }}
+                    </div>
+                    <div class="input-group input-group-sm">
+                        <label class="input-group-addon">Gender : </label>
+                        <span class="form-control">
+                        {% for item in form.gender %}
+                            {{ item(type="radio") }}&nbsp
+                            <label for="gender" class="control-label">{{ item.label }}</label>&nbsp
+                        {% endfor %}
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="input-group input-group-sm" style="height: 69pt;">
+                    {{ form.address.label(for="address", class="input-group-addon") }}
+                    {{ form.address(class="form-control", type="textarea",  placeholder="Address", id="address", style="height: 100%;") }}
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="input-group input-group-sm dropdown-toggle" style="height: 60px;">
+                        {{ form.days.label(for="days", class="input-group-addon") }}
+                        {{ form.days(class="form-control", type="select", id="days", style="height: 60px;") }}
+                    </div>
+                    <div class="input-group input-group-sm">
+                    {{ form.time.label(for="time", class="input-group-addon") }}
+                    {{ form.time(type="time", class="form-control", id="time") }}
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="input-group input-group-sm">
+                    {{ form.dateEnroll.label(for="dateEnroll", class="input-group-addon") }}
+                    {{ form.dateEnroll(type="date", class="form-control", id="dateEnroll") }}
+                    </div>
+                    <div class="input-group input-group-sm">
+                        {{ form.goal.label(for="goal", class="input-group-addon") }}
+                        {{ form.goal(class="form-control", type="select", id="goal") }}
+                    </div>
+                    <div class="input-group input-group-sm">
+                        {{ form.target.label(for="target", class="input-group-addon") }}
+                        {{ form.target(class="form-control", type="select", id="target") }}
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="input-group input-group-sm" style="height: 69pt;">
+                    {{ form.notes.label(for="notes", class="input-group-addon", style="height: 60px;") }}
+                    {{ form.notes(class="form-control", type="textarea",  placeholder="notes", id="notes", style="height: 100%;") }}
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="input-group input-group-sm">
+                        {{ form.status.label(for="status", class="input-group-addon") }}
+                        {{ form.status(class="form-control", type="select", id="status") }}
+                    </div>
+                    <div class="input-group input-group-sm">
+                    {{ form.dateLastContact.label(for="dateLastContact", class="input-group-addon") }}
+                    {{ form.dateLastContact(type="date", class="form-control", id="dateLastContact") }}
+                    </div>
 
-    <div class="input-group input-group-sm">
-    {{ form.dob.label(for="dob", class="input-group-addon") }}
-    {{ form.dob(type="date", class="form-control", id="dob", placeholder="DoB") }}
-    </div>
-    <div class="input-group input-group-sm">
-        <label class="input-group-addon">Gender : </label>
-        <span class="form-control">
-        {% for item in form.gender %}
-            {{ item(type="radio") }}&nbsp
-            <label for="gender" class="control-label">{{ item.label }}</label>&nbsp
-        {% endfor %}
-        </span>
-    </div>
+                    <div class="input-group input-group-sm">
+                    {{ form.lapsedWhy.label(for="lapsedWhy", class="input-group-addon") }}
+                    {{ form.notes(class="form-control", type="textarea",  placeholder="Why did they leave?", id="lapsedWhy") }}
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <button class="btn btn-md btn-primary btn-block" type="submit" value="Register">Register</button>
+                </div>
+            </div>
 </div>
-<div class="panel panel-primary">
-    <div class="input-group input-group-sm">
-    {{ form.address.label(for="address", class="input-group-addon", style="height: 60px;") }}
-    {{ form.address(class="form-control", type="textarea",  placeholder="Address", id="address", style="height: 60px;") }}
-    </div>
 </div>
-<div class="panel panel-primary">
-    <div class="input-group input-group-sm">
-    {{ form.dateEnroll.label(for="dateEnroll", class="input-group-addon") }}
-    {{ form.dateEnroll(type="date", class="form-control", id="dateEnroll") }}
-    </div>
-    <div class="input-group input-group-sm">
-        {{ form.goal.label(for="goal", class="input-group-addon") }}
-        {{ form.goal(class="form-control", type="select", id="goal") }}
-    </div>
-    <div class="input-group input-group-sm">
-        {{ form.target.label(for="target", class="input-group-addon") }}
-        {{ form.target(class="form-control", type="select", id="target") }}
-    </div>
-</div>
-<div class="panel panel-primary">
-    <div class="input-group input-group-sm dropdown-toggle" style="height: 60px;">
-        {{ form.days.label(for="days", class="input-group-addon") }}
-        {{ form.days(class="form-control", type="select", id="days", style="height: 60px;") }}
-    </div>
-    <div class="input-group input-group-sm">
-    {{ form.time.label(for="time", class="input-group-addon") }}
-    {{ form.time(type="time", class="form-control", id="time") }}
-    </div>
-</div>
-<div class="panel panel-primary">
-    <div class="input-group input-group-sm">
-    {{ form.notes.label(for="notes", class="input-group-addon", style="height: 60px;") }}
-    {{ form.notes(class="form-control", type="textarea",  placeholder="notes", id="notes", style="height: 60px;") }}
-    </div>
-</div>
-<div class="panel panel-primary">
-    <div class="input-group input-group-sm">
-    {{ form.dateLastContact.label(for="dateLastContact", class="input-group-addon") }}
-    {{ form.dateLastContact(type="date", class="form-control", id="dateLastContact") }}
-    </div>
-    <div class="input-group input-group-sm">
-    {{ form.lapsedWhy.label(for="lapsedWhy", class="input-group-addon") }}
-    {{ form.notes(class="form-control", type="textarea",  placeholder="Why did they leave?", id="lapsedWhy", rows="3", cols="57") }}
-    </div>
-</div>
-
-    <input type=submit value="Register" class="btn btn-default" />
 </form>
-</div>
-</div>
-</div>
-</div>
 {% endblock %}
