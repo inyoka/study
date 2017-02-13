@@ -1,23 +1,20 @@
 from app import db
-from hashlib import md5
 from datetime import datetime
-from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class User(db.Model):
-    __tablename__='users'
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
-    password  = db.Column('password', db.String(10))
+    password = db.Column(db.String(10))
     registered_on = db.Column('registered_on', db.DateTime)
     email = db.Column(db.String(120), index=True, unique=True)
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
-    password_hash = db.Column(db.String(128))
 
-    def __init__(self , username ,password , email):
+    def __init__(self, username, password, email):
         self.username = username
         self.password = password
         self.email = email
@@ -55,20 +52,20 @@ class User(db.Model):
 
 
 class Student(db.Model):
-    __tablename__='students'
+    __tablename__ = 'students'
     id = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.DateTime)  # Record created
     name = db.Column(db.String(64), index=True, unique=True)
     address = db.Column(db.String)
     dob = db.Column(db.DateTime)  # Calculate age
-    gender = db.Column(db.Boolean, default=False, index=True) # M or F
+    gender = db.Column(db.Boolean, default=False, index=True)  # M or F
     goal = db.Column(db.String)  # Qualification etc
-    target = db.Column(db.String) # Skill needing improvment
-    education = db.Column(db.String) # Level of Education
-    occupation = db.Column(db.String) # Current occupation
+    target = db.Column(db.String)  # Skill needing improvment
+    education = db.Column(db.String)  # Level of Education
+    occupation = db.Column(db.String)  # Current occupation
     status = db.Column(db.Integer)
     days = db.Column(db.Integer)  # 7 digit binary?
-    time = db.Column(db.Integer) # Avail after %%:%% on weekday
+    time = db.Column(db.Integer)  # Avail after %%:%% on weekday
     dateEnroll = db.Column(db.DateTime)
     dateLastContact = db.Column(db.DateTime)
     lapsedWhy = db.Column(db.String)
@@ -76,7 +73,7 @@ class Student(db.Model):
 
 
 class Contact(db.Model):
-    __tablename__='contacts'
+    __tablename__ = 'contacts'
     id = db.Column(db.Integer, primary_key=True)
     label = db.Column(db.String(64), index=True, unique=True)
     mobile = db.Column(db.Integer)
@@ -88,7 +85,7 @@ class Contact(db.Model):
 
 
 class Role(db.Model):
-    __tablename__='roles'
+    __tablename__ = 'roles'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=True)
     default = db.Column(db.Boolean, default=False, index=True)
@@ -100,7 +97,7 @@ class Role(db.Model):
 
 
 class Post(db.Model):
-    __tablename__='posts'
+    __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
     body = db.column(db.String(140))
     timestamp = db.Column(db.DateTime)
