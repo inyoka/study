@@ -2,40 +2,19 @@
 {% extends "base.html" %}
 {% block content %}
 {% include 'flash.html' %}
-<div id="fix-for-navbar-fixed-top-spacing" style="height: 20px;">&nbsp;</div><div class="container">
 
+<div class="container">
+  <form action="" method=post class="form-signin" name="register" style="max-width: 330px; padding: 15px; margin: 0 auto;">
+    <h3 class="form-signin-heading">Please sign in</h3>
 
- <div style="display: inline-block" class="container  centered">
-  <form action="" method=post class="form-horizontal">
-     <h4>Please login : </h4>
-    <div class="control-group">
-        <div class="controls">
-          <label class="control-label">Username &nbsp: </label>
-          <input type="text" id="username" name="username" class="input-xlarge"
-            placeholder="Enter Username" required>
-        </div>
-    </div>
+    <label for="username" class="sr-only">Email address</label>
+    <input name="username" type="text" id="username" class="form-control" placeholder="Username" value="{{ request.form.username }}" required autofocus="">
 
-    <div class="control-group">
-        <div class="controls">
-          <label class="control-label">Password&nbsp&nbsp  :  </label>
-          <input type="password" id="password" name="password" class="input-xlarge"
-            placeholder="Enter Password" required>
-        </div>
-    </div>
-    <div class="control-group">
-        <div class="controls">
-          <label class="checkbox" for="remember_me">
-            <button type="submit" class="btn btn-success">Signin</button>&nbsp&nbsp&nbsp;&emsp;{{ form.remember_me }} Remember Me</div>
-          </label>
-        </div>
-    </div>
-    <br>
-    <div class="control-group">
-        <div class="controls">
+    <label for="password" class="sr-only">Password</label>
+    <input name="password" type="password" id="password" class="form-control" placeholder="Password" value="{{ request.form.password }}" required  autofocus="">
 
-        </div>
-    </div>
+    <label for="remember_me">{{ form.remember_me }} Remember Me</label>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Signin</button>
   </form>
-      </div>
 {% endblock %}
