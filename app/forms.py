@@ -45,7 +45,7 @@ class AddStudent(Form):
     goal = SelectField('Goal :', choices=lookup.GOAL, validators=[DataRequired()])  # Qualification etc
     target =  SelectField('Target  :', choices=lookup.TARGET, validators=[DataRequired()]) # Skill needing improvment
     occupation =  SelectField('Occupation :', validators=[DataRequired()]) # Current occupation
-    status = SelectField('Student status :', validators=[DataRequired()]) # Active Inactive
+    status = SelectField('Student status :', choices=[('0','Pending'),('1','Active'), ('2','Inactive')], validators=[DataRequired()]) # Active Inactive
     days = SelectMultipleField('Days available :', choices=lookup.DAYS, validators=[DataRequired()])  # 7 digit binary?
     time = IntegerField('Available from :', validators=[DataRequired()]) # Avail after %%:%% on weekday
     dateEnroll = DateField('Date enrolled :', format='%Y-%m-%d', validators=[DataRequired()])
