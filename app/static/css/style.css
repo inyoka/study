@@ -11,11 +11,12 @@ body, h1, h2, h3 {
 }
 
 a, .navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a {
-  color: #aec251;
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
 }
 
 a:hover, .navbar-default .navbar-brand:hover, .navbar-default .navbar-nav>li>a:hover {
-  color: #687430;
+
 }
 
 footer {
@@ -71,7 +72,7 @@ p.copyright {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/intro-bg.jpg) no-repeat center center;
+    background: url(/static/img/intro-bg.jpg) no-repeat center center;
     background-size: cover;
     height: 100%;
 }
