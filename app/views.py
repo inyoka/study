@@ -19,7 +19,7 @@ def before_request():
         db.session.add(g.user)
         db.session.commit()
 
-
+'''
 @app.route('/')
 @app.route('/index')
 def index():
@@ -34,7 +34,7 @@ def index():
                            title='Home',
                            user=user,
                            posts=posts)
-
+'''
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
