@@ -99,12 +99,13 @@ def editStudent():
     return render_template('/student/edit.html',
                            title='Edit Student', user=user)
 
+@app.route('/profile/edit', methods=['GET', 'POST'])
 
 @app.route('/student/list')
 @login_required
 def listStudents():
     return render_template('/student/list.html',
-                           title='List Students', user=user)
+                           title='List Students')
 
 
 @app.route('/student/search')
