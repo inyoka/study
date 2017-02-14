@@ -119,9 +119,9 @@ def deleteStudent():
     return render_template('/student/delete.html', title='Delete', user=user)
 
 
-@app.route('/user/<username>')
+@app.route('/profile/<username>')
 @login_required
-def user(username):
+def viewProfile(username):
     user = User.query.filter_by(username=username).first()
     if user is None:
         flash('User %s not found.' % username)
@@ -130,14 +130,14 @@ def user(username):
         {'author': user, 'body': 'Test post #1'},
         {'author': user, 'body': 'Test post #2'}
     ]
-    return render_template('user.html',
+    return render_template('/profile/view.html',
                            user=user,
                            posts=posts)
 
 
-@app.route('/edit', methods=['GET', 'POST'])
+@app.route('/profile/edit', methods=['GET', 'POST'])
 @login_required
-def edit():
+def editProfile():
     form = EditForm(g.user.username)
     if form.validate_on_submit():
         g.user.username = form.username.data
@@ -145,11 +145,11 @@ def edit():
         db.session.add(g.user)
         db.session.commit()
         flash('Your changes have been saved.')
-        return redirect(url_for('edit'))
+        return redirect(url_for('viewProfile'))
     else:
         form.username.data = g.user.username
         form.about_me.data = g.user.about_me
-    return render_template('edit.html', form=form)
+    return render_template('/profile/edit.html', form=form)
 
 
 @app.errorhandler(404)
