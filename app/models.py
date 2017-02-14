@@ -1,5 +1,7 @@
-from app import db
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
+
+from app import db, lm
 
 
 class User(db.Model):
@@ -12,7 +14,9 @@ class User(db.Model):
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime)
+    department_id = db.Column(db.Integer, db.ForeignKey('departments.id'))
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    is_admin = db.Column(db.Boolean, default=False)
 
     def __init__(self, username, password, email):
         self.username = username
@@ -38,6 +42,18 @@ class User(db.Model):
     def avatar(self, size):
         return '/static/img/avatar/' + (self.username) + '.jpg'
 
+    # Password settings from scotch.io flask crud web app part 1
+    @property
+    def password(self):
+        raise AttributeError('Password is not a readable attribute')
+
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
     @staticmethod
     def make_unique_username(username):
         if User.query.filter_by(username=username).first() is None:
@@ -49,6 +65,22 @@ class User(db.Model):
                 break
             version += 1
         return new_username
+
+
+@lm.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
+class Departments(db.Model):
+    __tablename__ = 'departments'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(60), unique=True)
+    description = db.Column(db.String(200))
+    employees = db.relationship('User', backref='department', lazy='dynamic')
+
+    def __repr__(self):
+        return '<Department: {}>'.format(self.name)
 
 
 class Student(db.Model):
