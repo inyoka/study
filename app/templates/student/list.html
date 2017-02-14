@@ -4,12 +4,18 @@
 {% block content %}
 <div class="container">
 
-  <form action="create-student">
+  <form action="list-student">
 
   <!-- Your form goes here -->
-  <h3>{{ title }}</h3>
-  <input type="submit" value="Sign Up" class="btn btn-default" />
-  </form>
+
+  {% for user in users %}
+        <tr valign="top">{{ user.username }}</tr>
+  {% endfor %}
+
+  {% for student in students %}
+        <tr valign="top">{{ student.name }}</tr>
+  {% endfor %}
+
 
 </div>
 {% endblock %}
