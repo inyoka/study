@@ -1,9 +1,6 @@
-import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from flask_openid import OpenID
-from config import basedir
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -15,6 +12,16 @@ lm.login_view = 'login'
 
 db = SQLAlchemy(app)
 from app import models, views
+
+from .admin import admin as admin_blueprint
+app.register_blueprint(admin_blueprint, url_prefix='/admin')
+
+from .auth import auth as auth_blueprint
+app.register_blueprint(auth_blueprint)
+
+from .home import home as home_blueprint
+app.register_blueprint(home_blueprint)
+
 
 if not app.debug:
     import logging
