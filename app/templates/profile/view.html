@@ -1,7 +1,9 @@
 <!-- extend base layout -->
 {% extends "base.html" %}
-
 {% block content %}
+{% include 'flash.html' %}
+<form action="" method="post" name="profile/view"></form>
+
 <div class="container">
   <table>
     <tr valign="top">
@@ -9,12 +11,10 @@
         <h1>User: {{user.username}}</h1>
           {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
           {% if user.last_seen %}<p><i>Last seen on: {{ user.last_seen }}</i></p>{% endif %}
-          {% if user.id == g.user.id %}<p><a href="{{ url_for('edit') }}">Edit</a></p>{% endif %}
+          {% if user.id == g.user.id %}<p><a href="{{ url_for('editProfile') }}">Edit</a></p>{% endif %}
       </td>
-
-
-  {% for post in posts %}
-        <tr valign="top">{% include 'post.html' %}    </tr>
-  {% endfor %}
     </table>
+    {% for post in posts %}
+          {% include 'profile/post.html' %}
+    {% endfor %}
 {% endblock %}
