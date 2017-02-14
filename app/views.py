@@ -145,7 +145,7 @@ def editProfile():
         db.session.add(g.user)
         db.session.commit()
         flash('Your changes have been saved.')
-        return redirect(url_for('viewProfile'))
+        return redirect(url_for('editProfile'))
     else:
         form.username.data = g.user.username
         form.about_me.data = g.user.about_me
