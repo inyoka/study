@@ -20,8 +20,6 @@ def register():
     db.session.commit()
     flash('User successfully registered')
     return redirect(url_for('auth.login'))
-
-
 '''
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
