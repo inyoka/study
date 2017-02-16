@@ -23,7 +23,7 @@ from .home import home as home_blueprint
 app.register_blueprint(home_blueprint)
 
 from .student import student as student_blueprint
-app.register_blueprint(student_blueprint)
+app.register_blueprint(student_blueprint, url_prefix='/student')
 
 
 if not app.debug:
