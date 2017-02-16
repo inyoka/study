@@ -1,7 +1,7 @@
 from app import app, db, lm
 from flask import url_for, request, render_template, flash, redirect, session, g
 from flask_login import login_user, logout_user, current_user, login_required
-from app.forms import LoginForm, EditForm, AddStudent # , PostForm, EmailForm
+from app.forms import LoginForm, EditForm # , PostForm, EmailForm
 from app.models import User
 from datetime import datetime
 
@@ -19,105 +19,6 @@ def before_request():
         db.session.add(g.user)
         db.session.commit()
 
-'''
-@app.route('/')
-@app.route('/index')
-def index():
-    user = g.user
-    posts = [
-        {
-            'author': {'username': 'Simon'},
-            'body': 'This is the CaSE Database Development Page!'
-        }
-    ]
-    return render_template('home/index.html',
-                           title='Home',
-                           user=user,
-                           posts=posts)
-'''
-'''
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
-    if request.method == 'GET':
-        return render_template('login.html', title="login", form=form)
-    username = request.form['username']
-    password = request.form['password']
-    registered_user = User.query.filter_by(username=username,
-                                           password=password).first()
-    if registered_user is None:
-        flash('Username or Password is invalid', 'error')
-        return redirect(url_for('login'))
-    login_user(registered_user, form.remember_me.data)
-    flash('Logged in successfully')
-    return redirect(request.args.get('next') or url_for('home.index'))
-
-
-@app.route('/register', methods=['GET','POST'])
-def register():
-    if request.method == 'GET':
-        return render_template('register.html')
-    user = User(request.form['username'], request.form['password'], request.form['email'])
-    db.session.add(user)
-    db.session.commit()
-    flash('User successfully registered')
-    return redirect(url_for('login'))
-
-@app.route('/logout')
-def logout():
-    logout_user()
-    return redirect(url_for('home.index'))
-
-'''
-@app.route('/student/add')
-@login_required
-def addStudent():
-    form = AddStudent()
-    if request.method == 'GET':
-        return render_template('/student/add.html', title="Add Student", form=form)
-    name = request.form['name']
-    address = request.form['address']
-    dob = request.form['dob']
-    gender = request.form['gender']
-    goal = request.form['goal']
-    target = request.form['target']
-    occupation = request.form['occupation']
-    status = request.form['status']
-    days = request.form['days']
-    time = request.form['time']
-    dateEnroll = request.form['dateEnroll']
-    dateLastContact = request.form['dateLastContact']
-    lapsedWhy = request.form['lapsedWhy']
-    notes = request.form['notes']
-    submit = SubmitField('Submit')
-    return render_template('/student/add.html', title='Add Student', user=user)
-
-
-@app.route('/student/edit')
-@login_required
-def editStudent():
-    return render_template('/student/edit.html',
-                           title='Edit Student', user=user)
-
-@app.route('/profile/edit', methods=['GET', 'POST'])
-
-@app.route('/student/list')
-@login_required
-def listStudents():
-    return render_template('/student/list.html',
-                           title='List Students')
-
-
-@app.route('/student/search')
-@login_required
-def searchStudent():
-    return render_template('/student/search.html', title='Search', user=user)
-
-
-@app.route('/student/delete')
-@login_required
-def deleteStudent():
-    return render_template('/student/delete.html', title='Delete', user=user)
 
 
 @app.route('/profile/<username>')
