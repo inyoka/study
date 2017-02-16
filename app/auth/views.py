@@ -7,32 +7,28 @@ from app.models import User
 from datetime import datetime
 from . import auth
 
+'''
+@auth.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
 
-@lm.user_loader
-def load_user(id):
-    return User.query.get(int(id))
+        flash(u'Successfully logged in as %s' % form.user.username)
+        session['user_id'] = form.user.id
+        return redirect(url_for('auth.index'))
+    return render_template('auth/login.html', form=form)
 
-
-@auth.before_request
-def before_request():
-    g.user = current_user
-    if g.user.is_authenticated:
-        g.user.last_seen = datetime.utcnow()
-        db.session.add(g.user)
-        db.session.commit()
-
-
+'''
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if request.method == 'GET':
         return render_template('auth/login.html', title="login", form=form)
-    username = request.form['username']
+    user = request.form['username']
     password = request.form['password']
-    registered_user = User.query.filter_by(username=username,
-                                           password=password).first()
+    registered_user = User.query.filter_by(username=user).first()
     if registered_user is None:
-        flash('Username or Password is invalid', 'error')
+        flash('Username is invalid', 'error')
         return redirect(url_for('auth.login'))
     login_user(registered_user, form.remember_me.data)
     flash('Logged in successfully')
