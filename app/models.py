@@ -19,8 +19,9 @@ class User(db.Model):
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     is_admin = db.Column(db.Boolean, default=False)
 
-    def __init__(self, username, password, email):
+    def __init__(self, username, name, password, email):
         self.username = username
+        self.name = name
         self.password = password
         self.email = email
         self.registered_on = datetime.utcnow()
