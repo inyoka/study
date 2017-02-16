@@ -30,7 +30,7 @@ def index():
             'body': 'This is the CaSE Database Development Page!'
         }
     ]
-    return render_template('index.html',
+    return render_template('home/index.html',
                            title='Home',
                            user=user,
                            posts=posts)
