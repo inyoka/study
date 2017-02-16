@@ -11,6 +11,7 @@ lm.init_app(app)
 lm.login_view = 'login'
 
 db = SQLAlchemy(app)
+
 from app import models, views
 
 from .admin import admin as admin_blueprint
