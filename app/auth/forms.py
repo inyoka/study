@@ -26,13 +26,10 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Username is already in use.')
 
 class LoginForm(FlaskForm):
-    """
-    FlaskForm for users to login
-    """
     username = TextField('Username', validators=[InputRequired()])
     password = PasswordField('Password', validators=[InputRequired()])
-    remember_me = BooleanField('remember_me', default=False)
-    submit = SubmitField('Login')
+    # remember_me = BooleanField('remember_me', default=False)
+    # submit = SubmitField('Login')
 
 
     def __init__(self, *args, **kwargs):
