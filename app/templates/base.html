@@ -14,7 +14,6 @@
     crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/bootstrap.css">
     <!-- Custom CSS overrides -->
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 
 </head>
@@ -60,8 +59,8 @@
     </ul>
     {% endif %}
     {% if not g.user.is_authenticated %}
-    <li><a href="{{ url_for('login') }}">Login</a></li>
-    <li><a href="{{ url_for('register') }}">Register</a></li>
+    <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+    <li><a href="{{ url_for('auth.register') }}">Register</a></li>
     {% endif %}</li>
     <form class="navbar-form navbar-left">
       <div class="input-group">
