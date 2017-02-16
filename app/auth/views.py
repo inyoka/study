@@ -21,7 +21,7 @@ def before_request():
         db.session.add(g.user)
         db.session.commit()
 
-'''
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -53,7 +53,7 @@ def login():
         else:
             flash('Invalid email or password.')
     return render_template('auth/login.html', form=form, title='Login')
-
+'''
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
