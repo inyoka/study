@@ -1,19 +1,22 @@
 from app import app
 from flask import render_template, g
 from flask_login import login_required
+from . import student
+from .forms import AddStudent
 
 
 @student.route('/add')
 @login_required
-def addStudent():
+def add():
+    form = AddStudent()
     user = g.user
     return render_template('/student/add.html',
-                           title='Add Student', user=user)
+                           title='Add Student', form=form, user=user)
 
 
 @student.route('/edit')
 @login_required
-def editStudent():
+def edit():
     user = g.user
     return render_template('/student/edit.html',
                            title='Edit Student', user=user)
@@ -21,7 +24,7 @@ def editStudent():
 
 @student.route('/list')
 @login_required
-def listStudents():
+def list():
     user = g.user
     return render_template('/student/list.html',
                            title='List Students', user=user)
@@ -29,7 +32,7 @@ def listStudents():
 
 @student.route('/search')
 @login_required
-def searchStudent():
+def search():
     user = g.user
     return render_template('/student/search.html',
                            title='Search', user=user)
@@ -37,7 +40,7 @@ def searchStudent():
 
 @student.route('/delete')
 @login_required
-def deleteStudent():
+def delete():
     user = g.user
     return render_template('/student/delete.html',
                            title='Delete', user=user)
