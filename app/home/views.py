@@ -13,3 +13,8 @@ def homepage():
 @login_required
 def dashboard():
     return render_template('home/dashboard.html', title='Dashboard')
+
+
+@home.route('/index')
+def index():
+    return render_template('home/index.html', title="Welcome")
