@@ -35,7 +35,7 @@ def index():
                            user=user,
                            posts=posts)
 '''
-
+'''
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -50,7 +50,7 @@ def login():
         return redirect(url_for('login'))
     login_user(registered_user, form.remember_me.data)
     flash('Logged in successfully')
-    return redirect(request.args.get('next') or url_for('index'))
+    return redirect(request.args.get('next') or url_for('home.index'))
 
 
 @app.route('/register', methods=['GET','POST'])
@@ -66,9 +66,9 @@ def register():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('home.index'))
 
-
+'''
 @app.route('/student/add')
 @login_required
 def addStudent():
@@ -126,7 +126,7 @@ def viewProfile(username):
     user = User.query.filter_by(username=username).first()
     if user is None:
         flash('User %s not found.' % username)
-        return redirect(url_for('index'))
+        return redirect(url_for('home.index'))
     posts = [
         {'author': user, 'body': 'Test post #1'},
         {'author': user, 'body': 'Test post #2'}
