@@ -3,7 +3,7 @@ from flask import render_template, g
 from flask_login import login_required
 
 
-@app.route('/student/add')
+@student.route('/add')
 @login_required
 def addStudent():
     user = g.user
@@ -11,7 +11,7 @@ def addStudent():
                            title='Add Student', user=user)
 
 
-@app.route('/student/edit')
+@student.route('/edit')
 @login_required
 def editStudent():
     user = g.user
@@ -19,7 +19,7 @@ def editStudent():
                            title='Edit Student', user=user)
 
 
-@app.route('/student/list')
+@student.route('/list')
 @login_required
 def listStudents():
     user = g.user
@@ -27,7 +27,7 @@ def listStudents():
                            title='List Students', user=user)
 
 
-@app.route('/student/search')
+@student.route('/search')
 @login_required
 def searchStudent():
     user = g.user
@@ -35,7 +35,7 @@ def searchStudent():
                            title='Search', user=user)
 
 
-@app.route('/student/delete')
+@student.route('/delete')
 @login_required
 def deleteStudent():
     user = g.user
