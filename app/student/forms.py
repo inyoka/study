@@ -1,15 +1,15 @@
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms.fields import StringField, BooleanField, SelectMultipleField, FormField, FieldList, TextAreaField, DateField, SelectField, TextAreaField, RadioField, IntegerField, SubmitField
 from wtforms.validators import DataRequired, Length
 from app.models import Student
 from app import lookup
 
-class ContactForm(Form):
+class ContactForm(FlaskForm):
     id = Student.id
     mobile_phone = StringField('Number')
     e_mail = StringField('E-mail')
 
-class AddStudent(Form):
+class AddStudent(FlaskForm):
     name = StringField('Name :', validators=[DataRequired(), Length(min=4, max=80)])
     address = TextAreaField('Address :', validators=[DataRequired()])
     dob = DateField('Date of Birth :', validators=[DataRequired()])
