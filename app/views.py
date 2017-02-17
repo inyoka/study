@@ -54,6 +54,11 @@ def editProfile():
     return render_template('/profile/edit.html', form=form)
 
 
+@app.errorhandler(403)
+def forbidden(error):
+    return render_template('errors/403.html', title='Forbidden'), 403
+
+
 @app.errorhandler(404)
 def not_found_error(error):
     return render_template('error/404.html'), 404
