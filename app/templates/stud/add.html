@@ -2,7 +2,8 @@
 {% extends "base.html" %}
 {% block content %}
 {% include 'flash.html' %}
-    <form method=post action="AddStudent">
+<form action="" method=post action="AddStudent">
+{{form.hidden_tag()}}
 <div class="container-fluid" style="max-width: 1400px; padding:60px;">
     <div class="panel panel-primary">
         <div class="panel-heading">{{ title }}</div>
@@ -16,7 +17,7 @@
 
                     <div class="input-group input-group-sm">
                     {{ form.dob.label(for="dob", class="input-group-addon") }}
-                    {{ form.dob(type="date", class="form-control", id="dob", placeholder="DoB") }}
+                    {{ form.dob(type="date", class="form-control", id="dob", placeholder="DoB")|strftime }}
                     </div>
                     <div class="input-group input-group-sm">
                         <label class="input-group-addon">Gender : </label>
