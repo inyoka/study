@@ -8,7 +8,12 @@
 <table>
   <div class="container">
     <tr valign="top">
-        <td><img src="{{ post.author.avatar(50) }}"></td><td><i>{{ post.author.username }} says:</i><br>{{ post.body }}</td>
+        <td>
+            <img src="{{ post.author.avatar(50) }}"></td>
+            <td><i>
+                {{ post.author.username }} says :</i>
+            <br>
+            {{ post.body }}</td>
     </tr>
   </div>
 </table>
