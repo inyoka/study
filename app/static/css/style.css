@@ -5,3 +5,13 @@ html {
   -o-background-size: cover;
   background-size: cover;
 }
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+    background-color: darkblue;
+    background: url(static/backgrounds/bg.jpg) no-repeat center center fixed;
+}
