@@ -13,7 +13,7 @@ class AddStudent(FlaskForm):
     name = StringField('Name :', validators=[DataRequired(), Length(min=4, max=80)])
     address = TextAreaField('Address :', validators=[DataRequired()])
     dob = DateField('Date of Birth :', validators=[DataRequired()])
-    gender = RadioField('Male?', choices=[('0','Male'),('1','Female')])
+    gender = RadioField('Male?', choices=[('Male','Male'),('Female','Female')])
     contacts = FieldList(FormField(ContactForm))
     goal = SelectField('Goal :', choices=lookup.GOAL, validators=[DataRequired()])  # Qualification etc
     target =  SelectField('Target  :', choices=lookup.TARGET, validators=[DataRequired()]) # Skill needing improvment
