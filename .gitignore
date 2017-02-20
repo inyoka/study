@@ -8,6 +8,9 @@ app/tmp/
 case/
 db_repository/
 tmp/
+runp.py
+test*.py
+study.py
 
 
 
