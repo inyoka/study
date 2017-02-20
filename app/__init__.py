@@ -13,6 +13,7 @@ lm.login_view = 'login'
 db = SQLAlchemy(app)
 from app import models, views
 
+
 from .admin import admin as admin_blueprint
 app.register_blueprint(admin_blueprint, url_prefix='/admin')
 
@@ -22,9 +23,8 @@ app.register_blueprint(auth_blueprint)
 from .home import home as home_blueprint
 app.register_blueprint(home_blueprint)
 
-from .student import student as student_blueprint
-app.register_blueprint(student_blueprint, url_prefix='/student')
-
+from .stud import stud as stud_blueprint
+app.register_blueprint(stud_blueprint, url_prefix='/stud')
 
 if not app.debug:
     import logging
