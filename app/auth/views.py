@@ -7,18 +7,7 @@ from app.models import User
 from datetime import datetime
 from . import auth
 
-'''
-@auth.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
 
-        flash(u'Successfully logged in as %s' % form.user.username)
-        session['user_id'] = form.user.id
-        return redirect(url_for('auth.index'))
-    return render_template('auth/login.html', form=form)
-
-'''
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -33,23 +22,7 @@ def login():
     login_user(registered_user, form.remember_me.data)
     flash('Logged in successfully')
     return redirect(request.args.get('next') or url_for('home.index'))
-'''
-# NEW ...
-@auth.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        if user is not None and user.verify_password(form.password.data):
-            login_user(user)
-            return redirect(url_for('home.dashboard'))
-        elif registered_user is None:
-            flash('Username or Password is invalid', 'error')
-            return redirect(url_for('auth.login'))
-        else:
-            flash('Invalid email or password.')
-    return render_template('auth/login.html', form=form, title='Login')
-'''
+
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
