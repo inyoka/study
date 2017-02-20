@@ -25,4 +25,6 @@ class AddStudent(FlaskForm):
     dateLastContact = DateField('Last contact :', format='%Y-%m-%d', validators=[DataRequired()])
     lapsedWhy = SelectField('Why they left :')
     notes = TextAreaField('Notes :', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    
+class ViewStudent(FlaskForm):
+    name = StringField('Name :', validators=[DataRequired(), Length(min=4, max=80)])
