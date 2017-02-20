@@ -1,62 +1,42 @@
-from app import app
-from flask import render_template
+from app import db
+from flask import render_template, flash, redirect, url_for
 from flask_login import login_required
 from . import stud
 from .forms import AddStudent, ViewStudent
-from app.models import User, Student
+from app.models import Student
 import sqlite3 as sql
+from datetime import date
 
 
-@app.template_filter('strftime')
-def _jinja2_filter_datetime(date, fmt=None):
-    date = dateutil.parser.parse(date)
-    native = date.replace(tzinfo=None)
-    format='%b %d, %Y'
-    return native.strftime(format)
-    
-
-@stud.route('/add')
+@stud.route('/add', methods=['GET', 'POST'])
 @login_required
 def add():
-    student = Student
+
     form = AddStudent()
     if form.validate_on_submit():
-        student.timestamp = datetime.utcnow()
-        student.name = form.name.data
-        student.address = form.address.data
-        student.dob = form.dob.data
-        student.gender = form.gender.data
-        student.goal = form.goal.data
-        student.target = form.target.data
-        student.occupation = form.occupation.data
-        student.status = form.status.data
-        student.days = form.days.data
-        student.time = form.time.data
-        student.dateEnroll = form.dateEnroll.data
-        student.dateLastContact = form.dateLastContact.data
-        student.lapsedWhy = form.lapsedWhy.data
-        student.notes = form.notes.data
-        db.session.add(student)
-        db.session.commit()
-        flash('Your changes have been most likely been saved!?!')
-        return redirect(url_for('edit'))
-    else:
-        form.name.data = student.name
-        form.address.data = student.address
-        form.dob.data = student.dob
-        form.gender.data = student.gender
-        form.goal.data = student.goal
-        form.target.data = student.target
-        form.occupation.data = student.occupation
-        form.status.data = student.status
-        form.days.data = student.days
-        form.time.data = student.time
-        form.dateEnroll.data = student.dateEnroll
-        form.dateLastContact.data = student.dateLastContact
-        form.lapsedWhy.data = student.lapsedWhy
-        form.notes.data = student.notes
+        student = Student(timestamp=date.utcnow(),
+                          name=form.name.data,
+                          address=form.address.data,
+                          dob=form.dob.data,
+                          gender=form.gender.data,
+                          goal=form.goal.data,
+                          target=form.target.data,
+                          occupation=form.occupation.data,
+                          status=form.status.data,
+                          days=form.days.data,
+                          time=form.time.data,
+                          dateEnroll=form.dateEnroll.data,
+                          dateLastContact=form.dateLastContact.data,
+                          lapsedWhy=form.lapsedWhy.data,
+                          notes=form.notes.data)
+        try:
+            db.session.add(student)
+            db.session.commit()
+            flash('Your changes have been most likely been saved!?!')
+        except:
+            flash('Record exists already.')
 
-
+            return redirect(url_for('add'))
     return render_template('/stud/add.html',
                            title='Add Student', form=form)
 
@@ -71,14 +51,14 @@ def edit():
 @stud.route('/list')
 @login_required
 def list():
-   con = sql.connect("app.db")
-   con.row_factory = sql.Row
+    con = sql.connect("app.db")
+    con.row_factory = sql.Row
 
-   cur = con.cursor()
-   cur.execute("select * from students")
+    cur = con.cursor()
+    cur.execute("select * from students")
 
-   rows = cur.fetchall();
-   return render_template("/stud/list.html",rows = rows)
+    rows = cur.fetchall()
+    return render_template("/stud/list.html", rows=rows)
 
 
 @stud.route('/search')
