@@ -1,22 +1,60 @@
 from app import app
 from flask import render_template, g
 from flask_login import login_required
-from . import student
+from . import stud
 from .forms import AddStudent, ViewStudent
-from app.models import User
+from app.models import User, Student
 import sqlite3 as sql
 
 
-@student.route('/add')
+@stud.route('/add')
 @login_required
 def add():
     form = AddStudent()
-    user = g.user
+    if form.validate_on_submit():
+        student.timestamp = datetime.utcnow()
+        student.name = form.name.data
+        student.address = form.address.data
+        student.dob = form.dob.data
+        student.gender = form.gender.data
+        student.goal = form.goal.data
+        student.target = form.target.data
+        student.education = form.education.data
+        student.occupation = form.occupation.data
+        student.status = form.status.data
+        student.days = form.days.data
+        student.time = form.time.data
+        student.dateEnroll = form.dateEnroll.data
+        student.dateLastContact = form.dateLastContact.data
+        student.lapsedWhy = form.lapsedWhy.data
+        student.notes = form.notes.data
+        db.session.add(student)
+        db.session.commit()
+        flash('Your changes have been most likely been saved!?!')
+        return redirect(url_for('edit'))
+    else:
+        form.name.data = student.name
+        form.address.data = student.address
+        form.dob.data = student.dob
+        form.gender.data = student.gender
+        form.goal.data = student.goal
+        form.target.data = student.target
+        form.education.data = student.education
+        form.occupation.data = student.occupation
+        form.status.data = student.status
+        form.days.data = student.days
+        form.time.data = student.time
+        form.dateEnroll.data = student.dateEnroll
+        form.dateLastContact.data = student.dateLastContact
+        form.lapsedWhy.data = student.lapsedWhy
+        form.notes.data = student.notes
+
+
     return render_template('/student/add.html',
                            title='Add Student', form=form, user=user)
 
 
-@student.route('/edit')
+@stud.route('/edit')
 @login_required
 def edit():
     user = g.user
@@ -24,7 +62,7 @@ def edit():
                            title='Edit Student', user=user)
 
 
-@student.route('/list')
+@stud.route('/list')
 @login_required
 def list():
    con = sql.connect("app.db")
@@ -37,7 +75,7 @@ def list():
    return render_template("/student/list.html",rows = rows)
 
 
-@student.route('/search')
+@stud.route('/search')
 @login_required
 def search():
     user = g.user
@@ -45,7 +83,7 @@ def search():
                            title='Search', user=user)
 
 
-@student.route('/view')
+@stud.route('/view')
 @login_required
 def view():
     form = ViewStudent()
@@ -53,7 +91,7 @@ def view():
     return render_template('/student/view.html', form=form)
 
 
-@student.route('/delete')
+@stud.route('/delete')
 @login_required
 def delete():
     user = g.user
