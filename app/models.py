@@ -91,19 +91,35 @@ class Student(db.Model):
     timestamp = db.Column(db.DateTime)  # Record created
     name = db.Column(db.String(64), index=True, unique=True)
     address = db.Column(db.String)
-    dob = db.Column(db.DateTime)  # Calculate age
+    dob = db.Column(db.Date)  # Calculate age
     gender = db.Column(db.Boolean, default=False, index=True)  # M or F
     goal = db.Column(db.String)  # Qualification etc
     target = db.Column(db.String)  # Skill needing improvment
-    education = db.Column(db.String)  # Level of Education
     occupation = db.Column(db.String)  # Current occupation
     status = db.Column(db.Integer)
     days = db.Column(db.Integer)  # 7 digit binary?
     time = db.Column(db.Integer)  # Avail after %%:%% on weekday
-    dateEnroll = db.Column(db.DateTime)
-    dateLastContact = db.Column(db.DateTime)
+    dateEnroll = db.Column(db.Date)
+    dateLastContact = db.Column(db.Date)
     lapsedWhy = db.Column(db.String)
     notes = db.Column(db.String)
+
+    def __init__(self, name, address, dob, gender, goal, target, occupation, status, days, time, dateEnroll):
+        self.name = name
+        self.address = address
+        self.dob = dob
+        self.gender = gender
+        self.goal = goal
+        self.target = target
+        self.occupation = occupation
+        self.status = status
+        self.days = days
+        self.time = time
+        self.dateEnroll = datetime.utcnow()
+
+    def __repr__(self):
+        return "<Student ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')>" % (self.name, self.address, self.dob, self.gender, self.goal, self.target, self.occupation, self.status, self.days, self.time, self.dateEnroll)
+
 
 
 class Contact(db.Model):
