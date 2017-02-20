@@ -2,7 +2,9 @@ from app import app
 from flask import render_template, g
 from flask_login import login_required
 from . import student
-from .forms import AddStudent
+from .forms import AddStudent, ViewStudent
+from app.models import User
+import sqlite3 as sql
 
 
 @student.route('/add')
@@ -25,9 +27,14 @@ def edit():
 @student.route('/list')
 @login_required
 def list():
-    user = g.user
-    return render_template('/student/list.html',
-                           title='List Students', user=user)
+   con = sql.connect("app.db")
+   con.row_factory = sql.Row
+
+   cur = con.cursor()
+   cur.execute("select * from students")
+
+   rows = cur.fetchall();
+   return render_template("/student/list.html",rows = rows)
 
 
 @student.route('/search')
@@ -36,6 +43,14 @@ def search():
     user = g.user
     return render_template('/student/search.html',
                            title='Search', user=user)
+
+
+@student.route('/view')
+@login_required
+def view():
+    form = ViewStudent()
+
+    return render_template('/student/view.html', form=form)
 
 
 @student.route('/delete')
