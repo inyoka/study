@@ -3,19 +3,28 @@
 
 {% block content %}
 <div class="container">
+<br><br><br><br>
+    <body>
 
-  <form action="list-student">
-      <h1> Working page</h1>
-  <!-- Your form goes here -->
-  {{ users }}
-  {% for user in users %}
-        <tr valign="top">{{ user.username }}</tr>
-  {% endfor %}
+       <table border = 1>
+          <thead>
+             <td>Name</td>
+             <td>Address</td>
+             <td>DoB</td>
+          </thead>
 
-  {% for student in students %}
-        <tr valign="top">{{ student.name }}</tr>
-  {% endfor %}
+          {% for row in rows %}
+             <tr>
+                <td>{{row["name"]}}</td>
+                <td>{{row["address"]}}</td>
+                <td>{{row["dob"]}}</td>
+             </tr>
+          {% endfor %}
+       </table>
 
+       <a href = "/">Go back to home page</a>
+
+    </body>
 
 </div>
 {% endblock %}
