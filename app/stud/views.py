@@ -40,6 +40,37 @@ def add():
                            title='Add Student', form=form)
 
 
+@stud.route('/addsmall', methods=['GET', 'POST'])
+@login_required
+def addsmall():
+
+    form = AddStudent()
+    if form.validate_on_submit():
+        student = Student(name=form.name.data,
+                          address=form.address.data,
+                          dob=form.dob.data,
+                          gender=form.gender.data,
+                          goal=form.goal.data,
+                          target=form.target.data,
+                          occupation=form.occupation.data,
+                          status=form.status.data,
+                          days=form.days.data,
+                          time=form.time.data,
+                          dateEnroll=form.dateEnroll.data,
+                          dateLastContact=form.dateLastContact.data,
+                          lapsedWhy=form.lapsedWhy.data,
+                          notes=form.notes.data)
+        try:
+            db.session.add(student)
+            db.session.commit()
+            flash('Your changes have been most likely been saved!?!')
+        except:
+            flash('Record exists already.')
+
+            return redirect(url_for('addsmall'))
+    return render_template('/stud/addsmall.html',
+                           title='Add Small Student', form=form)
+
 @stud.route('/edit')
 @login_required
 def edit():
