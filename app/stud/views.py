@@ -2,7 +2,7 @@ from app import db
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_required
 from . import stud
-from .forms import AddStudent, ViewStudent
+from .forms import AddStudent, AddStudentSmall, ViewStudent
 from app.models import Student
 import sqlite3 as sql
 from datetime import date
@@ -18,11 +18,11 @@ def add():
                           address=form.address.data,
                           dob=form.dob.data,
                           gender=form.gender.data,
-                          goal=form.goal.data,
-                          target=form.target.data,
-                          occupation=form.occupation.data,
-                          status=form.status.data,
-                          days=form.days.data,
+                          #goal=form.goal.data,
+                          #target=form.target.data,
+                          #occupation=form.occupation.data,
+                          #status=form.status.data,
+                          #days=form.days.data,
                           time=form.time.data,
                           dateEnroll=form.dateEnroll.data,
                           dateLastContact=form.dateLastContact.data,
@@ -35,7 +35,7 @@ def add():
         except:
             flash('Record exists already.')
 
-            return redirect(url_for('add'))
+            return redirect(url_for('/stud/add'))
     return render_template('/stud/add.html',
                            title='Add Student', form=form)
 
@@ -44,22 +44,8 @@ def add():
 @login_required
 def addsmall():
 
-    form = AddStudent()
+    form = AddStudentSmall()
     if form.validate_on_submit():
-        student = Student(name=form.name.data,
-                          address=form.address.data,
-                          dob=form.dob.data,
-                          gender=form.gender.data,
-                          goal=form.goal.data,
-                          target=form.target.data,
-                          occupation=form.occupation.data,
-                          status=form.status.data,
-                          days=form.days.data,
-                          time=form.time.data,
-                          dateEnroll=form.dateEnroll.data,
-                          dateLastContact=form.dateLastContact.data,
-                          lapsedWhy=form.lapsedWhy.data,
-                          notes=form.notes.data)
         try:
             db.session.add(student)
             db.session.commit()
@@ -67,7 +53,7 @@ def addsmall():
         except:
             flash('Record exists already.')
 
-            return redirect(url_for('addsmall'))
+            return redirect(url_for('stud.addsmall'))
     return render_template('/stud/addsmall.html',
                            title='Add Small Student', form=form)
 
