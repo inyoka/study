@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 {% block content %}
 {% include 'flash.html' %}
-<form action="" method=post action="AddStudent">
+<form action="" method=post action="AddStudent" enctype="multipart/form-data">
 {{form.hidden_tag()}}
 <div class="container-fluid" style="max-width: 1400px; padding:60px;">
     <div class="panel panel-primary">
