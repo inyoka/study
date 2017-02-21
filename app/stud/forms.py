@@ -24,10 +24,10 @@ class AddStudent(FlaskForm):
     occupation = SelectField('Occupation :', validators=[DataRequired()])  # Current occupation
     status = SelectField('Student status :', choices=[('Pending', 'Pending'), ('Active', 'Active'), ('Inactive', 'Inactive')], validators=[DataRequired()])  # Active Inactive
     days = SelectMultipleField('Days available :', choices=lookup.DAYS, validators=[DataRequired()])  # 7 digit binary?
-    time = IntegerField('Available from :', validators=[DataRequired()])  # Avail after %%:%% on weekday
+    time = IntegerField('Available from :', validators=[DataRequired("Enter time available or 00:00 for any.")])  # Avail after %%:%% on weekday
     dateEnroll = DateField('Date enrolled :', format='%Y-%m-%d', validators=[DataRequired()])
     dateLastContact = DateField('Last contact :', format='%Y-%m-%d')
-    lapsedWhy = SelectField('Why they left :')
+    lapsedWhy = SelectField('Why they left :', choices=[('Pending', 'Pending'), ('Active', 'Active'), ('Inactive', 'Inactive')])
     notes = TextAreaField('Notes :')
     submit = SubmitField('Submit', validators=[DataRequired()])
 
