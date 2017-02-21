@@ -14,8 +14,7 @@ def add():
 
     form = AddStudent()
     if form.validate_on_submit():
-        student = Student(timestamp=date.utcnow(),
-                          name=form.name.data,
+        student = Student(name=form.name.data,
                           address=form.address.data,
                           dob=form.dob.data,
                           gender=form.gender.data,
