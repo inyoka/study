@@ -96,7 +96,7 @@ class Student(db.Model):
     goal = db.Column(db.String)  # Qualification etc
     target = db.Column(db.String)  # Skill needing improvment
     occupation = db.Column(db.String)  # Current occupation
-    status = db.Column(db.Integer)
+    status = db.Column(db.String)
     days = db.Column(db.Integer)  # 7 digit binary?
     time = db.Column(db.Integer)  # Avail after %%:%% on weekday
     dateEnroll = db.Column(db.Date)
