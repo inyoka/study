@@ -1,0 +1,59 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+{% block content %}
+{% include 'flash.html' %}
+<div class="container-fluid" style="max-width: 1400px; padding:30px;">
+
+<form method="POST" action="{{ url_for('stud.add') }}" method=post  enctype="multipart/form-data">
+{{form.hidden_tag()}}
+    <div class="input-group input-group-sm">
+        {{ form.name.label(for='name', class="input-group-addon") }}
+        {{ form.name(type="text",class="form-control", id="name", placeholder="Name", size=20) }}
+    </div>
+    <div class="input-group input-group-sm">
+        {{ form.dob.label(for="dob", class="input-group-addon") }}
+        {{ form.dob(type="date", class="form-control", id="dob", placeholder="DoB") }}
+    </div>
+    <div class="input-group input-group-sm">
+        <label class="input-group-addon">Gender : </label>
+        <span class="form-control">
+        {% for gender in form.gender %}
+            {{ gender(type="radio") }}
+            {{ gender.label }}
+        {% endfor %}
+        </span>
+    </div>
+    <div class="input-group input-group-sm" style="height: 69pt;">
+        {{ form.address.label(for="address", class="input-group-addon") }}
+        {{ form.address(class="form-control", type="textarea",  placeholder="Address", id="address", style="height: 100%;") }}
+    </div>
+
+    <div class="input-group input-group-sm">
+        {{ form.time.label(for="time", class="input-group-addon") }}
+        {{ form.time(type="time", class="form-control", id="time") }}
+    </div>
+    <div class="input-group input-group-sm">
+        {{ form.dateEnroll.label(for="dateEnroll", class="input-group-addon") }}
+        {{ form.dateEnroll(type="date", class="form-control", id="dateEnroll") }}
+    </div>
+
+    <div class="input-group input-group-sm" style="height: 69pt;">
+        {{ form.notes.label(for="notes", class="input-group-addon", style="height: 60px;") }}
+        {{ form.notes(class="form-control", type="textarea",  placeholder="notes", id="notes", style="height: 100%;") }}
+    </div>
+
+    <div class="input-group input-group-sm">
+        {{ form.dateLastContact.label(for="dateLastContact", class="input-group-addon") }}
+        {{ form.dateLastContact(type="date", class="form-control", id="dateLastContact") }}
+    </div>
+    <div class="input-group input-group-sm">
+        {{ form.lapsedWhy.label(for="lapsedWhy", class="input-group-addon") }}
+        {{ form.notes(class="form-control", type="textarea",  placeholder="Why did they leave?", id="lapsedWhy") }}
+    </div>
+    <input type="submit" value="Go">
+    <button class="btn btn-md btn-primary btn-block" type="submit" value="Register">Register</button>
+
+</form>
+</div>
+
+{% endblock %}
