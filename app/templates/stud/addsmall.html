@@ -7,8 +7,8 @@
 <form method="POST" action="{{ url_for('stud.add') }}" method=post  enctype="multipart/form-data">
 {{form.hidden_tag()}}
 <div class="input-group input-group-sm">
-    {{ form.name.label(for='name', class="input-group-addon") }}
-    {{ form.name(type="text",class="form-control", id="name", placeholder="Name", size=20) }}
+    {{ form.fullname.label(for='fullname', class="input-group-addon") }}
+    {{ form.fullname(type="text",class="form-control", id="fullname", placeholder="Fullname", size=20) }}
 </div>
 <div class="input-group input-group-sm">
     {{ form.dob.label(for="dob", class="input-group-addon") }}
