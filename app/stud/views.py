@@ -11,7 +11,6 @@ from datetime import date
 @stud.route('/add', methods=['GET', 'POST'])
 @login_required
 def add():
-
     form = AddStudent()
     print(form.errors)
 
@@ -20,24 +19,26 @@ def add():
 
     if form.validate():
         print("valid")
+    else:
+        flash("Form not valid")
+        print(form.errors)
 
-    print(form.errors)
-    #if form.validate_on_submit():
-    if form.submit.data and form.validate_on_submit():
-        student = Student(fullname=form.fullname.data
-                          #address=form.address.data,
-                          #dob=form.dob.data,
-                          #gender=form.gender.data,
-                          #goal=form.goal.data,
-                          #target=form.target.data,
-                          #occupation=form.occupation.data,
-                          #status=form.status.data,
-                          #days=form.days.data,
-                          #time=form.time.data,
-                          #dateEnroll=form.dateEnroll.data,
-                          #dateLastContact=form.dateLastContact.data,
-                          #lapsedWhy=form.lapsedWhy.data,
-                          # notes=form.notes.data
+    if form.validate_on_submit():
+    #if form.submit.data and form.validate_on_submit():
+        student = Student(fullname=form.fullname.data,
+                          address=form.address.data,
+                          dob=form.dob.data,
+                          gender=form.gender.data,
+                          goal=form.goal.data,
+                          target=form.target.data,
+                          occupation=form.occupation.data,
+                          status=form.status.data,
+                          days=form.days.data,
+                          time=form.time.data,
+                          dateEnroll=form.dateEnroll.data,
+                          dateLastContact=form.dateLastContact.data,
+                          lapsedWhy=form.lapsedWhy.data,
+                          notes=form.notes.data
                           )
         try:
             db.session.add(student)
@@ -48,7 +49,7 @@ def add():
 
             return redirect(url_for('/stud/add'))
 
-    flash("Form not valid")
+
     return render_template('/stud/add.html',
                            title='Add Student', form=form)
 
@@ -65,10 +66,12 @@ def addsmall():
 
     if form.validate():
         print("valid")
-
+    else:
+        flash("Form not valid")
+        print(form.errors)
     print(form.errors)
-    #if form.validate_on_submit():
-    if form.submit.data and form.validate_on_submit():
+    if form.validate_on_submit():
+    #if form.submit.data and form.validate_on_submit():
         try:
             db.session.add(student)
             db.session.commit()
