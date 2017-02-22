@@ -1,15 +1,15 @@
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms.fields import StringField, BooleanField, SelectMultipleField, FormField, FieldList, TextAreaField, DateField, SelectField, TextAreaField, RadioField, IntegerField, SubmitField
 from wtforms.validators import DataRequired, Length
 from app.models import User, Student, Contact
 from app import lookup
 
 
-class LoginForm(Form):
+class LoginForm(FlaskForm):
     remember_me = BooleanField('remember_me', default=False)
 
 
-class EditForm(Form):
+class EditForm(FlaskForm):
     username = StringField('User.username', validators = [DataRequired()])
     about_me = TextAreaField('User.about_me', validators = [Length(min=0, max=140)])
 
