@@ -37,6 +37,18 @@ class AddStudentSmall(FlaskForm):
     fullname = StringField('Name :')
     address = TextAreaField('Address :')
     dob = DateField('Date of Birth :')
+    gender = SelectField('Gender', choices=lookup.GENDER, validators=[validators.optional()])
+    #contacts = FieldList(FormField(ContactForm))
+    goal = SelectField('Goal :', choices=lookup.GOAL)  # Qualification etc
+    target = SelectField('Target  :', choices=lookup.TARGET)  # Skill needing improvment
+    occupation = SelectField('Occupation :', validators=[DataRequired()])  # Current occupation
+    status = SelectField('Student status :', choices=lookup.STATUS, validators=[DataRequired()])  # Active Inactive
+    days = SelectMultipleField('Days available :', choices=lookup.DAYS, validators=[DataRequired()])  # 7 digit binary?
+    time = IntegerField('Available from :', validators=[DataRequired("Enter time available or 00:00 for any.")])  # Avail after %%:%% on weekday
+    dateEnroll = DateField('Date enrolled :', format='%Y-%m-%d', validators=[DataRequired()])
+    dateLastContact = DateField('Last contact :', format='%Y-%m-%d')
+    lapsedWhy = SelectField('Why they left :', choices=[('Pending', 'Pending'), ('Active', 'Active'), ('Inactive', 'Inactive')])
+    notes = TextAreaField('Notes :')
     submit = SubmitField('Submit')
 
 
