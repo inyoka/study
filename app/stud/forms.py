@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, SelectMultipleField, FormField
 from wtforms.fields import FieldList, DateField, SelectField, TextAreaField
-from wtforms.fields import RadioField, IntegerField, SubmitField
+from wtforms.fields import RadioField, IntegerField, SubmitField, HiddenField
 from wtforms.validators import DataRequired, Length
 import wtforms.validators as validators
 from app.models import Student
