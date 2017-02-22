@@ -28,7 +28,7 @@ def login():
 def register():
     if request.method == 'GET':
         return render_template('auth/register.html')
-    user = User(request.form['username'], request.form['name'],
+    user = User(request.form['username'], request.form['fullname'],
                 request.form['password'], request.form['email'])
     db.session.add(user)
     db.session.commit()

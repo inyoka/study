@@ -8,7 +8,7 @@ class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
-    name = db.Column(db.String(64), index=True)
+    fullname = db.Column(db.String(64), index=True)
     password = db.Column(db.String(10))
     registered_on = db.Column('registered_on', db.DateTime)
     email = db.Column(db.String(120), index=True, unique=True)
@@ -19,9 +19,9 @@ class User(db.Model):
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     is_admin = db.Column(db.Boolean, default=False)
 
-    def __init__(self, username, name, password, email):
+    def __init__(self, username, fullname, password, email):
         self.username = username
-        self.name = name
+        self.fullname = fullname
         self.password = password
         self.email = email
         self.registered_on = datetime.utcnow()
@@ -89,26 +89,26 @@ class Student(db.Model):
     __tablename__ = 'students'
     id = db.Column(db.Integer,db.Sequence('seq_reg_id', start=1, increment=1),  primary_key=True)
     # timestamp = db.Column(db.DateTime)  # Record created
-    name = db.Column(db.String(64), index=True, unique=True)
     address = db.Column(db.String)
     dob = db.Column(db.Date)  # Calculate age
     gender = db.Column(db.Boolean, default=False, index=True)  # M or F
+    fullname = db.Column(db.String(64), index=True, unique=True)
     # goal = db.Column(db.String)  # Qualification etc
     ##target = db.Column(db.String)  # Skill needing improvment
     #occupation = db.Column(db.String)  # Current occupation
     #status = db.Column(db.String)
     #days = db.Column(db.Integer)  # 7 digit binary?
-    time = db.Column(db.Integer)  # Avail after %%:%% on weekday
-    dateEnroll = db.Column(db.Date)
-    dateLastContact = db.Column(db.Date)
-    lapsedWhy = db.Column(db.String)
-    notes = db.Column(db.String)
+    #time = db.Column(db.Integer)  # Avail after %%:%% on weekday
+    #dateEnroll = db.Column(db.Date)
+    #dateLastContact = db.Column(db.Date)
+    #lapsedWhy = db.Column(db.String)
+    #notes = db.Column(db.String)
 
-    def __init__(self, name, address, dob, gender, goal, target, occupation, status, days, time, dateEnroll):
-        self.name = name
-        self.address = address
-        self.dob = dob
-        self.gender = gender
+    def __init__(self, fullname):
+        self.fullname = fullname
+        #self.address = address
+        #self.dob = dob
+        #self.gender = gender
         #self.goal = goal
         #self.target = target
         #self.occupation = occupation
