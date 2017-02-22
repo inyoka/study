@@ -13,21 +13,32 @@ from datetime import date
 def add():
 
     form = AddStudent()
-    if form.validate_on_submit():
-        student = Student(name=form.name.data,
-                          address=form.address.data,
-                          dob=form.dob.data,
-                          gender=form.gender.data,
+    print(form.errors)
+
+    if form.is_submitted():
+        print("submitted")
+
+    if form.validate():
+        print("valid")
+
+    print(form.errors)
+    #if form.validate_on_submit():
+    if form.submit.data and form.validate_on_submit():
+        student = Student(fullname=form.fullname.data
+                          #address=form.address.data,
+                          #dob=form.dob.data,
+                          #gender=form.gender.data,
                           #goal=form.goal.data,
                           #target=form.target.data,
                           #occupation=form.occupation.data,
                           #status=form.status.data,
                           #days=form.days.data,
-                          time=form.time.data,
-                          dateEnroll=form.dateEnroll.data,
-                          dateLastContact=form.dateLastContact.data,
-                          lapsedWhy=form.lapsedWhy.data,
-                          notes=form.notes.data)
+                          #time=form.time.data,
+                          #dateEnroll=form.dateEnroll.data,
+                          #dateLastContact=form.dateLastContact.data,
+                          #lapsedWhy=form.lapsedWhy.data,
+                          # notes=form.notes.data
+                          )
         try:
             db.session.add(student)
             db.session.commit()
@@ -36,6 +47,8 @@ def add():
             flash('Record exists already.')
 
             return redirect(url_for('/stud/add'))
+
+    flash("Form not valid")
     return render_template('/stud/add.html',
                            title='Add Student', form=form)
 
@@ -45,7 +58,17 @@ def add():
 def addsmall():
 
     form = AddStudentSmall()
-    if form.validate_on_submit():
+    print(form.errors)
+
+    if form.is_submitted():
+        print("submitted")
+
+    if form.validate():
+        print("valid")
+
+    print(form.errors)
+    #if form.validate_on_submit():
+    if form.submit.data and form.validate_on_submit():
         try:
             db.session.add(student)
             db.session.commit()
