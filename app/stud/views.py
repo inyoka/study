@@ -103,7 +103,6 @@ def list():
 @stud.route('/search')
 @login_required
 def search():
-
     return render_template('/stud/search.html',
                            title='Search')
 
