@@ -89,10 +89,10 @@ class Student(db.Model):
     __tablename__ = 'students'
     id = db.Column(db.Integer,db.Sequence('seq_reg_id', start=1, increment=1),  primary_key=True)
     # timestamp = db.Column(db.DateTime)  # Record created
-    address = db.Column(db.String)
-    dob = db.Column(db.Date)  # Calculate age
-    gender = db.Column(db.Boolean, default=False, index=True)  # M or F
     fullname = db.Column(db.String(64), index=True, unique=True)
+    #address = db.Column(db.String)
+    #dob = db.Column(db.Date)  # Calculate age
+    #gender = db.Column(db.Boolean, default=False, index=True)  # M or F
     # goal = db.Column(db.String)  # Qualification etc
     ##target = db.Column(db.String)  # Skill needing improvment
     #occupation = db.Column(db.String)  # Current occupation
@@ -114,8 +114,8 @@ class Student(db.Model):
         #self.occupation = occupation
         #self.status = status
         #self.days = days
-        self.time = time
-        self.dateEnroll = datetime.utcnow()
+        #self.time = time
+        #self.dateEnroll = datetime.utcnow()
 
     def __repr__(self):
         return "<Student ('%s', '%s', '%s', '%s', '%s', '%s')>" % (self.name, self.address, self.dob, self.gender, self.time, self.dateEnroll)
