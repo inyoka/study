@@ -119,6 +119,7 @@ class Student(db.Model):
 
     def __repr__(self):
         return "<Student ('%s', '%s', '%s', '%s', '%s', '%s')>" % (self.name, self.address, self.dob, self.gender, self.time, self.dateEnroll)
+        return "<Student ('%s')>" % (self.fullname)
 
 
 
