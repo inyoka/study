@@ -24,3 +24,9 @@ DAYS = [('Sunday', 'Sunday'),
     ('Thursday', 'Thursday'),
     ('Friday', 'Friday'),
     ('Saturday', 'Saturday')]
+
+GENDER = [('Male', 'Male'), ('Female', 'Female')]
+
+STATUS = [('Pending', 'Pending'),
+    ('Active', 'Active'),
+    ('Inactive', 'Inactive')]
