@@ -18,12 +18,12 @@ class AddStudent(FlaskForm):
     fullname = StringField('Name :', validators=[DataRequired(), Length(min=4, max=80)])
     address = TextAreaField('Address :', validators=[DataRequired()])
     dob = DateField('Date of Birth :', validators=[DataRequired()])
-    gender = RadioField('Male?', choices=[('Male', 'Male'), ('Female', 'Female')], validators=[DataRequired()])
-    contacts = FieldList(FormField(ContactForm))
-    goal = SelectField('Goal :', choices=lookup.GOAL, validators=[DataRequired()])  # Qualification etc
-    target = SelectField('Target  :', choices=lookup.TARGET, validators=[DataRequired()])  # Skill needing improvment
+    gender = SelectField('Gender', choices=lookup.GENDER, validators=[validators.optional()])
+    #contacts = FieldList(FormField(ContactForm))
+    goal = SelectField('Goal :', choices=lookup.GOAL)  # Qualification etc
+    target = SelectField('Target  :', choices=lookup.TARGET)  # Skill needing improvment
     occupation = SelectField('Occupation :', validators=[DataRequired()])  # Current occupation
-    status = SelectField('Student status :', choices=[('Pending', 'Pending'), ('Active', 'Active'), ('Inactive', 'Inactive')], validators=[DataRequired()])  # Active Inactive
+    status = SelectField('Student status :', choices=lookup.STATUS, validators=[DataRequired()])  # Active Inactive
     days = SelectMultipleField('Days available :', choices=lookup.DAYS, validators=[DataRequired()])  # 7 digit binary?
     time = IntegerField('Available from :', validators=[DataRequired("Enter time available or 00:00 for any.")])  # Avail after %%:%% on weekday
     dateEnroll = DateField('Date enrolled :', format='%Y-%m-%d', validators=[DataRequired()])
@@ -33,12 +33,11 @@ class AddStudent(FlaskForm):
     submit = SubmitField('submit', validators=[DataRequired()])
 
 class AddStudentSmall(FlaskForm):
-    id = Student.id
-    fullname = StringField('Name :', validators=[DataRequired(), Length(min=4, max=80)])
-    # address = TextAreaField('Address :', validators=[DataRequired()])
-    # dob = DateField('Date of Birth :', validators=[DataRequired()])
-    # gender = RadioField('Male?', choices=[('Male', 'Male'), ('Female', 'Female')], validators=[DataRequired()])
-    submit = SubmitField('Submit', validators=[DataRequired()])
+    id = HiddenField('id')
+    fullname = StringField('Name :')
+    address = TextAreaField('Address :')
+    dob = DateField('Date of Birth :')
+    submit = SubmitField('Submit')
 
 
 class ViewStudent(FlaskForm):
