@@ -1,3 +1,7 @@
+LAPSED = [('Pending', 'Pending'),
+    ('Active', 'Active'),
+    ('Inactive', 'Inactive')]
+
 
 TARGET = [('none', 'None'),
     ('spoken', 'Spoken'),
