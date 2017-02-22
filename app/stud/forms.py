@@ -14,7 +14,7 @@ class ContactForm(FlaskForm):
 
 
 class AddStudent(FlaskForm):
-    name = StringField('Name :', validators=[DataRequired(), Length(min=4, max=80)])
+    fullname = StringField('Name :', validators=[DataRequired(), Length(min=4, max=80)])
     address = TextAreaField('Address :', validators=[DataRequired()])
     dob = DateField('Date of Birth :', validators=[DataRequired()])
     gender = RadioField('Male?', choices=[('Male', 'Male'), ('Female', 'Female')], validators=[DataRequired()])
@@ -29,15 +29,16 @@ class AddStudent(FlaskForm):
     dateLastContact = DateField('Last contact :', format='%Y-%m-%d')
     lapsedWhy = SelectField('Why they left :', choices=[('Pending', 'Pending'), ('Active', 'Active'), ('Inactive', 'Inactive')])
     notes = TextAreaField('Notes :')
-    submit = SubmitField('Submit', validators=[DataRequired()])
+    submit = SubmitField('submit', validators=[DataRequired()])
 
 class AddStudentSmall(FlaskForm):
     id = Student.id
-    name = StringField('Name :', validators=[DataRequired(), Length(min=4, max=80)])
-    address = TextAreaField('Address :', validators=[DataRequired()])
-    dob = DateField('Date of Birth :', validators=[DataRequired()])
-    gender = RadioField('Male?', choices=[('Male', 'Male'), ('Female', 'Female')], validators=[DataRequired()])
+    fullname = StringField('Name :', validators=[DataRequired(), Length(min=4, max=80)])
+    # address = TextAreaField('Address :', validators=[DataRequired()])
+    # dob = DateField('Date of Birth :', validators=[DataRequired()])
+    # gender = RadioField('Male?', choices=[('Male', 'Male'), ('Female', 'Female')], validators=[DataRequired()])
+    submit = SubmitField('Submit', validators=[DataRequired()])
 
 
 class ViewStudent(FlaskForm):
-    name = StringField('Name :', validators=[DataRequired(), Length(min=4, max=80)])
+    fullname = StringField('Name :', validators=[DataRequired(), Length(min=4, max=80)])
