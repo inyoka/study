@@ -4,21 +4,17 @@ from flask_login import LoginManager
 
 app = Flask(__name__)
 app.config.from_object('config')
-app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT' # Temporary
+#app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT' # Temporary
 # Before deployment generate with :
 #import os
 #os.urandom(24)
 
 lm = LoginManager()
 lm.init_app(app)
-lm.session_protection = 'weak'
+lm.session_protection = 'strong'
 lm.login_view = 'auth.login'
 
-#CSRF controls ...
-#from flask_wtf.csrf import CSRFProtect
-#WTF_CSRF_ENABLED=False
-#csrf = CSRFProtect(app)
-#csrf.init_app(app)
+
 
 
 db = SQLAlchemy(app)
