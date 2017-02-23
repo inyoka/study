@@ -2,7 +2,7 @@ from app import db
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_required
 from . import stud
-from .forms import AddStudent, AddStudentSmall, ViewStudent
+from .forms import AddStudent, ViewStudent
 from app.models import Student
 import sqlite3 as sql
 from datetime import date
@@ -53,35 +53,6 @@ def add():
     return render_template('/stud/add.html',
                            title='Add Student', form=form)
 
-
-@stud.route('/addsmall', methods=['GET', 'POST'])
-@login_required
-def addsmall():
-
-    form = AddStudentSmall()
-    print(form.errors)
-
-    if form.is_submitted():
-        print("submitted")
-
-    if form.validate():
-        print("valid")
-    else:
-        flash("Form not valid")
-        print(form.errors)
-    print(form.errors)
-    if form.validate_on_submit():
-    #if form.submit.data and form.validate_on_submit():
-        try:
-            db.session.add(student)
-            db.session.commit()
-            flash('Your changes have been most likely been saved!?!')
-        except:
-            flash('Record exists already.')
-
-            return redirect(url_for('stud.addsmall'))
-    return render_template('/stud/addsmall.html',
-                           title='Add Small Student', form=form)
 
 @stud.route('/edit')
 @login_required
