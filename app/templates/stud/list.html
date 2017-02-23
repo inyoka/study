@@ -10,15 +10,16 @@
           <thead>
              <td>Name</td>
              <td>Address</td>
-             <td>DoB</td>
+             <td>More</td>
+             <td>More</td>
           </thead>
 
           {% for row in rows %}
-             <tr>
-                <td>{{row["name"]}}</td>
-                <td>{{row["address"]}}</td>
-                <td>{{row["dob"]}}</td>
-             </tr>
+              <tr>
+              {% for d in row %}
+                  <td>{{ d }}</td>
+              {% endfor %}
+              </tr>
           {% endfor %}
        </table>
 
