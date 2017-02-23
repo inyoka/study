@@ -1,6 +1,5 @@
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-
 from app import db, lm
 
 
@@ -85,52 +84,7 @@ class Departments(db.Model):
         return '<Department: {}>'.format(self.name)
 
 
-class Student(db.Model):
-    __tablename__ = 'students'
-    id = db.Column(db.Integer,db.Sequence('seq_reg_id', start=1, increment=1),  primary_key=True)
-    timestamp = db.Column(db.DateTime)  # Record created
-    fullname = db.Column(db.String(64), index=True, unique=True)
-    address = db.Column(db.String)
-    dob = db.Column(db.Date)  # Calculate age
-    gender = db.Column(db.String, default=False, index=True)  # M or F
-    goal = db.Column(db.String)  # Qualification etc
-    target = db.Column(db.String)  # Skill needing improvment
-    occupation = db.Column(db.String)  # Current occupation
-    status = db.Column(db.String)
-    days = db.Column(db.Integer)  # 7 digit binary?
-    time = db.Column(db.Integer)  # Avail after %%:%% on weekday
-    dateEnroll = db.Column(db.Date)
-    dateLastContact = db.Column(db.Date)
-    lapsedWhy = db.Column(db.String)
-    notes = db.Column(db.String)
 
-    def __init__(self, fullname):
-        self.fullname = fullname
-        self.address = address
-        self.dob = dob
-        self.gender = gender
-        self.goal = goal
-        self.target = target
-        self.occupation = occupation
-        self.status = status
-        self.days = days
-        self.time = time
-        self.dateEnroll = datetime.utcnow()
-
-    def __repr__(self):
-        return "<Student ('%s', '%s', '%s', '%s', '%s', '%s')>" % (self.fullname, self.address, self.dob, self.gender, self.time, self.dateEnroll)
-
-
-class Contact(db.Model):
-    __tablename__ = 'contacts'
-    id = db.Column(db.Integer, primary_key=True)
-    label = db.Column(db.String(64), index=True, unique=True)
-    mobile = db.Column(db.Integer)
-    email = db.Column(db.String(120))
-    student_id = db.Column(db.Integer, db.ForeignKey('students.id'))
-
-    def __repr__(self):
-        return '<Contact %r>' % (self.label)
 
 
 class Role(db.Model):
