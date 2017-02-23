@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, BooleanField, SelectMultipleField, FormField, FieldList, TextAreaField, DateField, SelectField, TextAreaField, RadioField, IntegerField, SubmitField
 from wtforms.validators import DataRequired, Length
-from app.models import User, Student, Contact
+from app.models import User
 from app import lookup
 
 
