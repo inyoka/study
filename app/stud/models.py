@@ -22,7 +22,7 @@ class Student(db.Model):
     lapsedWhy = db.Column(db.String)
     notes = db.Column(db.String)
 
-    def __init__(self, fullname, address, dob, gender, goal, target, occupation, status, days, time):
+    def __init__(self, fullname, address, dob, gender, goal, target, occupation, status, days, time, dateEnroll=datetime.date.today()):
         self.fullname = fullname
         self.address = address
         self.dob = dob
@@ -33,7 +33,7 @@ class Student(db.Model):
         self.status = status
         self.days = days
         self.time = time
-        self.dateEnroll = datetime.utcnow()
+        self.dateEnroll = dateEnroll
 
     def __repr__(self):
         return "<Student ('%s', '%s', '%s', '%s')>" % (self.fullname, self.address, self.dob)
