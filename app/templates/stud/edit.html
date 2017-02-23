@@ -4,6 +4,17 @@
 {% block content %}
 <div class="container">
 
+
+
+
+    <section>
+    <h1>{{ action }} {{ data_type }}</h1>
+    <form action="{{ form_action }}" method="{{ method | d("POST") }}">
+    {% render_form(form) %}
+    </form>
+    </section>
+
+
     {% if title %}
         <title>{{ title }} - CaSE Database</title>
     {% else %}
