@@ -2,8 +2,8 @@ from app import db
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_required
 from . import stud
-from .forms import AddStudent, ViewStudent
-from app.models import Student
+from .forms import AddStudent
+from .models import Student
 import sqlite3 as sql
 from datetime import date
 
@@ -11,20 +11,23 @@ from datetime import date
 @stud.route('/add', methods=['GET', 'POST'])
 @login_required
 def add():
-    form = AddStudent()
+    #id = Student.query.create(id)
+    form = AddStudent(request.form)
     print(form.errors)
 
     if form.is_submitted():
+        print(form.errors)
         print("submitted")
 
     if form.validate():
+        print(form.errors)
         print("valid")
     else:
         flash("Form not valid")
         print(form.errors)
 
-    if form.validate_on_submit():
-    #if form.submit.data and form.validate_on_submit():
+    #if form.validate_on_submit():
+    if form.submit.data and form.validate_on_submit():
         student = Student(fullname=form.fullname.data,
                           address=form.address.data,
                           dob=form.dob.data,
@@ -38,27 +41,24 @@ def add():
                           dateEnroll=form.dateEnroll.data,
                           dateLastContact=form.dateLastContact.data,
                           lapsedWhy=form.lapsedWhy.data,
-                          notes=form.notes.data
-                          )
+                          notes=form.notes.data)
         try:
             db.session.add(student)
             db.session.commit()
             flash('Your changes have been most likely been saved!?!')
         except:
             flash('Record exists already.')
-
-            return redirect(url_for('/stud/add'))
-
-
+            return redirect(url_for('stud.add'))
     return render_template('/stud/add.html',
                            title='Add Student', form=form)
 
 
 @stud.route('/edit')
 @login_required
-def edit():
+def edit(id):
     return render_template('/stud/edit.html',
                            title='Edit Student')
+
 
 
 @stud.route('/list')
@@ -68,7 +68,7 @@ def list():
     con.row_factory = sql.Row
 
     cur = con.cursor()
-    cur.execute("select * from students")
+    cur.execute("SELECT * from students ORDER BY id")
 
     rows = cur.fetchall()
     return render_template("/stud/list.html", rows=rows)
