@@ -64,6 +64,8 @@ def edit(id):
 @stud.route('/list')
 @login_required
 def list():
+    keys = Student.metadata.tables['students'].columns.keys()
+    #keys = Student.__table__.columns.keys()
     con = sql.connect("app.db")
     con.row_factory = sql.Row
 
@@ -71,7 +73,7 @@ def list():
     cur.execute("SELECT * from students ORDER BY id")
 
     rows = cur.fetchall()
-    return render_template("/stud/list.html", rows=rows)
+    return render_template("/list.html", keys=keys, rows=rows)
 
 
 @stud.route('/search')

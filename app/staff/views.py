@@ -47,6 +47,7 @@ def logout():
 @staff.route('/list')
 @login_required
 def list():
+    keys = User.__table__.columns.keys()
     con = sql.connect("app.db")
     con.row_factory = sql.Row
 
@@ -54,4 +55,4 @@ def list():
     cur.execute("SELECT * from users ORDER BY id")
 
     rows = cur.fetchall()
-    return render_template("/staff/list.html", rows=rows)
+    return render_template("/list.html", keys=keys, rows=rows)

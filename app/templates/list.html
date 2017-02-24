@@ -6,12 +6,11 @@
 <br><br><br><br>
     <body>
 
-       <table border = 1>
+       <table  bgcolor="ffffff" border = 1>
           <thead>
-             <td>Name</td>
-             <td>Address</td>
-             <td>More</td>
-             <td>More</td>
+              {% for key in keys %}
+             <td>{{ key }}</td>
+             {% endfor%}
           </thead>
 
           {% for row in rows %}
