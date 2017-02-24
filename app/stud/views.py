@@ -13,6 +13,7 @@ from datetime import date
 def add():
     #id = Student.query.create(id)
     form = AddStudent(request.form)
+    """
     print(form.errors)
 
     if form.is_submitted():
@@ -25,9 +26,9 @@ def add():
     else:
         flash("Form not valid")
         print(form.errors)
-
-    #if form.validate_on_submit():
-    if form.submit.data and form.validate_on_submit():
+    """
+    if form.validate_on_submit():
+    #if form.submit.data and form.validate_on_submit():
         student = Student(fullname=form.fullname.data,
                           address=form.address.data,
                           dob=form.dob.data,
