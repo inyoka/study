@@ -2,6 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
+import os
+
 app = Flask(__name__)
 app.config.from_object('config')
 app.secret_key = os.urandom(24)
@@ -9,24 +11,16 @@ app.secret_key = os.urandom(24)
 lm = LoginManager()
 lm.init_app(app)
 lm.session_protection = 'strong'
-lm.login_view = 'auth.login'
-
-
-
+lm.login_view = 'staff.login'
 
 db = SQLAlchemy(app)
 from app import models, views
 
-from .admin import admin as admin_blueprint
-app.register_blueprint(admin_blueprint, url_prefix='/admin')
-
-from .auth import auth as auth_blueprint
-app.register_blueprint(auth_blueprint)
-
+from .staff import staff as staff_blueprint
 from .home import home as home_blueprint
-app.register_blueprint(home_blueprint)
-
 from .stud import stud as stud_blueprint
+app.register_blueprint(staff_blueprint)
+app.register_blueprint(home_blueprint)
 app.register_blueprint(stud_blueprint, url_prefix='/stud')
 
 if not app.debug:

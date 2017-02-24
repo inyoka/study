@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_required
 from . import stud
 from .forms import AddStudent
-from .models import Student
+from app.models import Student
 import sqlite3 as sql
 from datetime import date
 

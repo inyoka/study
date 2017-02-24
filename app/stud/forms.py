@@ -4,7 +4,7 @@ from wtforms.fields import FieldList, DateField, SelectField, TextAreaField
 from wtforms.fields import RadioField, IntegerField, SubmitField, HiddenField
 from wtforms.validators import DataRequired, Length
 import wtforms.validators as validators
-from .models import Student
+from app.models import Student
 from app import lookup
 from flask_wtf import Form
 from wtforms.widgets import TextArea
