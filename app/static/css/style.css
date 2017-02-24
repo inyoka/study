@@ -1,6 +1,6 @@
 /* Add custom styling in here when needed.  Alternatively create a custom Bootstrap with your personal settings.*/
 
-
+/*
 
 body {
  margin: 0;
@@ -10,3 +10,13 @@ body {
  display: compact;
  font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+table, th, td {
+    background-color: white;
+    border: 1px solid grey;
+}
+
+th {
+    text-align: left;
+}
+*/
