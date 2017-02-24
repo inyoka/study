@@ -25,7 +25,7 @@
     </div>
     <div class="input-group input-group-sm" style="height: 69pt;">
         {{ form.address.label(for="address", class="input-group-addon") }}
-        {{ form.address(class="form-control", type="textarea",  placeholder="Address", id="address", style="height: 100%;") }}
+        {{ form.address(type="textarea",  class="form-control", placeholder="Address", id="address", style="height: 100%;") }}
     </div>
     <div class="input-group input-group-sm dropdown-toggle" style="height: 60px;">
         {{ form.days.label(for="days", class="input-group-addon") }}
@@ -36,21 +36,38 @@
         {{ form.time(type="time", class="form-control", id="time") }}
     </div>
     <div class="input-group input-group-sm">
+        {{ form.goal.label(for="goal", class="input-group-addon") }}
+        {{ form.goal(class="form-control", type="select", id="goal") }}
+    </div>
+    <div class="input-group input-group-sm">
+        {{ form.target.label(for="target", class="input-group-addon") }}
+        {{ form.target(class="form-control", type="select", id="target") }}
+    </div>
+    <div class="input-group input-group-sm">
+        {{ form.occupation.label(for="occupation", class="input-group-addon") }}
+        {{ form.occupation(class="form-control", type="select", id="occupation") }}
+    </div>
+    <div class="input-group input-group-sm">
+        {{ form.status.label(for="status", class="input-group-addon") }}
+        {{ form.status(class="form-control", type="select", id="status") }}
+    </div>
+    <div class="input-group input-group-sm">
         {{ form.dateEnroll.label(for="dateEnroll", class="input-group-addon") }}
         {{ form.dateEnroll(type="date", class="form-control", id="dateEnroll") }}
     </div>
     <div class="input-group input-group-sm" style="height: 69pt;">
         {{ form.notes.label(for="notes", class="input-group-addon", style="height: 60px;") }}
-        {{ form.notes(class="form-control", type="textarea",  placeholder="notes", id="notes", style="height: 100%;") }}
+        {{ form.notes(type="textarea",  class="form-control", placeholder="notes", id="notes", style="height: 100%;") }}
     </div>
     <div class="input-group input-group-sm">
         {{ form.dateLastContact.label(for="dateLastContact", class="input-group-addon") }}
         {{ form.dateLastContact(type="date", class="form-control", id="dateLastContact") }}
     </div>
-    <div class="input-group input-group-sm">
+    <div class="input-group input-group-sm" style="height: 69pt;">
         {{ form.lapsedWhy.label(for="lapsedWhy", class="input-group-addon") }}
-        {{ form.notes(class="form-control", type="textarea",  placeholder="Why did they leave?", id="lapsedWhy") }}
+        {{ form.notes(type="textarea",  class="form-control", placeholder="Why did they leave?", id="lapsedWhy", style="height: 100%;") }}
     </div>
+
     <input class="btn btn-md btn-primary btn-block" type="submit" value="Submit" name="submit" />
     </div>
     </form>
