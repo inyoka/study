@@ -6,15 +6,14 @@ from .forms import AddStudent
 from app.models import Student
 import sqlite3 as sql
 from datetime import date
+from datetime import datetime
 
 
 @stud.route('/add', methods=['GET', 'POST'])
 @login_required
 def add():
     #id = Student.query.create(id)
-    form = AddStudent(request.form)
-    """
-    print(form.errors)
+    form = AddStudent()
 
     if form.is_submitted():
         print(form.errors)
@@ -26,10 +25,11 @@ def add():
     else:
         flash("Form not valid")
         print(form.errors)
-    """
-    if form.validate_on_submit():
-    #if form.submit.data and form.validate_on_submit():
+
+    #if form.validate_on_submit():
+    if form.submit.data and form.validate_on_submit():
         student = Student(fullname=form.fullname.data,
+                          timestamp=datetime.utcnow(),
                           address=form.address.data,
                           dob=form.dob.data,
                           gender=form.gender.data,
@@ -48,7 +48,7 @@ def add():
             db.session.commit()
             flash('Your changes have been most likely been saved!?!')
         except:
-            flash('Record exists already.')
+            flash('Error writing reocrd.')
             return redirect(url_for('stud.add'))
     return render_template('/stud/add.html',
                            title='Add Student', form=form)
