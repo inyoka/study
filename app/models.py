@@ -1,7 +1,7 @@
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, lm
-import datetime
+from datetime import datetime
 from sqlalchemy.sql import func
 from sqlalchemy import (Column, Index, Date, DateTime, Numeric, BigInteger, String, ForeignKey, Boolean)
 
@@ -28,7 +28,7 @@ class Student(db.Model):
 
 
 
-    def __init__(self, fullname, address, dob, gender, goal, target, occupation, status, days, time, dateEnroll=datetime.date.today()):
+    def __init__(self, fullname, address, dob, gender, goal, target, occupation, status, days, time, dateEnroll=datetime.now()):
         self.fullname = fullname
         self.gender = gender
         self.goal = goal
