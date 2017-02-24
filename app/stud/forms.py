@@ -21,26 +21,20 @@ class AddStudent(Form):
 
     id = Student.id
     fullname = StringField('Name :', validators=[Length(min=4, max=80)])
-    gender = SelectField('Gender', choices=lookup.GENDER, validators=[validators.optional()])
-    goal = SelectField('Goal :', choices=lookup.GOAL)  # Qualification etc
-    target = SelectField('Target  :', choices=lookup.TARGET)  # Skill needing improvment
-    occupation = SelectField('Occupation :', validators=[DataRequired()])  # Current occupation
-    status = SelectField('Student status :', choices=lookup.STATUS, validators=[DataRequired()])  # Active Inactive
-    lapsedWhy = SelectField('Why they left :', choices=lookup.LAPSED)
-
+    gender = RadioField('Gender', coerce=str, choices=[('Male', 'Male'), ('Female', 'Female')], validators=[validators.optional()])
+    goal = SelectField('Goal :', choices=[('none', 'None'), ('TOEFL', 'TOEFL'),('IELTS','IELTS'),('iGCSE','iGCSE'),('A-Levels','A-Levels'),('Professional','Professional Development'),('Personal','Personal Development'),('Overseas','Overseas Study')])  # Qualification etc
+    target = SelectField('Target  :', choices=[('none', 'None'), ('spoken', 'Spoken'), ('grammar','Grammar'), ('reading','Reading'), ('listening','Listening'), ('writing','Writing'), ('exam','Exam'), ('conversation','Conversation')])  # Skill needing improvment
+    occupation = StringField('Occupation :', validators=[DataRequired()])  # Current occupation
+    status = SelectField('Student status :', choices=[('Pending', 'Pending'),('Active', 'Active'),('Inactive', 'Inactive')], validators=[DataRequired()])  # Active Inactive
+    lapsedWhy = SelectField('Why they left :', choices=[('Pending', 'Pending'), ('Active', 'Active'), ('Inactive', 'Inactive')])
     address = TextAreaField('Address :')
     dob = DateTimeField('Date of Birth :', format='%y/%m/%d')
-
     # contacts = FieldList(FormField(ContactForm))
-
-    days = SelectMultipleField('Days available :', choices=lookup.DAYS, validators=[DataRequired()])  # 7 digit binary?
+    days = SelectMultipleField('Days available :', choices=[('Sunday', 'Sunday'),('Monday', 'Monday'),('Tuesday', 'Tuesday'),('Wednesday', 'Wednesday'),('Thursday', 'Thursday'),('Friday', 'Friday'),('Saturday', 'Saturday')], validators=[DataRequired()])  # 7 digit binary?
     time = IntegerField('Available from :')  # Avail after %%:%% on weekday
     dateEnroll = DateField('Date enrolled :', format='%Y-%m-%d')
     dateLastContact = DateField('Last contact :', format='%Y-%m-%d')
-
     notes = TextAreaField('Notes :')
-
-
     submit = SubmitField('submit', validators=[DataRequired()])
 
 
