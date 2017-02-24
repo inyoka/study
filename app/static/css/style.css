@@ -1,12 +1,12 @@
 /* Add custom styling in here when needed.  Alternatively create a custom Bootstrap with your personal settings.*/
 
 
-/*
+
 body {
  margin: 0;
- background: url('/static/backgrounds/bg.jpg') center ;
+ background: url('/static/backgrounds/bg.png') center ;
  background-size: 100% auto;
  background-repeat:no-repeat;
  display: compact;
  font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
-*/
+}
