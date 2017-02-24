@@ -6,22 +6,21 @@ from wtforms.validators import DataRequired, Length
 import wtforms.validators as validators
 from app.models import Student
 from app import lookup
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms.widgets import TextArea
 from wtforms.ext.sqlalchemy.orm import model_form
 
 
-class ContactForm(Form):
+class ContactForm(FlaskForm):
     id = Student.id
     mobile_phone = StringField('Number')
     e_mail = StringField('E-mail')
 
 
-class AddStudent(Form):
-
+class AddStudent(FlaskForm):
     id = Student.id
-    fullname = StringField('Name :', validators=[Length(min=4, max=80)])
-    gender = RadioField('Gender', coerce=str, choices=[('Male', 'Male'), ('Female', 'Female')], validators=[validators.optional()])
+    fullname = StringField('Name :')
+    gender = RadioField('Gender', coerce=str, choices=[('Male', 'Male'), ('Female', 'Female')])
     goal = SelectField('Goal :', choices=[('none', 'None'), ('TOEFL', 'TOEFL'),('IELTS','IELTS'),('iGCSE','iGCSE'),('A-Levels','A-Levels'),('Professional','Professional Development'),('Personal','Personal Development'),('Overseas','Overseas Study')])  # Qualification etc
     target = SelectField('Target  :', choices=[('none', 'None'), ('spoken', 'Spoken'), ('grammar','Grammar'), ('reading','Reading'), ('listening','Listening'), ('writing','Writing'), ('exam','Exam'), ('conversation','Conversation')])  # Skill needing improvment
     occupation = StringField('Occupation :', validators=[DataRequired()])  # Current occupation
@@ -32,11 +31,11 @@ class AddStudent(Form):
     # contacts = FieldList(FormField(ContactForm))
     days = SelectMultipleField('Days available :', choices=[('Sunday', 'Sunday'),('Monday', 'Monday'),('Tuesday', 'Tuesday'),('Wednesday', 'Wednesday'),('Thursday', 'Thursday'),('Friday', 'Friday'),('Saturday', 'Saturday')], validators=[DataRequired()])  # 7 digit binary?
     time = IntegerField('Available from :')  # Avail after %%:%% on weekday
-    dateEnroll = DateField('Date enrolled :', format='%Y-%m-%d')
-    dateLastContact = DateField('Last contact :', format='%Y-%m-%d')
+    dateEnroll = DateField('Date enrolled :')
+    dateLastContact = DateField('Last contact :')
     notes = TextAreaField('Notes :')
     submit = SubmitField('submit', validators=[DataRequired()])
 
 
-class ViewStudent(Form):
+class ViewStudent(FlaskForm):
     fullname = StringField('Name :', validators=[DataRequired(), Length(min=4, max=80)])
