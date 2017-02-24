@@ -6,6 +6,8 @@
         {{form.hidden_tag()}}
         {{form.csrf_token()}}
     <div class="container-fluid" style="max-width: 1400px; padding:30px;">
+        <div class="panel panel-primary">
+        <div class="panel-heading">{{ title }}</div>
     <div class="input-group input-group-sm">
         {{ form.fullname.label(for='fullname', class="input-group-addon") }}
         {{ form.fullname(type="text",class="form-control", id="fullname", placeholder="Fullname", size=20) }}
@@ -68,7 +70,7 @@
         {{ form.notes(type="textarea",  class="form-control", placeholder="Why did they leave?", id="lapsedWhy", style="height: 100%;") }}
     </div>
 
-    <input class="btn btn-md btn-primary btn-block" type="submit" value="Submit" name="submit" />
-    </div>
+    <input class="btn btn-md btn-success btn-block" type="submit" value="Submit" name="submit" />
+    </div></div>
     </form>
 {% endblock %}
