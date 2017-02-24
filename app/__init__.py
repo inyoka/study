@@ -4,10 +4,7 @@ from flask_login import LoginManager
 
 app = Flask(__name__)
 app.config.from_object('config')
-#app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT' # Temporary
-# Before deployment generate with :
-#import os
-#os.urandom(24)
+app.secret_key = os.urandom(24)
 
 lm = LoginManager()
 lm.init_app(app)
