@@ -3,28 +3,28 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, lm
 import datetime
 from sqlalchemy.sql import func
+from sqlalchemy import (Column, Index, Date, DateTime, Numeric, BigInteger, String, ForeignKey, Boolean)
 
 class Student(db.Model):
     __tablename__ = 'students'
-    id = db.Column(db.Integer, primary_key=True)
-    fullname = db.Column(db.String(64))
-    gender = db.Column(db.String)  # M or F
-    goal = db.Column(db.String)  # Qualification etc
-    target = db.Column(db.String)  # Skill needing improvment
-    occupation = db.Column(db.String)  # Current occupation
-    status = db.Column(db.String)
-    lapsedWhy = db.Column(db.String)
+    id = Column("id", db.Integer, primary_key=True)
+    fullname = db.Column("Fullname", db.String(64))
+    gender = db.Column("Gender", db.String)  # M or F
+    goal = db.Column("Goal", db.String)  # Qualification etc
+    target = db.Column("Target", db.String)  # Skill needing improvment
+    occupation = db.Column("Occupation", db.String)  # Current occupation
+    status = db.Column("Status", db.String)
+    lapsedWhy = db.Column("Lapsed", db.String)
 
-    #address = db.Column(db.String)
-    #notes = db.Column(db.String)
+    address = db.Column(db.String)
+    notes = db.Column(db.String)
 
-    #days = db.Column(db.Integer)  # 7 digit binary?
-    #time = db.Column(db.Integer)  # Avail after %%:%% on weekday
-    #timestamp = db.Column(db.DateTime)  # Record created
-    #dateLastContact = db.Column(db.Date) # Edit date
-    #dob = db.Column(db.DateTime(timezone=True), onupdate=func.now())  # Calculate age
-    #dateEnroll = db.Column(db.DateTime(timezone=True), server_default=func.now()) # Creation date
-
+    days = db.Column(db.Integer)  # 7 digit binary?
+    time = db.Column(db.Integer)  # Avail after %%:%% on weekday
+    timestamp = db.Column(db.DateTime)  # Record created
+    dateLastContact = db.Column(db.Date) # Edit date
+    dob = db.Column(db.DateTime(timezone=True), onupdate=func.now())  # Calculate age
+    dateEnroll = db.Column(db.DateTime(timezone=True), server_default=func.now()) # Creation date
 
 
 
