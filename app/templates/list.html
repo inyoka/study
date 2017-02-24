@@ -3,6 +3,33 @@
 
 {% block content %}
 <div class="container">
+<br><br>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">{{ title }}</div>
+      <div class="panel-body">
+
+      <table class="table">
+          <thead>
+              {% for key in keys %}
+             <td>{{ key }}</td>
+             {% endfor%}
+          </thead>
+
+          {% for row in rows %}
+              <tr>
+              {% for d in row %}
+                  <td>{{ d }}</td>
+              {% endfor %}
+              </tr>
+          {% endfor %}
+      </table>
+    </div></div>
+
+
+
+
+
 <br><br><br><br>
     <body>
 
