@@ -55,4 +55,4 @@ def list():
     cur.execute("SELECT * from users ORDER BY id")
 
     rows = cur.fetchall()
-    return render_template("/list.html", keys=keys, rows=rows)
+    return render_template("/list.html",title="List Staff", keys=keys, rows=rows)
