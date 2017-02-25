@@ -107,3 +107,7 @@ ENV/
 setup.py
 
 *.db
+
+*.css
+
+*.css
