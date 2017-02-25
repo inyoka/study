@@ -21,8 +21,8 @@ class AddStudent(FlaskForm):
     id = Student.id
     fullname = StringField('Name :')
     gender = RadioField('Gender', coerce=str, choices=[('Male', 'Male'), ('Female', 'Female')])
-    goal = SelectField('Goal :', choices=[('none', 'None'), ('TOEFL', 'TOEFL'),('IELTS','IELTS'),('iGCSE','iGCSE'),('A-Levels','A-Levels'),('Professional','Professional Development'),('Personal','Personal Development'),('Overseas','Overseas Study')])  # Qualification etc
-    target = SelectField('Target  :', choices=[('none', 'None'), ('spoken', 'Spoken'), ('grammar','Grammar'), ('reading','Reading'), ('listening','Listening'), ('writing','Writing'), ('exam','Exam'), ('conversation','Conversation')])  # Skill needing improvment
+    goal = SelectField('Professional Goal :', choices=[('none', 'None'), ('TOEFL', 'TOEFL'),('IELTS','IELTS'),('iGCSE','iGCSE'),('A-Levels','A-Levels'),('Professional','Professional Development'),('Personal','Personal Development'),('Overseas','Overseas Study')])  # Qualification etc
+    target = SelectField('Personal aim :', choices=[('none', 'None'), ('spoken', 'Spoken'), ('grammar','Grammar'), ('reading','Reading'), ('listening','Listening'), ('writing','Writing'), ('exam','Exam'), ('conversation','Conversation')])  # Skill needing improvment
     occupation = StringField('Occupation :', validators=[DataRequired()])  # Current occupation
     status = SelectField('Student status :', choices=[('Pending', 'Pending'),('Active', 'Active'),('Inactive', 'Inactive')], validators=[DataRequired()])  # Active Inactive
     lapsedWhy = SelectField('Why they left :', choices=[('Pending', 'Pending'), ('Active', 'Active'), ('Inactive', 'Inactive')])
