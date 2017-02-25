@@ -11,7 +11,7 @@ class Student(db.Model):
     fullname = db.Column("Fullname", db.String(64))
     gender = db.Column("Gender", db.String)  # M or F
     goal = db.Column("Goal", db.String)  # Qualification etc
-    target = db.Column("Target", db.String)  # Skill needing improvment
+    target = db.Column("Skill Req.", db.String)  # Skill needing improvment
     occupation = db.Column("Occupation", db.String)  # Current occupation
     status = db.Column("Status", db.String)
     lapsedWhy = db.Column("Lapsed", db.String)
