@@ -1,21 +1,26 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
-{% block content %}<div class="center-block"><div class="panel-body text-center">
-<div class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="intro-message">
-                    <h1>CaSE 2</h1>
-                    <h3>Language School</h3>
-                    <hr class="intro-divider">
-                    <p>Come to CaSE or CaSE2 today for your FREE interview and placement test.
-                        <br>New term starting soon. Learn to speak English like a native-
-                        speaker with CaSE!</p>
-                    </ul>
+{% block content %}
+<div class="center-block"><div class="panel-body text-center">
+    <!-- Full Width Image Header -->
+        <header class="header-image">
+            <div class="headline">
+
+                <div class="container">
+                    <img src="/static/img/case.png" style=" max-width: 240pt;">
+
+                    <div class="featurette" id="about">
+
+                        <h2 class="featurette-heading">Language
+                            <span class="text-muted">School</span>
+                        </h2><br>
+                        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                    </div>
+
                 </div>
             </div>
-        </div>
+        </header>
     </div>
-</div></div></div>
+</div>
+
 {% endblock %}
