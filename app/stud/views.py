@@ -15,17 +15,6 @@ def add():
     #id = Student.query.create(id)
     form = AddStudent()
 
-    if form.is_submitted():
-        print(form.errors)
-        print("submitted")
-
-    if form.validate():
-        print(form.errors)
-        print("valid")
-    else:
-        flash("Form not valid")
-        print(form.errors)
-
     #if form.validate_on_submit():
     if form.submit.data and form.validate_on_submit():
         student = Student(fullname=form.fullname.data,
@@ -74,7 +63,7 @@ def list():
     cur.execute("SELECT * from students ORDER BY id")
 
     rows = cur.fetchall()
-    return render_template("/list.html", keys=keys, rows=rows)
+    return render_template("/list.html", title="List Students", keys=keys, rows=rows)
 
 
 @stud.route('/search')
