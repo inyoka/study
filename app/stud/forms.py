@@ -27,11 +27,11 @@ class AddStudent(FlaskForm):
     status = SelectField('Student status :', choices=[('Pending', 'Pending'),('Active', 'Active'),('Inactive', 'Inactive')], validators=[DataRequired()])  # Active Inactive
     lapsedWhy = SelectField('Why they left :', choices=[('Pending', 'Pending'), ('Active', 'Active'), ('Inactive', 'Inactive')])
     address = TextAreaField('Address :')
-    dob = DateTimeField('Date of Birth :', format='%y/%m/%d')
+    dob = DateTimeField('Birthday :', format='%y/%m/%d')
     # contacts = FieldList(FormField(ContactForm))
-    days = SelectMultipleField('Days available :', choices=[('Sunday', 'Sunday'),('Monday', 'Monday'),('Tuesday', 'Tuesday'),('Wednesday', 'Wednesday'),('Thursday', 'Thursday'),('Friday', 'Friday'),('Saturday', 'Saturday')], validators=[DataRequired()])  # 7 digit binary?
+    days = SelectMultipleField('Days :', choices=[('Sunday', 'Sunday'),('Monday', 'Monday'),('Tuesday', 'Tuesday'),('Wednesday', 'Wednesday'),('Thursday', 'Thursday'),('Friday', 'Friday'),('Saturday', 'Saturday')], validators=[DataRequired()])  # 7 digit binary?
     time = IntegerField('Available from :')  # Avail after %%:%% on weekday
-    dateEnroll = DateField('Date enrolled :')
+    dateEnroll = DateField('Enrolled :')
     dateLastContact = DateField('Last contact :')
     notes = TextAreaField('Notes :')
     submit = SubmitField('submit', validators=[DataRequired()])
