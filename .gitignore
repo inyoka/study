@@ -111,3 +111,5 @@ setup.py
 *.css
 
 *.css
+
+app/static/css/style.css
