@@ -34,3 +34,25 @@ GENDER = [('Male', 'Male'), ('Female', 'Female')]
 STATUS = [('Pending', 'Pending'),
     ('Active', 'Active'),
     ('Inactive', 'Inactive')]
+'''
+SOURCE =
+1, 'Internet'
+2, 'Newspaper'
+3, 'Walk-in'
+4, 'Friend/Family'
+5, 'Flier/Brochure'
+6, 'Radio'
+7, 'Other...'
+
+LAPSEDWHY =
+1, 'Cannot contact'
+2, 'Schedule change'
+3, 'Focus on studies'
+4, 'Moved away'
+5, 'Delayed entry'
+6, 'Dissatisfied'
+7, 'Pending'
+8, 'No suitable class'
+9, 'Non-starter'
+10, 'Other...'
+'''
