@@ -19,7 +19,7 @@ def register():
 
         db.session.add(user)
         db.session.commit()
-        flash('You have successfully registered! You may now login.')
+        flash('Successfully registered, please login.')
 
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html', form=form, title='Register')
@@ -62,7 +62,7 @@ def list():
                            keys=keys, rows=rows)
 
 
-@app.route('/profile/<username>')
+@auth.route('/profile/<username>')
 @login_required
 def viewProfile(username):
     user = User.query.filter_by(username=username).first()
@@ -78,7 +78,7 @@ def viewProfile(username):
                            posts=posts)
 
 
-@app.route('/profile/edit', methods=['GET', 'POST'])
+@auth.route('/profile/edit', methods=['GET', 'POST'])
 @login_required
 def editProfile():
     form = EditForm(g.user.username)
