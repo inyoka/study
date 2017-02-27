@@ -4,6 +4,8 @@ from app import db, lm
 from datetime import datetime
 from sqlalchemy.sql import func
 from sqlalchemy import (Column, Index, Date, DateTime, Numeric, BigInteger, String, ForeignKey, Boolean)
+from flask_login import UserMixin
+
 
 class Student(db.Model):
     __tablename__ = 'students'
@@ -15,17 +17,14 @@ class Student(db.Model):
     occupation = db.Column("Occupation", db.String)  # Current occupation
     status = db.Column("Status", db.String)
     lapsedWhy = db.Column("Lapsed", db.String)
-
     address = db.Column(db.String)
     notes = db.Column(db.String)
-
     days = db.Column(db.Integer)  # 7 digit binary?
     time = db.Column(db.Integer)  # Avail after %%:%% on weekday
     timestamp = db.Column(db.DateTime)  # Record created
     dateLastContact = db.Column(db.Date) # Edit date
     dob = db.Column(db.DateTime(timezone=True), onupdate=func.now())  # Calculate age
     dateEnroll = db.Column(db.DateTime(timezone=True), server_default=func.now()) # Creation date
-
 
 
     def __init__(self, fullname, address, dob, gender, goal, target, occupation, status, days, time, dateEnroll=datetime.now()):
@@ -58,10 +57,7 @@ class Contact(db.Model):
         return '<Contact %r>' % (self.label)
 
 
-
-
-
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
@@ -83,17 +79,6 @@ class User(db.Model):
         self.email = email
         self.registered_on = datetime.utcnow()
 
-    def is_authenticated(self):
-        return True
-
-    def is_active(self):
-        return True
-
-    def is_anonymous(self):
-        return False
-
-    def get_id(self):
-        return str(self.id)
 
     def __repr__(self):
         return '<User %r>' % (self.username)
@@ -135,9 +120,6 @@ class Departments(db.Model):
 
     def __repr__(self):
         return '<Department: {}>'.format(self.name)
-
-
-
 
 
 class Role(db.Model):
