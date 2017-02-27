@@ -13,8 +13,13 @@
 
                         <h2 class="featurette-heading">Language
                             <span class="text-muted">School</span>
+
                         </h2><br>
-                        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                        <p class="lead">{% if current_user.is_authenticated %}
+                          Hello {{ current_user.username }}.
+                        {% endif %}Come to CaSE or CaSE2 today for your FREE interview and placement test.
+                            <br>New term starting soon. Learn to speak English like a native-
+                            speaker with CaSE!</p>
                     </div>
 
                 </div>
