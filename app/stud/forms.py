@@ -34,7 +34,7 @@ class AddStudent(FlaskForm):
     dateEnroll = DateField('Enrolled :')
     dateLastContact = DateField('Last contact :')
     notes = TextAreaField('Notes :')
-    submit = SubmitField('submit', validators=[DataRequired()])
+    submit = SubmitField('Submit', validators=[DataRequired()])
 
 
 class ViewStudent(FlaskForm):

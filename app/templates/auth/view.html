@@ -2,7 +2,7 @@
 {% extends "home/base.html" %}
 {% block content %}
 {% include 'home/flash.html' %}
-<form action="" method="post" name="profile/view"></form>
+<form action="" method="post" name="auth/view"></form>
 
 <div class="container">
   <table>
@@ -10,11 +10,11 @@
       <td>
         <h1>User: {{user.username}}</h1>
           {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
-          {% if user.last_seen %}<p><i>Last seen on: {{ momentjs(user.last_seen).calendar() }}</i></p>{% endif %}
-          {% if user.id == g.user.id %}<p><a href="{{ url_for('editProfile') }}">Edit</a></p>{% endif %}
+          {% if user.last_seen %}<p><i>Last seen on: {{ user.last_seen }}</i></p>{% endif %}
+          {% if user.id == g.user.id %}<p><a href="{{ url_for('auth.edit') }}">Edit</a></p>{% endif %}
       </td>
     </table>
     {% for post in posts %}
-          {% include 'profile/post.html' %}
+          {% include 'auth/post.html' %}
     {% endfor %}
 {% endblock %}

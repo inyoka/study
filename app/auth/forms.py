@@ -3,8 +3,7 @@
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, SubmitField, ValidationError,\
     TextField, BooleanField, TextAreaField
-from wtforms.validators import InputRequired, Email, EqualTo, Length,\
-    DataRequired
+from wtforms.validators import InputRequired, Email, EqualTo, Length
 from ..models import User
 
 
@@ -13,9 +12,7 @@ class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[InputRequired()])
     fullname = StringField('Name', validators=[InputRequired()])
     password = PasswordField('Password',
-                             validators=[InputRequired(),
-                             EqualTo('confirm',
-                             message='Passwords must match')])
+                             validators=[InputRequired(), EqualTo('confirm')])
     confirm = PasswordField('Confirm Password')
     submit = SubmitField('Register')
 
@@ -34,29 +31,8 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('remember_me', default=False)
     submit = SubmitField('Login')
 
-    def __init__(self, *args, **kwargs):
-        FlaskForm.__init__(self, *args, **kwargs)
-        self.user = None
-
-    def validate(self):
-        rv = FlaskForm.validate(self)
-        if not rv:
-            return False
-
-        self.user = User.query.filter_by(username=self.username.data).first()
-
-        if not self.user:
-            self.username.errors.append('Unknown username')
-            return False
-
-        if not self.user.check_password(self.password.data):
-            self.password.errors.append('Invalid password')
-            return False
-
-        return True
-
 
 class EditForm(FlaskForm):
-    username = StringField('User.username', validators=[DataRequired()])
+    username = StringField('User.username', validators=[InputRequired()])
     about_me = TextAreaField('User.about_me',
                              validators=[Length(min=0, max=140)])

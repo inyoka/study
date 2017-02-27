@@ -1,18 +1,19 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-
-import os
+# from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 app.config.from_object('config')
 app.secret_key = '{;\x95\xec\x8c_\xc2q\xd9\xefw\xee\xfdB\x830\x9dTC\xa9\x90@\ra'
-#app.secret_key = os.urandom(24)
+# app.secret_key = os.urandom(24)
 
 lm = LoginManager()
 lm.init_app(app)
 lm.session_protection = 'strong'
 lm.login_view = 'auth.login'
+
+# Bootstrap(app)
 
 db = SQLAlchemy(app)
 from app import models, views
