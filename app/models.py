@@ -1,15 +1,12 @@
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, lm
-from datetime import datetime
-from sqlalchemy.sql import func
-from sqlalchemy import (Column, Index, Date, DateTime, Numeric, BigInteger, String, ForeignKey, Boolean)
 from flask_login import UserMixin
 
 
 class Student(db.Model):
     __tablename__ = 'students'
-    id = Column("id", db.Integer, primary_key=True)
+    id = db.Column("id", db.Integer, primary_key=True)
     fullname = db.Column("Fullname", db.String(64))
     gender = db.Column("Gender", db.String)  # M or F
     goal = db.Column("Goal", db.String)  # Qualification etc
@@ -20,14 +17,14 @@ class Student(db.Model):
     address = db.Column(db.String)
     notes = db.Column(db.String)
     days = db.Column(db.Integer)  # 7 digit binary?
-    time = db.Column(db.Integer)  # Avail after %%:%% on weekday
+    time = db.Column(db.DateTime)  # Avail after %%:%% on weekday
     timestamp = db.Column(db.DateTime)  # Record created
-    dateLastContact = db.Column(db.Date) # Edit date
-    dob = db.Column(db.DateTime(timezone=True), onupdate=func.now())  # Calculate age
-    dateEnroll = db.Column(db.DateTime(timezone=True), server_default=func.now()) # Creation date
+    dateLastContact = db.Column(db.Date)
+    dob = db.Column(db.DateTime)
+    dateEnroll = db.Column(db.DateTime())
 
     def __init__(self, fullname, address, dob, gender, goal, target, occupation,
-     status, days, time, dateEnroll=datetime.now()):
+                 status, days, time, dateEnroll=datetime.now()):
         self.fullname = fullname
         self.gender = gender
         self.goal = goal
@@ -61,17 +58,18 @@ class Contact(db.Model):
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), index=True, unique=True)
-    fullname = db.Column(db.String(64), index=True)
-    password = db.Column(db.String(10))
-    registered_on = db.Column('registered_on', db.DateTime)
     email = db.Column(db.String(120), index=True, unique=True)
-    posts = db.relationship('Post', backref='author', lazy='dynamic')
-    about_me = db.Column(db.String(140))
-    last_seen = db.Column(db.DateTime)
+    username = db.Column(db.String(64), index=True, unique=True)
+    fullname = db.Column(db.String(64))
+    password_hash = db.Column(db.String(128))
     department_id = db.Column(db.Integer, db.ForeignKey('departments.id'))
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     is_admin = db.Column(db.Boolean, default=False)
+    # User account details ... (from Miguel Grinbergs)
+    registered_on = db.Column('registered_on', db.DateTime)
+    posts = db.relationship('Post', backref='author', lazy='dynamic')
+    about_me = db.Column(db.String(140))
+    last_seen = db.Column(db.DateTime)
 
     def __init__(self, username, fullname, password, email):
         self.username = username
@@ -79,13 +77,6 @@ class User(db.Model, UserMixin):
         self.password = password
         self.email = email
         self.registered_on = datetime.utcnow()
-
-
-    def __repr__(self):
-        return '<User %r>' % (self.username)
-
-    def avatar(self, size):
-        return '/static/img/avatar/' + (self.username) + '.jpg'
 
     # Password settings from scotch.io flask crud web app part 1
     @property
@@ -111,6 +102,20 @@ class User(db.Model, UserMixin):
             version += 1
         return new_username
 
+    # Avatar file location
+    def avatar(self, size):
+        return '/static/img/avatar/' + (self.username) + '.jpg'
+        # Add try / else default later.
+
+    def __repr__(self):
+        return '<User %r>' % (self.username)
+
+
+# Set up user_loader
+@lm.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
 
 class Department(db.Model):
     __tablename__ = 'departments'
@@ -135,7 +140,7 @@ class Role(db.Model):
         return '<Role %r>' % (self.name)
 
 
-class Post(db.Model):
+class Post(db.Model):  # Miguel Grinberg
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
     body = db.column(db.String(140))
