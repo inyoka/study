@@ -12,15 +12,15 @@ app.secret_key = '{;\x95\xec\x8c_\xc2q\xd9\xefw\xee\xfdB\x830\x9dTC\xa9\x90@\ra'
 lm = LoginManager()
 lm.init_app(app)
 lm.session_protection = 'strong'
-lm.login_view = 'staff.login'
+lm.login_view = 'auth.login'
 
 db = SQLAlchemy(app)
 from app import models, views
 
-from .staff import staff as staff_blueprint
+from .auth import auth as auth_blueprint
 from .home import home as home_blueprint
 from .stud import stud as stud_blueprint
-app.register_blueprint(staff_blueprint)
+app.register_blueprint(auth_blueprint)
 app.register_blueprint(home_blueprint)
 app.register_blueprint(stud_blueprint, url_prefix='/stud')
 

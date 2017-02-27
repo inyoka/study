@@ -1,4 +1,4 @@
-# app/staff/forms.py
+# app/auth/forms.py
 
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, SubmitField, ValidationError, TextField, BooleanField
