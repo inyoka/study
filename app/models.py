@@ -26,8 +26,8 @@ class Student(db.Model):
     dob = db.Column(db.DateTime(timezone=True), onupdate=func.now())  # Calculate age
     dateEnroll = db.Column(db.DateTime(timezone=True), server_default=func.now()) # Creation date
 
-
-    def __init__(self, fullname, address, dob, gender, goal, target, occupation, status, days, time, dateEnroll=datetime.now()):
+    def __init__(self, fullname, address, dob, gender, goal, target, occupation,
+     status, days, time, dateEnroll=datetime.now()):
         self.fullname = fullname
         self.gender = gender
         self.goal = goal
@@ -40,9 +40,10 @@ class Student(db.Model):
         self.time = time
         self.dateEnroll = dateEnroll
 
-
     def __repr__(self):
-        return "<Student ('%s', '%s', '%s', '%s')>" % (self.fullname, self.address, self.dob)
+        return "<Student ('%s', '%s', '%s')>" % (self.fullname,
+                                                 self.address,
+                                                 self.dob)
 
 
 class Contact(db.Model):
