@@ -113,3 +113,5 @@ setup.py
 *.css
 
 app/static/css/style.css
+
+*.swp
