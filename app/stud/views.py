@@ -63,7 +63,7 @@ def list():
     cur.execute("SELECT * from students ORDER BY id")
 
     rows = cur.fetchall()
-    return render_template("/list.html", title="List Students", keys=keys, rows=rows)
+    return render_template("/home/list.html", title="List Students", keys=keys, rows=rows)
 
 
 @stud.route('/search')

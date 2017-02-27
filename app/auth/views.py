@@ -58,5 +58,38 @@ def list():
     cur.execute("SELECT * from users ORDER BY id")
 
     rows = cur.fetchall()
-    return render_template("/list.html", title="List Authenticated Users",
+    return render_template("/home/list.html", title="List Authenticated Users",
                            keys=keys, rows=rows)
+
+
+@app.route('/profile/<username>')
+@login_required
+def viewProfile(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        flash('User %s not found.' % username)
+        return redirect(url_for('home.index'))
+    posts = [
+        {'author': user, 'body': 'Test post #1'},
+        {'author': user, 'body': 'Test post #2'}
+    ]
+    return render_template('/profile/view.html',
+                           user=user,
+                           posts=posts)
+
+
+@app.route('/profile/edit', methods=['GET', 'POST'])
+@login_required
+def editProfile():
+    form = EditForm(g.user.username)
+    if form.validate_on_submit():
+        g.user.username = form.username.data
+        g.user.about_me = form.about_me.data
+        db.session.add(g.user)
+        db.session.commit()
+        flash('Your changes have been saved.')
+        return redirect(url_for('editProfile'))
+    else:
+        form.username.data = g.user.username
+        form.about_me.data = g.user.about_me
+    return render_template('/profile/edit.html', form=form)
