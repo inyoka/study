@@ -5,7 +5,7 @@ from wtforms.fields import RadioField, IntegerField, SubmitField, HiddenField
 from wtforms.validators import DataRequired, Length
 import wtforms.validators as validators
 from app.models import Student
-from app import lookup
+from app.stud import lookup
 from flask_wtf import FlaskForm
 from wtforms.widgets import TextArea
 from wtforms.ext.sqlalchemy.orm import model_form
