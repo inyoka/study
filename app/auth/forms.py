@@ -41,9 +41,9 @@ class LoginForm(FlaskForm):
         if not rv:
             return False
 
-        user = User.query.filter_by(
-            username=self.username.data).first()
-        if user is None:
+        self.user = User.query.filter_by(username=self.username.data).first()
+
+        if not self.user:
             self.username.errors.append('Unknown username')
             return False
 
@@ -51,5 +51,8 @@ class LoginForm(FlaskForm):
             self.password.errors.append('Invalid password')
             return False
 
-        self.user = user
+        if not self.user.active:
+            self.username.errors.append(gettext('User not activated'))
+            return False
+
         return True
