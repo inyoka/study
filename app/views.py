@@ -1,7 +1,7 @@
 from app import app, db, lm
 from flask import url_for, request, render_template, flash, redirect, session, g
 from flask_login import login_user, logout_user, current_user, login_required
-from app.forms import LoginForm, EditForm # , PostForm, EmailForm
+from app.auth.forms import LoginForm, EditForm # , PostForm, EmailForm
 from app.models import User
 from datetime import datetime
 
