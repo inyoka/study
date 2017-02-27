@@ -28,8 +28,8 @@ class RegistrationForm(FlaskForm):
 class LoginForm(FlaskForm):
     username = TextField('Username', validators=[InputRequired()])
     password = PasswordField('Password', validators=[InputRequired()])
-    # remember_me = BooleanField('remember_me', default=False)
-    # submit = SubmitField('Login')
+    remember_me = BooleanField('remember_me', default=False)
+    submit = SubmitField('Login')
 
 
     def __init__(self, *args, **kwargs):
