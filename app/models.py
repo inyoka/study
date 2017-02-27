@@ -126,11 +126,6 @@ class User(db.Model):
         return new_username
 
 
-@lm.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
-
-
 class Departments(db.Model):
     __tablename__ = 'departments'
     id = db.Column(db.Integer, primary_key=True)
