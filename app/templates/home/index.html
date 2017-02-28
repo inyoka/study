@@ -1,6 +1,9 @@
+<!-- extend base layout -->
 {% extends "home/base.html" %}
-{% block title %}Home{% endblock %}
 {% block content %}
+{% include 'home/flash.html' %}
+
+{% block title %}Home{% endblock %}
 <div class="center-block"><div class="panel-body text-center">
     <!-- Full Width Image Header -->
         <header class="header-image">

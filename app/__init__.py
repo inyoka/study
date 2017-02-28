@@ -8,6 +8,8 @@ app.config.from_object('config')
 app.secret_key = '{;\x95\xec\x8c_\xc2q\xd9\xefw\xee\xfdB\x830\x9dTC\xa9\x90@\ra'
 # app.secret_key = os.urandom(24)
 
+app.jinja_env.cache = {}
+
 lm = LoginManager()
 lm.init_app(app)
 lm.session_protection = 'strong'

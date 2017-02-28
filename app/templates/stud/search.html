@@ -1,11 +1,10 @@
 <!-- extend base layout -->
 {% extends "home/base.html" %}
-
 {% block content %}
+{% include 'home/flash.html' %}
+
 <div class="container">
-
   <form action="add-student">
-
   <!-- Your form goes here -->
   <h3>{{ title }}</h3>
   <input type="submit" value="Sign Up" class="btn btn-default" />
