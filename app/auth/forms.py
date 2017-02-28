@@ -33,6 +33,6 @@ class LoginForm(FlaskForm):
 
 
 class EditForm(FlaskForm):
-    username = StringField('User.username', validators=[InputRequired()])
-    about_me = TextAreaField('User.about_me',
+    username = StringField('Username : ', validators=[InputRequired()])
+    about_me = TextAreaField('About you : ',
                              validators=[Length(min=0, max=140)])

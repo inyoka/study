@@ -5,15 +5,44 @@
 
 <form action="" method="post" name="auth/view"></form>
 <div class="container">
-  <table>
-    <tr valign="top">
-      <td>
-        <h1>User: {{user.username}}</h1>
-          {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
+    <div class="row">
+        <div class="col-xs-8 col-sm-6 col-md-6 col-lg-6">
+            <h1>User: {{user.username}}</h1>
+        </div>
+        <div class="col-xs-4 col-sm-6 col-md-6 col-lg-6">
+        <img src="{{ user.avatar(128) }}">
+        </div>
+    </div> <!-- end row -->
+
+          {% if user.about_me %}
+          <div class="row">
+              <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+
+                  <div class="panel panel-info">
+                      <div class="panel-heading">About yourself ...</div>
+                      <div class="panel-body">{{ user.about_me }}</div>
+                </div>
+
+
+                  <label>About yourself ...
+                      <br>{{ user.about_me }}</label>
+
+
+
+
+                  </div>
+                  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                      {% if user.id == g.user.id %}
+                      <a class="btn btn-lg btn-success btn-block" type="link" href="{{ url_for('auth.edit') }}">Edit</a>
+                      {% endif %}
+                  </div>
+              </div> <!-- end row -->
+
+          {% endif %}
           {% if user.last_seen %}<p><i>Last seen on: {{ user.last_seen }}</i></p>{% endif %}
-          {% if user.id == g.user.id %}<p><a href="{{ url_for('auth.edit') }}">Edit</a></p>{% endif %}
-      </td>
-    </table>
+
+
+
     {% for post in posts %}
           {% include 'auth/post.html' %}
     {% endfor %}

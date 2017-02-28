@@ -4,26 +4,24 @@
 {% include 'home/flash.html' %}
 
 <div class="container">
-  <h1>Edit Your Profile</h1>
+<h1>{{ title }}</h1>
+
+
   <form action="" method="post" name="profile/edit">
       {{form.hidden_tag()}}
-      <table>
-          <tr>
-              <td>Your username:</td>
-              <td>{{ form.username(size=24) }}</td>
-              {% for error in form.errors.username %}
-              <br><span style="color: red;">[{{ error }}]</span>
-              {% endfor %}
-          </tr>
-          <tr>
-              <td>About yourself:</td>
-              <td>{{ form.about_me(cols=32, rows=4) }}</td>
-          </tr>
-          <tr>
-              <td></td>
-              <td><input type="submit" value="Save Changes"></td>
-          </tr>
-      </table>
+            <label for="username">Username</label>
+            {{ form.username(class="form-control", type="textarea",  placeholder="Description", id="username") }}
+
+            {% for error in form.errors.username %}
+                <p class=error><strong>Error:</strong>{{ error }}</p>
+            {% endfor %}
+
+            <label for="about_me">About yourself ...</label>
+            {{ form.about_me(class="form-control", type="textarea",  placeholder="Description", id="about_me") }}
+
+            <hr>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Save Changes</button>
+
   </form>
 </div>
 {% endblock %}
