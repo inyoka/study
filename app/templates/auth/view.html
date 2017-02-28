@@ -16,32 +16,33 @@
 
           {% if user.about_me %}
           <div class="row">
-              <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-
-                  <div class="panel panel-info">
-                      <div class="panel-heading">About yourself ...</div>
-                      <div class="panel-body">{{ user.about_me }}</div>
-                </div>
-
-
-                  <label>About yourself ...
-                      <br>{{ user.about_me }}</label>
-
-
-
-
+                  <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                    <div class="panel panel-info">
+                    <div class="panel-heading">About yourself ...</div>
+                    <div class="panel-body">{{ user.about_me }}</div>
+                    </div>
                   </div>
-                  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                      {% if user.id == g.user.id %}
-                      <a class="btn btn-lg btn-success btn-block" type="link" href="{{ url_for('auth.edit') }}">Edit</a>
-                      {% endif %}
-                  </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        {% if user.id == g.user.id %}
+                        <a class="btn btn-lg btn-success btn-block" type="link" href="{{ url_for('auth.edit') }}">Edit</a>
+                        {% endif %}
+                    </div>
               </div> <!-- end row -->
 
           {% endif %}
-          {% if user.last_seen %}<p><i>Last seen on: {{ user.last_seen }}</i></p>{% endif %}
+          {% if user.last_seen %}
+          <p><i>Last seen on:
+              {{ user.last_seen }}</i></p>{% endif %}
 
 
+{{ moment(user.last_seen).format('MMMM Do YYYY, h:mm:ss a') }}
+
+
+              <p>Current time: {{ moment(user.last_seen).calendar() }}</p>
+              <br/>
+              <p>Time: {{moment(user.last_seen).format('YYYY-MM-DD HH:mm:ss')}}</p>
+              <br/>
+              <p>From now: {{moment(user.last_seen).fromNow()}}</p> 
 
     {% for post in posts %}
           {% include 'auth/post.html' %}

@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 # from flask_bootstrap import Bootstrap
+from flask_moment import Moment
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -16,6 +17,7 @@ lm.session_protection = 'strong'
 lm.login_view = 'auth.login'
 
 # Bootstrap(app)
+moment = Moment(app)
 
 db = SQLAlchemy(app)
 from app import models, views
