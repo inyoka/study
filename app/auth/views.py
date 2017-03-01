@@ -7,6 +7,7 @@ from app.auth import auth
 from app import db
 from app.models import User, Post
 import sqlite3 as sql
+from datetime import date
 
 def flash_errors(form):
     for field, errors in form.errors.items():
@@ -88,6 +89,7 @@ def list():
 @auth.route('/view/<username>')
 @login_required
 def view(username):
+    todays_date = date.today()
     user = User.query.filter_by(username=username).first()
     if user is None:
         flash('User %s not found.' % username)
@@ -97,7 +99,7 @@ def view(username):
 
     return render_template('/auth/view.html',
                            user=user,
-                           posts=posts)
+                           posts=posts, todays_date = todays_date)
 
 
 @auth.route('/edit', methods=['GET', 'POST'])

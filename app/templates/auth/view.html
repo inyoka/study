@@ -6,44 +6,29 @@
 <form action="" method="post" name="auth/view"></form>
 <div class="container">
     <div class="row">
-        <div class="col-xs-8 col-sm-6 col-md-6 col-lg-6">
-            <h1>User: {{user.username}}</h1>
-        </div>
-        <div class="col-xs-4 col-sm-6 col-md-6 col-lg-6">
-        <img src="{{ user.avatar(128) }}">
-        </div>
+            <h1>{{ title }}</h1>
     </div> <!-- end row -->
-
           {% if user.about_me %}
           <div class="row">
-                  <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                  <div class="col-sm-8 col-md-8 col-lg-8">
                     <div class="panel panel-info">
-                    <div class="panel-heading">About yourself ...</div>
-                    <div class="panel-body">{{ user.about_me }}</div>
+                    <div class="panel-heading"><h4>{{user.username}}'s Profile<img class="pull-right" src="/static/img/avatar/default.png" style=" max-height: 25pt;"></h4></div>
+                    <div class="panel-body">{{ user.about_me }}
+                        {% endif %}
+
+                        {% if user.last_seen %}
+                        <i><hr>Last seen : {{ moment(user.last_seen).format('MMMM Do YYYY, @h:mm a') }}</i>
+                        {% endif %}
+                    </div>
                     </div>
                   </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
                         {% if user.id == g.user.id %}
+                        <h5><p class="text-center">{{ moment(todays_date).format('MMMM Do, YYYY ') }}</p></h5>
                         <a class="btn btn-lg btn-success btn-block" type="link" href="{{ url_for('auth.edit') }}">Edit</a>
                         {% endif %}
                     </div>
               </div> <!-- end row -->
-
-          {% endif %}
-          {% if user.last_seen %}
-          <p><i>Last seen on:
-              {{ user.last_seen }}</i></p>{% endif %}
-
-
-{{ moment(user.last_seen).format('MMMM Do YYYY, h:mm:ss a') }}
-
-
-              <p>Current time: {{ moment(user.last_seen).calendar() }}</p>
-              <br/>
-              <p>Time: {{moment(user.last_seen).format('YYYY-MM-DD HH:mm:ss')}}</p>
-              <br/>
-              <p>From now: {{moment(user.last_seen).fromNow()}}</p> 
-
     {% for post in posts %}
           {% include 'auth/post.html' %}
     {% endfor %}

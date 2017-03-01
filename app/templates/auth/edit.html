@@ -4,24 +4,22 @@
 {% include 'home/flash.html' %}
 
 <div class="container">
-<h1>{{ title }}</h1>
+    <form action="" method="post" name="profile/edit" style="max-width: 330px; padding: 15px; margin: 0 auto;">
+        {{form.hidden_tag()}}
+        <h1>{{ title }}</h1>
+        <label for="username">Username</label>
+        {{ form.username(class="form-control", type="textarea",  placeholder="Description", id="username") }}
 
+        {% for error in form.errors.username %}
+            <p class=error><strong>Error:</strong>{{ error }}</p>
+        {% endfor %}
 
-  <form action="" method="post" name="profile/edit">
-      {{form.hidden_tag()}}
-            <label for="username">Username</label>
-            {{ form.username(class="form-control", type="textarea",  placeholder="Description", id="username") }}
+        <label for="about_me">About yourself ...</label>
+        {{ form.about_me(class="form-control", type="textarea",  placeholder="Description", id="about_me") }}
 
-            {% for error in form.errors.username %}
-                <p class=error><strong>Error:</strong>{{ error }}</p>
-            {% endfor %}
+        <hr>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Save Changes</button>
 
-            <label for="about_me">About yourself ...</label>
-            {{ form.about_me(class="form-control", type="textarea",  placeholder="Description", id="about_me") }}
-
-            <hr>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Save Changes</button>
-
-  </form>
+    </form>
 </div>
 {% endblock %}
