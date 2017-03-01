@@ -43,12 +43,41 @@ def add():
                            title='Add Student', form=form)
 
 
-@stud.route('/edit')
+@stud.route('/edit/', methods=['GET', 'POST'])
 @login_required
-def edit(id):
-    return render_template('/stud/edit.html',
-                           title='Edit Student')
+def edit():
+    student = Student(query.get_or_404(id))
+    form = AddStudent(obj=student)
+    if form.validate_on_submit():
+        form.populate_obj(student)
+        '''
+        student.fullname = form.fullname.data
+        student.gender = form.gender.data
+        student.goal = form.goal.data
+        student.target = form.target.data
+        student.occupation = form.occuptation.data
+        student.status = form.status.data
+        student.lapsedWhy = form.lapsedWhy.data
+        student.address = form.address.data
+        student.notes = form.notes.data
+        student.days = form.days.data
+        student.time = form.time.data
+        student.timestamp = form.timestamp.data
+        student.dateLastContact = form.dateLastContact.data
+        student.dob = form.dob.data
+        student.dateEnroll = form.dateEnroll.data
 
+        db.session.add(g.user)
+        db.session.commit()
+        flash('Your changes have been saved.')
+        return redirect(url_for('auth.edit'))
+    else:
+        form.username.data = g.user.username
+        form.about_me.data = g.user.about_me
+    return render_template('/auth/edit.html', title='Edit Your Profile', form=form)
+return render_template('/stud/edit.html',
+                       title='Edit Student')
+        '''
 
 
 @stud.route('/list')
