@@ -105,10 +105,9 @@ class User(db.Model, UserMixin):
     # Avatar file location
     def avatar(self, size):
         def avatar(self, size):
-            try :
-                return '/static/img/avatar/' + (self.username) + '.jpg'
-            except:
-                return '/static/img/avatar/default.png'
+            #return '/static/img/avatar/%s.jpg' % self.username.tolower()
+            return '/static/img/avatar/default.png'
+
 
 
     def __repr__(self):
