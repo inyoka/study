@@ -65,6 +65,19 @@ def list():
     rows = cur.fetchall()
     return render_template("/home/list.html", title="List Students", keys=keys, rows=rows)
 
+@stud.route('/lister')
+@login_required
+def lister():
+    keys = Student.metadata.tables['students'].columns.keys()
+    #keys = Student.__table__.columns.keys()
+    con = sql.connect("app.db")
+    con.row_factory = sql.Row
+
+    cur = con.cursor()
+    cur.execute("SELECT * from students ORDER BY id")
+
+    rows = cur.fetchall()
+    return render_template("/stud/lister.html", title="List Students", keys=keys, rows=rows)
 
 @stud.route('/search')
 @login_required

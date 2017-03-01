@@ -1,0 +1,117 @@
+<!-- extend base layout -->
+{% extends "home/base.html" %}
+{% block content %}
+{% include 'home/flash.html' %}
+
+<div class="container-fluid">
+<form method="POST" class="form-signin" name="auth/register" style="max-width: 1400px; padding:10px;">
+{{form.hidden_tag()}}
+<div class="panel panel-info">
+    <div class="panel-heading">{{ title }}</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-8 col-md-8 col-lg-8">
+                <div class="input-group input-group-sm">
+                {{ form.fullname.label(for='fullname', class="input-group-addon") }}
+                {{ form.fullname(type="text",class="form-control", id="fullname", placeholder="Name") }}
+                </div>
+                <div class="input-group input-group-sm" style="height: 69pt;">
+                {{ form.address.label(for="address", class="input-group-addon") }}
+                {{ form.address(class="form-control", type="textarea",  placeholder="Address", id="address", style="height: 100%;") }}
+                </div>
+            </div>
+
+            <div class="col-sm-4 col-md-4 col-lg-4">
+            <div class="input-group input-group-sm">
+            {{ form.dob.label(for="dob", class="input-group-addon") }}
+            {{ form.dob(type="date", class="form-control", id="dob", placeholder="DoB") }}
+            </div>
+            <div class="input-group input-group-sm">
+                <label class="input-group-addon">Gender : </label>
+                <span class="form-control">
+                {% for item in form.gender %}
+                    {{ item(type="radio") }}&nbsp
+                    <label for="gender" class="control-label">{{ item.label }}</label>&nbsp
+                {% endfor %}
+                </span>
+            </div>
+            <div class="input-group input-group-sm">
+            {{ form.occupation.label(for='occupation', class="input-group-addon") }}
+            {{ form.occupation(type="text",class="form-control", id="occupation", placeholder="Student, Engineer, etc?") }}
+            </div>
+            <div class="input-group input-group-sm">
+                {{ form.target.label(for="target", class="input-group-addon") }}
+                {{ form.target(class="form-control", type="select", id="target") }}
+            </div>
+            </div>
+        </div>
+
+
+
+<div class="panel-heading">Course enrollment and availability ...</div>
+
+    <div class="row">
+            <div class="col-sm-5 col-md-5 col-lg-5">
+                <div class="input-group input-group-sm" style="height: 69pt;">
+                {{ form.notes.label(for="notes", class="input-group-addon", style="height: 60px;") }}
+                {{ form.notes(class="form-control", type="textarea",  placeholder="notes", id="notes", style="height: 100%;") }}
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="input-group input-group-sm dropdown-toggle" style="height: 60px;">
+                {{ form.days.label(for="days", class="input-group-addon") }}
+                {{ form.days(class="form-control", type="select", id="days", style="height: 90px;") }}
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="input-group input-group-sm">
+                    {{ form.goal.label(for="goal", class="input-group-addon") }}
+                    {{ form.goal(class="form-control", type="select", id="goal") }}
+                </div>
+                <div class="input-group input-group-sm">
+                {{ form.time.label(for="time", class="input-group-addon") }}
+                {{ form.time(type="time", class="form-control", id="time") }}
+                </div>
+                <div class="input-group input-group-sm">
+                {{ form.dateEnroll.label(for="dateEnroll", class="input-group-addon") }}
+                {{ form.dateEnroll(type="date", class="form-control", id="dateEnroll") }}
+                </div>
+            </div>
+    </div>
+
+
+<div class="panel-heading">Student status ...</div>
+
+    <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="input-group input-group-sm">
+                {{ form.dateLastContact.label(for="dateLastContact", class="input-group-addon") }}
+                {{ form.dateLastContact(type="date", class="form-control", id="dateLastContact") }}
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="input-group input-group-sm">
+                    {{ form.status.label(for="status", class="input-group-addon") }}
+                    {{ form.status(class="form-control", type="select", id="status") }}
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="input-group input-group-sm">
+                {{ form.lapsedWhy.label(for="lapsedWhy", class="input-group-addon") }}
+                {{ form.lapsedWhy(class="form-control", type="textarea",  placeholder="Why did they leave?", id="lapsedWhy") }}
+                </div>
+            </div>
+    </div>
+<br>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <button class="btn btn-md btn-success btn-block" type="submit" value="submit">Register</button>
+            </div>
+        </div>
+
+        </div>
+</div>
+    </div>
+</form>
+{% endblock %}
