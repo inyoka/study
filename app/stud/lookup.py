@@ -13,7 +13,7 @@ LAPSED = [('Pending', 'Pending'),
     ('Active', 'Active'),
     ('Inactive', 'Inactive')]
 
-GOALS = [('none', 'None'),
+TARGET = [('none', 'None'),
         ('spoken', 'Spoken'),
         ('grammar','Grammar'),
         ('reading','Reading'),
