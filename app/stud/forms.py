@@ -2,6 +2,8 @@ from flask_wtf import FlaskForm
 from wtforms.fields import StringField, SelectMultipleField, FormField, DateTimeField
 from wtforms.fields import FieldList, DateField, SelectField, TextAreaField
 from wtforms.fields import RadioField, IntegerField, SubmitField, HiddenField
+#from wtforms.sqlalchemy.fields import QuerySelectField
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, Length
 import wtforms.validators as validators
 from app.models import Student
@@ -9,6 +11,7 @@ from app.stud import lookup
 from flask_wtf import FlaskForm
 from wtforms.widgets import TextArea
 from wtforms.ext.sqlalchemy.orm import model_form
+from .lookup import *
 
 
 class ContactForm(FlaskForm):
@@ -21,15 +24,15 @@ class AddStudent(FlaskForm):
     id = Student.id
     fullname = StringField('Name :')
     gender = RadioField('Gender', coerce=str, choices=[('Male', 'Male'), ('Female', 'Female')])
-    goal = SelectField('Professional Goal :', choices=[('none', 'None'), ('TOEFL', 'TOEFL'),('IELTS','IELTS'),('iGCSE','iGCSE'),('A-Levels','A-Levels'),('Professional','Professional Development'),('Personal','Personal Development'),('Overseas','Overseas Study')])  # Qualification etc
-    target = SelectField('Personal aim :', choices=[('none', 'None'), ('spoken', 'Spoken'), ('grammar','Grammar'), ('reading','Reading'), ('listening','Listening'), ('writing','Writing'), ('exam','Exam'), ('conversation','Conversation')])  # Skill needing improvment
+    goal = SelectField('Professional Goal :', choices=gen(GOALS)) # Qualification etc
+    target = SelectField('Personal aim :', choices=gen(TARGET))  # Skill needing improvment
     occupation = StringField('Occupation :', validators=[DataRequired()])  # Current occupation
-    status = SelectField('Student status :', choices=[('Pending', 'Pending'),('Active', 'Active'),('Inactive', 'Inactive')], validators=[DataRequired()])  # Active Inactive
-    lapsedWhy = SelectField('Why they left :', choices=[('Pending', 'Pending'), ('Active', 'Active'), ('Inactive', 'Inactive')])
+    status = SelectField('Student status :', choices=gen(STATUS), validators=[DataRequired()])  # Active Inactive
+    lapsedWhy = SelectField('Why they left :', choices=gen(LAPSED))
     address = TextAreaField('Address :')
     dob = DateTimeField('Birthday :', format='%y/%m/%d')
     # contacts = FieldList(FormField(ContactForm))
-    days = SelectMultipleField('Days :', choices=[('Sunday', 'Sunday'),('Monday', 'Monday'),('Tuesday', 'Tuesday'),('Wednesday', 'Wednesday'),('Thursday', 'Thursday'),('Friday', 'Friday'),('Saturday', 'Saturday')], validators=[DataRequired()])  # 7 digit binary?
+    days = SelectMultipleField('Days :', choices=gen(DAYS), validators=[DataRequired()])  # 7 digit binary?
     time = IntegerField('Available from :')  # Avail after %%:%% on weekday
     dateEnroll = DateField('Enrolled :')
     dateLastContact = DateField('Last contact :')
