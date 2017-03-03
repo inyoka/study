@@ -9,6 +9,23 @@ from datetime import date
 from datetime import datetime
 
 
+@stud.route('/modify/')
+@login_required
+def add_modify():
+    form = AddStudent()
+
+    return render_template("stud/data.html", action="Add", data_type="a student", form=form)
+
+
+@stud.route('/modify/<int:student_id>')
+@login_required
+def edit_modify(student_id):
+    student = Student(query.get_or_404(student_id))
+    form = AddStudent()
+
+    return render_template("stud/data.html", action="Edit", data_type="student.fullname", form=form)
+
+
 @stud.route('/add', methods=['GET', 'POST'])
 @login_required
 def add():

@@ -1,0 +1,23 @@
+<!-- extend base layout -->
+{% extends "home/base.html" %}
+{% block content %}
+{% include 'home/flash.html' %}
+
+<div class="container">
+<h1>{{ title }}</h1>
+{{form.hidden_tag()}}
+
+
+{% block form %}
+<section>
+    <h1>{{ action }}{{ data_type }}</h1>
+    <form action="{{ form_action }}" method="{{method | d("POST")}}">
+    {% render_form %}
+    </form>
+</section>
+{% endblock form %}
+
+
+
+</div>
+{% endblock %}
