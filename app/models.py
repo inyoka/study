@@ -6,14 +6,14 @@ from flask_login import UserMixin
 
 class Student(db.Model):
     __tablename__ = 'students'
-    id = db.Column("id", db.Integer, primary_key=True)
-    fullname = db.Column("Fullname", db.String(64))
-    gender = db.Column("Gender", db.String)  # M or F
-    goal = db.Column("Goal", db.String)  # Qualification etc
-    target = db.Column("Skill Req.", db.String)  # Skill needing improvment
-    occupation = db.Column("Occupation", db.String)  # Current occupation
-    status = db.Column("Status", db.String)
-    lapsedWhy = db.Column("Lapsed", db.String)
+    id = db.Column(db.Integer, primary_key=True)
+    fullname = db.Column(db.String(64))
+    gender = db.Column(db.String)  # M or F
+    goal = db.Column(db.String)  # Qualification etc
+    target = db.Column(db.String)  # Skill needing improvment
+    occupation = db.Column(db.String)  # Current occupation
+    status = db.Column(db.String)
+    lapsedWhy = db.Column(db.String)
     address = db.Column(db.String)
     notes = db.Column(db.String)
     days = db.Column(db.Integer)  # 7 digit binary?
@@ -22,6 +22,10 @@ class Student(db.Model):
     dateLastContact = db.Column(db.Date)
     dob = db.Column(db.DateTime)
     dateEnroll = db.Column(db.DateTime())
+    mobile = db.Column(db.Integer)
+    email = db.Column(db.String(120))
+    emer_contact = db.Column(db.String(64))
+    emer_mobile = db.Column(db.Integer)
 
     def __init__(self, fullname, address, dob, gender, goal, target, occupation,
                  status, days, time, dateEnroll=datetime.now()):
