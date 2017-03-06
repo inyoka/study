@@ -16,6 +16,7 @@ from .lookup import *
 
 class ContactForm(FlaskForm):
     id = Student.id
+    label = StringField('Enter label :')
     mobile_phone = StringField('Number')
     e_mail = StringField('E-mail')
 
