@@ -4,7 +4,7 @@ from wtforms.fields import FieldList, DateField, SelectField, TextAreaField
 from wtforms.fields import RadioField, IntegerField, SubmitField, HiddenField
 #from wtforms.sqlalchemy.fields import QuerySelectField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
-from wtforms.validators import DataRequired, Length
+from wtforms.validators import DataRequired, Length, Email
 import wtforms.validators as validators
 from app.models import Student
 from app.stud import lookup
@@ -37,6 +37,10 @@ class AddStudent(FlaskForm):
     dateEnroll = DateField('Enrolled :')
     dateLastContact = DateField('Last contact :')
     notes = TextAreaField('Notes :')
+    mobile = IntegerField("Mobile :")
+    email = StringField('Email:', validators=[Email()])
+    emer_contact = StringField("Emergency name :")
+    emer_mobile = IntegerField("Emergency no. :")
     submit = SubmitField('Submit', validators=[DataRequired()])
 
 
