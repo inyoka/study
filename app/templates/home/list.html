@@ -3,33 +3,32 @@
 {% block content %}
 {% include 'home/flash.html' %}
 
+<script src="/static/js/mindmup-editabletable.js"></script>
 <div class="container">
-<br><br>
     <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading text-center"><h3>{{ title }}</h3></div>
+    <div class="panel-heading text-center"><h1>{{ title }}<br/> <small>{{ title }}</small></h1></div>
+  	<hr/>
+  		<div class="alert alert-error hide">That would cost too much</div>
       <div class="panel-body">
 
-      <table class="table">
-          <thead>
-              {% for key in keys %}
-             <td>{{ key }}</td>
-             {% endfor%}
-          </thead>
-
-          {% for row in rows %}
-              <tr>
-              {% for d in row %}
-                  <td>{{ d }}</td>
-              {% endfor %}
-              </tr>
-          {% endfor %}
-      </table>
-    </div></div>
-
-       <a href = "/">Go back to home page</a>
-
-    </body>
+            <table id="mainTable" class="table table-striped">
+                <thead>
+                    {% for key in keys %}<th>{{ key }}</th>{% endfor%}
+                </thead>
+                <tbody>
+                    {% for row in rows %}
+                    <tr>{% for item in row %}<td>{{ item }}</td>{% endfor %}</tr>
+                    {% endfor %}
+                </tbody>
+      			<tfoot>
+                    <tr><th><strong>TOTAL</strong></th><th></th><th></th><th></th></tr>
+                </tfoot>
+            </table>
 
 </div>
+<a href = "/">Go back to home page</a>
+<h2><small>just start typing to edit, or move around with arrow keys or mouse clicks!</small></h2>
+</div>
+</div>
+</body>
 {% endblock %}

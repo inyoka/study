@@ -117,3 +117,5 @@ app/static/css/style.css
 *.swp
 
 app/debugly.py
+
+app/TODO.txt
