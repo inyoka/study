@@ -47,8 +47,46 @@
 
 
 
-<div class="panel-heading">Course enrollment and availability ...</div>
 
+
+
+        <div class="panel-heading">Contact details</div>
+            <div class="row">
+                    <div class="col-sm-2 col-md-2 col-lg-2">
+                        <div class="input-group input-group-sm">
+                        {{ form.mobile.label(for='fullname', class="input-group-addon") }}
+                        {{ form.mobile(type="text",class="form-control", id="mobile", placeholder="Mobile") }}
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <div class="input-group input-group-sm">
+                        {{ form.email.label(for='email', class="input-group-addon") }}
+                        {{ form.email(type="text",class="form-control", id="email", placeholder="Email") }}
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <div class="input-group input-group-sm">
+                        {{ form.emer_contact.label(for='emer_contact', class="input-group-addon") }}
+                        {{ form.emer_contact(type="text",class="form-control", id="emer_contact", placeholder="Emergency contact") }}
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2 col-lg-2">
+                        <div class="input-group input-group-sm">
+                        {{ form.emer_mobile.label(for='emer_mobile', class="input-group-addon") }}
+                        {{ form.emer_mobile(type="text",class="form-control", id="emer_mobile", placeholder="Emergency contact") }}
+                        </div>
+                    </div>
+            </div>
+
+
+
+
+
+
+
+
+
+<div class="panel-heading">Course enrollment and availability ...</div>
     <div class="row">
             <div class="col-sm-5 col-md-5 col-lg-5">
                 <div class="input-group input-group-sm" style="height: 69pt;">
