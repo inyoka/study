@@ -25,15 +25,15 @@ class AddStudent(FlaskForm):
     id = Student.id
     fullname = StringField('Name :')
     gender = RadioField('Gender', coerce=str, choices=[('Male', 'Male'), ('Female', 'Female')])
-    goal = SelectField('Professional Goal :', choices=gen(GOALS)) # Qualification etc
-    target = SelectField('Personal aim :', choices=gen(TARGET))  # Skill needing improvment
+    goal = SelectField('Professional Goal :', choices=Lookup(GOALS)) # Qualification etc
+    target = SelectField('Personal aim :', choices=Lookup(TARGET))  # Skill needing improvment
     occupation = StringField('Occupation :', validators=[DataRequired()])  # Current occupation
-    status = SelectField('Student status :', choices=gen(STATUS), validators=[DataRequired()])  # Active Inactive
-    lapsedWhy = SelectField('Why they left :', choices=gen(LAPSED))
+    status = SelectField('Student status :', choices=Lookup(STATUS), validators=[DataRequired()])  # Active Inactive
+    lapsedWhy = SelectField('Why they left :', choices=Lookup(LAPSED))
     address = TextAreaField('Address :')
     dob = DateTimeField('Birthday :', format='%y/%m/%d')
     # contacts = FieldList(FormField(ContactForm))
-    days = SelectMultipleField('Days :', choices=gen(DAYS), validators=[DataRequired()])  # 7 digit binary?
+    days = SelectMultipleField('Days :', choices=Lookup(DAYS), validators=[DataRequired()])  # 7 digit binary?
     time = IntegerField('Available from :')  # Avail after %%:%% on weekday
     dateEnroll = DateField('Enrolled :')
     dateLastContact = DateField('Last contact :')

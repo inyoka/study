@@ -5,9 +5,14 @@ Allows lists to be accessed through a generator 'gen'.
 For use by the SelectField 'choices' variable etc.
 '''
 
-def gen(items):
-    for item in items:
-        yield(item)
+
+class Lookup:
+    def __init__(self, items):
+        self.items = items
+    def __iter__(self):
+        for item in self.items:
+            yield(item)
+
 
 LAPSED = [('Pending', 'Pending'),
     ('Active', 'Active'),
