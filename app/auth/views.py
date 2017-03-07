@@ -47,7 +47,7 @@ def register():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        flash('Login requested for OpenID="%s", remember_me=%s' %(form.fullname.data, str(form.remember_me.data)))
+        flash('Login requested for user_id="%s", remember_me=%s' %(form.username.data, str(form.remember_me.data)))
         user = User.query.filter_by(username=form.username.data).first()
         if user is not None and user.verify_password(
                 form.password.data):
@@ -60,7 +60,7 @@ def login():
             else:
                 return redirect(url_for('home.index'))
         else:
-            flash('Invalid email or password.')
+            flash('Invalid username or password.')
 
     return render_template('auth/login.html', form=form, title='Login')
 
