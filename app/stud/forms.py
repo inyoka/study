@@ -42,7 +42,7 @@ class AddStudent(FlaskForm):
     email = StringField('Email:', validators=[Email()])
     emer_contact = StringField("Emergency name :")
     emer_mobile = IntegerField("Emergency no. :")
-    submit = SubmitField('Submit', validators=[DataRequired()])
+    submit = SubmitField('AddStudent', validators=[DataRequired()])
 
 
 class ViewStudent(FlaskForm):

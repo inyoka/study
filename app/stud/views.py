@@ -5,7 +5,6 @@ from . import stud
 from .forms import AddStudent
 from app.models import Student
 import sqlite3 as sql
-from datetime import date
 from datetime import datetime
 
 
@@ -14,7 +13,8 @@ from datetime import datetime
 def add_modify():
     form = AddStudent()
 
-    return render_template("stud/data.html", action="Add", data_type="a student", form=form)
+    return render_template("stud/data.html", action="Add",
+                           data_type="a student", form=form)
 
 
 @stud.route('/modify/<int:student_id>')
@@ -54,8 +54,8 @@ def add():
             db.session.commit()
             flash('Your changes have been most likely been saved!?!')
         except:
-            flash('Error writing reocrd.')
-            return redirect(url_for('stud.add'))
+            flash('Error writing record.')
+            return redirect(url_for('stud.edit'))
     return render_template('/stud/add.html',
                            title='Add Student', form=form)
 
@@ -67,7 +67,6 @@ def edit():
     form = AddStudent(obj=student)
     if form.validate_on_submit():
         form.populate_obj(student)
-        '''
         student.fullname = form.fullname.data
         student.gender = form.gender.data
         student.goal = form.goal.data
@@ -91,10 +90,9 @@ def edit():
     else:
         form.username.data = g.user.username
         form.about_me.data = g.user.about_me
-    return render_template('/auth/edit.html', title='Edit Your Profile', form=form)
-return render_template('/stud/edit.html',
-                       title='Edit Student')
-        '''
+        return render_template('/auth/edit.html', title='Edit Your Profile', form=form)
+    return render_template('/stud/edit.html',
+                           title='Edit Student')
 
 
 @stud.route('/list')
@@ -118,10 +116,8 @@ def lister():
     #keys = Student.__table__.columns.keys()
     con = sql.connect("app.db")
     con.row_factory = sql.Row
-
     cur = con.cursor()
     cur.execute("SELECT * from students ORDER BY id")
-
     rows = cur.fetchall()
     return render_template("/stud/lister.html", title="List Students", keys=keys, rows=rows)
 
@@ -136,13 +132,11 @@ def search():
 @login_required
 def view():
     form = ViewStudent()
-
     return render_template('/stud/view.html', form=form)
 
 
 @stud.route('/delete')
 @login_required
 def delete():
-
     return render_template('/stud/delete.html',
                            title='Delete')
